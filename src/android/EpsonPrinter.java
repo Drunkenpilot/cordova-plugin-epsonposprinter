@@ -57,7 +57,7 @@ public class EpsonPrinter extends CordovaPlugin{
       });
       return true;
     }
-  //  return false;
+    return false;
   }
 
   // private void search(CallbackContext callbackContext){
