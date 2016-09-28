@@ -7,7 +7,7 @@
   <keywords>cordova,epson,pos printer</keywords>
 
   <js-module src="www/epson.js" name="EpsonPosPrinter">
-    <clobbers target="cordova.plugins.epsonPosPrinter" />
+    <clobbers target="be.betalife.cordova.plugin.epsonposprinter" />
   </js-module>
 
   <platform name="android">
