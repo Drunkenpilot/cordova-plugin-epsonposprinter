@@ -1,10 +1,13 @@
-package be.betalife.epsonposprinter;
+package be.betalife.cordova.plugin.epsonposprinter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.apache.cordova.CallbackContext;
+import android.content.Context;
+
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CallbackContext;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
