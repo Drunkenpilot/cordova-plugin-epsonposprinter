@@ -27,7 +27,7 @@
     </config-file>
 
     <source-file src="src/android/res/xml/device_filter.xml" target-dir="res/xml/" />
-    <source-file src="src/android/EpsonPrinter.java" target-dir="src/be/betalife/epsonposprinter" />
+    <source-file src="src/android/be/betalife/epsonposprinter/EpsonPrinter.java" target-dir="src/be/betalife/epsonposprinter" />
     <source-file src="libs/ePOS2.jar" target-dir="libs" />
   </platform>
 
