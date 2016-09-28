@@ -21,10 +21,16 @@ import com.epson.epos2.discovery.DeviceInfo;
 import com.epson.epos2.Epos2Exception;
 
 public class EpsonPrinter extends CordovaPlugin{
+
   private Context mContext = null;
   private ArrayList<HashMap<String, String>> mPrinterList = null;
-
   private FilterOption mFilterOption = null;
+
+  @Override
+  public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+      super.initialize(cordova, webView);
+      // your init code here
+  }
 
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException{
