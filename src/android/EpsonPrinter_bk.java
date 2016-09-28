@@ -1,7 +1,15 @@
 package be.betalife.cordova.plugin.epsonposprinter;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,19 +31,14 @@ import com.epson.epos2.Epos2Exception;
 public class EpsonPrinter extends CordovaPlugin{
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException{
-    // final EpsonPrinter currentPluginInstance = this;
-    // final JSONArray Arguments = args;
-    // final CallbackContext currentCallbackContext = callbackContext;
+    final EpsonPrinter currentPluginInstance = this;
+    final JSONArray Arguments = args;
+    final CallbackContext currentCallbackContext = callbackContext;
     if(action.equals("search")){
       cordova.getThreadPool().execute(new Runnable(){
         public void  run(){
-            Context context = cordova.getActivity().getApplicationContext();
-            mFilterOption = new FilterOption();
-            // mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
-            // mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
           try{
-            Discovery.start(context, mFilterOption, mDiscoveryListener);
-            // currentPluginInstance.search(currentCallbackContext);
+            currentPluginInstance.search(currentCallbackContext);
           } catch(Exception e){
             currentCallbackContext.error(e.getMessage());
           }
@@ -46,18 +49,18 @@ public class EpsonPrinter extends CordovaPlugin{
     return false;
   }
 
-  // private void search(CallbackContext callbackContext){
-  //   Context context = this.cordova.getActivity().getApplicationContext();
-  //   mFilterOption = new FilterOption();
-  //   // mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
-  //   // mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
-  //   try{
-  //     Discovery.start(context, mFilterOption, mDiscoveryListener);
-  //   }catch(Exception e){
-  //     callbackContext.error(e.getMessage());
-  //   }
-  //
-  // }
+  private void search(CallbackContext callbackContext){
+    Context context = this.cordova.getActivity().getApplicationContext();
+    mFilterOption = new FilterOption();
+    // mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
+    // mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
+    try{
+      Discovery.start(context, mFilterOption, mDiscoveryListener);
+    }catch(Exception e){
+      callbackContext.error(e.getMessage());
+    }
+
+  }
 
   private DiscoveryListener mDiscoveryListener = new DiscoveryListener() {
     @Override
