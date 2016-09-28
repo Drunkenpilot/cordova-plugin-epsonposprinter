@@ -21,7 +21,7 @@ import com.epson.epos2.discovery.FilterOption;
 import com.epson.epos2.discovery.DeviceInfo;
 import com.epson.epos2.Epos2Exception;
 
-public class EpsonPrinter extends CordovaPlugin{
+public class EpsonPrinter111111 extends CordovaPlugin{
 
   private Context mContext = null;
   private ArrayList<HashMap<String, String>> mPrinterList = null;
@@ -41,17 +41,18 @@ public class EpsonPrinter extends CordovaPlugin{
     if(action.equals("search")){
       cordova.getThreadPool().execute(new Runnable(){
         public void  run(){
-          Context context = cordova.getActivity().getApplicationContext();
+          callbackContext.success("test ok");
+        //  Context context = cordova.getActivity().getApplicationContext();
           mPrinterList = new ArrayList<HashMap<String, String>>();
           mFilterOption = new FilterOption();
           // mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
           // mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
-          try{
-            Discovery.start(context, mFilterOption, mDiscoveryListener);
-            // currentPluginInstance.search(currentCallbackContext);
-          } catch(Exception e){
-          //  currentCallbackContext.error(e.getMessage());
-          }
+          // try{
+          //   Discovery.start(context, mFilterOption, mDiscoveryListener);
+          //   // currentPluginInstance.search(currentCallbackContext);
+          // } catch(Exception e){
+          // //  currentCallbackContext.error(e.getMessage());
+          // }
         }
       });
       return true;
