@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-epsonposprinter" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+  <name>EpsonPosPrinter</name>
+  <description>Cordova Epson Pos Printer Plugin</description>
+  <keywords>cordova,epson,pos printer</keywords>
+
+  <js-module src="www/epson.js" name="EpsonPosPrinter">
+    <clobbers target="cordova.plugins.epsonPosPrinter" />
+  </js-module>
+
+  <platform name="android">
+    <config-file target="AndroidManifest.xml" parent="/*">
+      <feature name="EpsonPosPrinter" >
+        <param name="android-package" value="be.betalife.cordova.epsonposprinter.EpsonPrinter"/>
+      </feature>
+      <uses-permission android:name="android.permission.BLUETOOTH"/>
+      <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+      <uses-permission android:name="android.permission.INTERNET"/>
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+      <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+      <intent-filter>
+        <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+      </intent-filter>
+      <meta-data android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" android:resource="@xml/device_filter" />
+    </config-file>
+
+    <source-file src="src/android/res/xml/device_filter.xml" target-dir="res/xml/" />
+    <source-file src="src/android/EpsonPrinter.java" target-dir="src/be/betalife/cordova/epsonposprinter" />
+    <source-file src="libs/ePOS2.jar" target-dir="libs" />
+  </platform>
+
+</plugin>
