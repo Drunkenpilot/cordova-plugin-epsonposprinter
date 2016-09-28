@@ -12,7 +12,8 @@ import org.json.JSONObject;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
-
+import org.apache.cordova.CordovaWebView;
+import org.apache.cordova.CordovaInterface;
 
 import com.epson.epos2.discovery.Discovery;
 import com.epson.epos2.discovery.DiscoveryListener;
