@@ -41,18 +41,18 @@ public class EpsonPrinter extends CordovaPlugin{
     if(action.equals("search")){
       cordova.getThreadPool().execute(new Runnable(){
         public void  run(){
-          
-        //  Context context = cordova.getActivity().getApplicationContext();
+
+          Context context = cordova.getActivity().getApplicationContext();
           mPrinterList = new ArrayList<HashMap<String, String>>();
           mFilterOption = new FilterOption();
           // mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
           // mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
-          // try{
-          //   Discovery.start(context, mFilterOption, mDiscoveryListener);
-          //   // currentPluginInstance.search(currentCallbackContext);
-          // } catch(Exception e){
-          // //  currentCallbackContext.error(e.getMessage());
-          // }
+          try{
+            Discovery.start(context, mFilterOption, mDiscoveryListener);
+            // currentPluginInstance.search(currentCallbackContext);
+          } catch(Exception e){
+            currentCallbackContext.error(e.getMessage());
+          }
         }
       });
       return true;
