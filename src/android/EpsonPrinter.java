@@ -53,6 +53,7 @@ public class EpsonPrinter extends CordovaPlugin{
           // } catch(Exception e){
           // //  currentCallbackContext.error(e.getMessage());
           // }
+          return true;
         }
       });
       return true;
