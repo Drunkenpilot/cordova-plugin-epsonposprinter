@@ -23,18 +23,19 @@ import com.epson.epos2.Epos2Exception;
 public class EpsonPrinter extends CordovaPlugin{
   private Context mContext = null;
   private ArrayList<HashMap<String, String>> mPrinterList = null;
-  private SimpleAdapter mPrinterListAdapter = null;
+
   private FilterOption mFilterOption = null;
 
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException{
-     final EpsonPrinter currentPluginInstance = this;
-     final JSONArray Arguments = args;
-     final CallbackContext currentCallbackContext = callbackContext;
+    final EpsonPrinter currentPluginInstance = this;
+    final JSONArray Arguments = args;
+    final CallbackContext currentCallbackContext = callbackContext;
     if(action.equals("search")){
       cordova.getThreadPool().execute(new Runnable(){
         public void  run(){
           Context context = cordova.getActivity().getApplicationContext();
+          mPrinterList = new ArrayList<HashMap<String, String>>();
           mFilterOption = new FilterOption();
           // mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
           // mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
@@ -67,13 +68,13 @@ public class EpsonPrinter extends CordovaPlugin{
   private DiscoveryListener mDiscoveryListener = new DiscoveryListener() {
     @Override
     public void onDiscovery(final DeviceInfo deviceInfo) {
-      runOnUiThread(new Runnable() {
+      cordova.getActivity().runOnUiThread(new Runnable() {
         @Override
         public synchronized void run() {
           HashMap<String, String> item = new HashMap<String, String>();
           item.put("PrinterName", deviceInfo.getDeviceName());
           item.put("Target", deviceInfo.getTarget());
-          //          mPrinterList.add(item);
+          mPrinterList.add(item);
           //          mPrinterListAdapter.notifyDataSetChanged();
           //  return item;
         }
