@@ -1,16 +1,26 @@
 package be.betalife.cordova.plugin.epsonposprinter;
 
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import android.content.Context;
-
-import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CallbackContext;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CallbackContext;
+
 
 import com.epson.epos2.discovery.Discovery;
 import com.epson.epos2.discovery.DiscoveryListener;
@@ -25,7 +35,7 @@ public class EpsonPrinter extends CordovaPlugin{
     final JSONArray Arguments = args;
     final CallbackContext currentCallbackContext = callbackContext;
     if(action.equals("search")){
-      cordova.getThreadPool().excute(new Runnable(){
+      cordova.getThreadPool().execute(new Runnable(){
         public void  run(){
           try{
             currentPluginInstance.search(currentCallbackContext);
