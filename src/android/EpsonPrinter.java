@@ -63,7 +63,7 @@ public class EpsonPrinter extends CordovaPlugin{
           item.put("Target", deviceInfo.getTarget());
 //          mPrinterList.add(item);
 //          mPrinterListAdapter.notifyDataSetChanged();
-          return item;
+        //  return item;
         }
       });
     }
