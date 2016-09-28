@@ -1,17 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-epsonposprinter" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  id="cordova-plugin-epsonposprinter" version="0.0.1">
   <name>EpsonPosPrinter</name>
   <description>Cordova Epson Pos Printer Plugin</description>
   <keywords>cordova,epson,pos printer</keywords>
 
   <js-module src="www/epson.js" name="EpsonPosPrinter">
-    <clobbers target="cordova.plugins.epsonPosPrinter" />
+    <clobbers target="cordova.plugin.epsonPosPrinter" />
   </js-module>
 
   <platform name="android">
     <config-file target="AndroidManifest.xml" parent="/*">
       <feature name="EpsonPosPrinter" >
-        <param name="android-package" value="be.betalife.cordova.epsonposprinter.EpsonPrinter"/>
+        <param name="android-package" value="be.betalife.cordova.epsonposprinter"/>
       </feature>
       <uses-permission android:name="android.permission.BLUETOOTH"/>
       <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
