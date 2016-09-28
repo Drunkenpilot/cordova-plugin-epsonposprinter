@@ -1,4 +1,4 @@
-package be.betalife.cordova.epsonposprinter;
+package be.betalife.epsonposprinter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
