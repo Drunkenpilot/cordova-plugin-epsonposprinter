@@ -28,9 +28,9 @@ public class EpsonPrinter extends CordovaPlugin{
 
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException{
-    // final EpsonPrinter currentPluginInstance = this;
-    // final JSONArray Arguments = args;
-    // final CallbackContext currentCallbackContext = callbackContext;
+     final EpsonPrinter currentPluginInstance = this;
+     final JSONArray Arguments = args;
+     final CallbackContext currentCallbackContext = callbackContext;
     if(action.equals("search")){
       cordova.getThreadPool().execute(new Runnable(){
         public void  run(){
