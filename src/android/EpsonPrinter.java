@@ -21,7 +21,7 @@ import com.epson.epos2.discovery.FilterOption;
 import com.epson.epos2.discovery.DeviceInfo;
 import com.epson.epos2.Epos2Exception;
 
-public class EpsonPrinter111111 extends CordovaPlugin{
+public class EpsonPrinter extends CordovaPlugin{
 
   private Context mContext = null;
   private ArrayList<HashMap<String, String>> mPrinterList = null;
@@ -57,7 +57,7 @@ public class EpsonPrinter111111 extends CordovaPlugin{
       });
       return true;
     }
-    return false;
+  //  return false;
   }
 
   // private void search(CallbackContext callbackContext){
