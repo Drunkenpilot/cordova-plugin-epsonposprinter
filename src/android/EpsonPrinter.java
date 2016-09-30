@@ -68,7 +68,24 @@ public class EpsonPrinter extends CordovaPlugin {
 		return false;
 	}
 
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
 
+		while (true) {
+			try {
+				Discovery.stop();
+				break;
+			}
+			catch (Epos2Exception e) {
+				if (e.getErrorStatus() != Epos2Exception.ERR_PROCESSING) {
+					break;
+				}
+			}
+		}
+
+		mFilterOption = null;
+	}
 
 
 	private DiscoveryListener mDiscoveryListener = new DiscoveryListener() {
@@ -93,25 +110,7 @@ public class EpsonPrinter extends CordovaPlugin {
 			Log.i("测试", "测试8");
 		}
 
-		@Override
-		public void onDestroy() {
-			super.onDestroy();
-
-			while (true) {
-				try {
-					Discovery.stop();
-					break;
-				}
-				catch (Epos2Exception e) {
-					if (e.getErrorStatus() != Epos2Exception.ERR_PROCESSING) {
-						break;
-					}
-				}
-			}
-
-			mFilterOption = null;
-		}
-
 	};
+
 
 }
