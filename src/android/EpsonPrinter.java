@@ -59,14 +59,16 @@ public class EpsonPrinter extends CordovaPlugin {
 				Discovery.stop();
 				Log.i("停止测试", "停止测试3");
 			}catch(Epos2Exception e){
-					Log.i("停止测试", "停止测试4");
-					Log.i("停止测试", "e:" + e.getErrorStatus());
-					callbackContext.error("e:" + e.getErrorStatus());
+				Log.i("停止测试", "停止测试4");
+				Log.i("停止测试", "e:" + e.getErrorStatus());
+				callbackContext.error("e:" + e.getErrorStatus());
 			}
 			return true;
 		}
 		return false;
 	}
+
+
 
 
 	private DiscoveryListener mDiscoveryListener = new DiscoveryListener() {
@@ -87,9 +89,29 @@ public class EpsonPrinter extends CordovaPlugin {
 			// return item;
 			Log.i("测试", "测试7");
 			callbackContext
-					.success("PrinterName: " + deviceInfo.getDeviceName() + "; " + "Target: " + deviceInfo.getTarget());
+			.success("PrinterName: " + deviceInfo.getDeviceName() + "; " + "Target: " + deviceInfo.getTarget());
 			Log.i("测试", "测试8");
 		}
+
+		@Override
+		public void onDestroy() {
+			super.onDestroy();
+
+			while (true) {
+				try {
+					Discovery.stop();
+					break;
+				}
+				catch (Epos2Exception e) {
+					if (e.getErrorStatus() != Epos2Exception.ERR_PROCESSING) {
+						break;
+					}
+				}
+			}
+
+			mFilterOption = null;
+		}
+
 	};
 
 }
