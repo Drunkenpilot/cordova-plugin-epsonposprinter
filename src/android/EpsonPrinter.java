@@ -48,7 +48,7 @@ public class EpsonPrinter extends CordovaPlugin{
           mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
           mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
           try{
-            Discovery.start(context, mFilterOption, mDiscoveryListener);
+            Discovery.start(cordova.getActivity(), mFilterOption, mDiscoveryListener);
             // currentPluginInstance.search(currentCallbackContext);
           } catch(Exception e){
             currentCallbackContext.error(e.getMessage());
