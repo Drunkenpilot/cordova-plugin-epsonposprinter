@@ -52,7 +52,7 @@ public class EpsonPrinter extends CordovaPlugin{
           // currentPluginInstance.search(currentCallbackContext);
         } catch(Exception e){
         	 Log.i("测试", "测试4");
-        	 Log.i("测试", e.getMessage());
+        	 Log.i("测试", "e:"+e.getMessage());
       	  callbackContext.error(e.getMessage());
         }
         
