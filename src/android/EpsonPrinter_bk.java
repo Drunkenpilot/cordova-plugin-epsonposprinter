@@ -3,7 +3,6 @@ package be.betalife.cordova.plugin.epsonposprinter;
 
 import android.content.Context;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -27,7 +26,6 @@ public class EpsonPrinter extends CordovaPlugin{
   private Context mContext = null;
   private ArrayList<HashMap<String, String>> mPrinterList = null;
   private FilterOption mFilterOption = null;
-  private CallbackContext callbackContext = null;
 
   @Override
   public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -37,19 +35,26 @@ public class EpsonPrinter extends CordovaPlugin{
 
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException{
-    this.callbackContext = callbackContext;
+    final EpsonPrinter currentPluginInstance = this;
+    final JSONArray Arguments = args;
+    final CallbackContext currentCallbackContext = callbackContext;
     if(action.equals("search")){
-    	mPrinterList = new ArrayList<HashMap<String, String>>();
-        mFilterOption = new FilterOption();
-        mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
-        mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
-        try{
-          Discovery.start(cordova.getActivity(), mFilterOption, mDiscoveryListener);
-          // currentPluginInstance.search(currentCallbackContext);
-        } catch(Exception e){
-      	  callbackContext.error(e.getMessage());
+      cordova.getThreadPool().execute(new Runnable(){
+        public void  run(){
+
+          Context context = cordova.getActivity().getApplicationContext();
+          mPrinterList = new ArrayList<HashMap<String, String>>();
+          mFilterOption = new FilterOption();
+          mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
+          mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
+          try{
+            Discovery.start(cordova.getActivity(), mFilterOption, mDiscoveryListener);
+            // currentPluginInstance.search(currentCallbackContext);
+          } catch(Exception e){
+            currentCallbackContext.error(e.getMessage());
+          }
         }
-        
+      });
       return true;
     }
     return false;
@@ -71,18 +76,20 @@ public class EpsonPrinter extends CordovaPlugin{
   private DiscoveryListener mDiscoveryListener = new DiscoveryListener() {
     @Override
     public void onDiscovery(final DeviceInfo deviceInfo) {
-    	HashMap<String, String> item = new HashMap<String, String>();
-        item.put("PrinterName", deviceInfo.getDeviceName());
-        item.put("Target", deviceInfo.getTarget());
-        mPrinterList.add(item);
-        Toast.makeText(cordova.getActivity(), "PrinterName: "+deviceInfo.getDeviceName(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(cordova.getActivity(), "Target: "+deviceInfo.getTarget(), Toast.LENGTH_SHORT).show();
-        //          mPrinterListAdapter.notifyDataSetChanged();
-        //  return item;
-        callbackContext.success("PrinterName: "+deviceInfo.getDeviceName()+"; "+"Target: "+deviceInfo.getTarget());
+      cordova.getActivity().runOnUiThread(new Runnable() {
+        @Override
+        public synchronized void run() {
+          HashMap<String, String> item = new HashMap<String, String>();
+          item.put("PrinterName", deviceInfo.getDeviceName());
+          item.put("Target", deviceInfo.getTarget());
+          mPrinterList.add(item);
+          Toast.makeText(cordova.getActivity(), "PrinterName: "+deviceInfo.getDeviceName(), Toast.LENGTH_SHORT).show();
+          Toast.makeText(cordova.getActivity(), "Target: "+deviceInfo.getTarget(), Toast.LENGTH_SHORT).show();
+          //          mPrinterListAdapter.notifyDataSetChanged();
+          //  return item;
+        }
+      });
     }
   };
-  
-  
 
 }
