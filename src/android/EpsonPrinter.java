@@ -53,7 +53,7 @@ public class EpsonPrinter extends CordovaPlugin {
 			}
 
 			return true;
-		}else if (action.equals("stopSearch")){
+		}else if(action.equals("stopSearch")){
 			try{
 				Log.i("停止测试", "停止测试2");
 				Discovery.stop();
@@ -92,9 +92,9 @@ public class EpsonPrinter extends CordovaPlugin {
 
 			mPrinterList.add(item);
 			Log.i("测试", "测试6");
-			Toast.makeText(cordova.getActivity(), "PrinterName: " + deviceInfo.getDeviceName(), Toast.LENGTH_SHORT)
-					.show();
-			Toast.makeText(cordova.getActivity(), "Target: " + deviceInfo.getTarget(), Toast.LENGTH_SHORT).show();
+			// Toast.makeText(cordova.getActivity(), "PrinterName: " + deviceInfo.getDeviceName(), Toast.LENGTH_SHORT)
+			// 		.show();
+			// Toast.makeText(cordova.getActivity(), "Target: " + deviceInfo.getTarget(), Toast.LENGTH_SHORT).show();
 			// mPrinterListAdapter.notifyDataSetChanged();
 			// return item;
 			Log.i("测试", "测试7");
