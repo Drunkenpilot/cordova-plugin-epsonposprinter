@@ -7,7 +7,7 @@ import android.content.DialogInterface;
 import com.epson.epos2.Epos2Exception;
 import com.epson.epos2.Epos2CallbackCode;
 
-public class ShowShowMsg {
+public class ShowMsg {
     public static void showException(Exception e, String method, Context context) {
         String msg = "";
         if (e instanceof Epos2Exception) {
