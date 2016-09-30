@@ -39,7 +39,7 @@ public class EpsonPrinter extends CordovaPlugin {
 			mPrinterList = new ArrayList<HashMap<String, String>>();
 			mFilterOption = new FilterOption();
 			mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
-			mFilterOption.setEpsonFilter(Discovery.FILTER_NONE);
+			mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
 			mFilterOption.setPortType(Discovery.PORTTYPE_ALL);
 			try {
 				Log.i("测试", "测试2");
