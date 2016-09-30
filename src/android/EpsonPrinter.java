@@ -2,6 +2,7 @@ package be.betalife.cordova.plugin.epsonposprinter;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -38,15 +39,20 @@ public class EpsonPrinter extends CordovaPlugin{
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException{
     this.callbackContext = callbackContext;
+    Log.i("测试", "测试1");
     if(action.equals("search")){
     	mPrinterList = new ArrayList<HashMap<String, String>>();
         mFilterOption = new FilterOption();
         mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
         mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
         try{
+        	 Log.i("测试", "测试2");
           Discovery.start(cordova.getActivity(), mFilterOption, mDiscoveryListener);
+          Log.i("测试", "测试3");
           // currentPluginInstance.search(currentCallbackContext);
         } catch(Exception e){
+        	 Log.i("测试", "测试4");
+        	 Log.i("测试", e.getMessage());
       	  callbackContext.error(e.getMessage());
         }
         
@@ -71,15 +77,21 @@ public class EpsonPrinter extends CordovaPlugin{
   private DiscoveryListener mDiscoveryListener = new DiscoveryListener() {
     @Override
     public void onDiscovery(final DeviceInfo deviceInfo) {
+    	Log.i("测试", "测试5");
     	HashMap<String, String> item = new HashMap<String, String>();
         item.put("PrinterName", deviceInfo.getDeviceName());
         item.put("Target", deviceInfo.getTarget());
+        Log.i("测试", "PrinterName: "+deviceInfo.getDeviceName()+"; "+"Target: "+deviceInfo.getTarget());
+        
         mPrinterList.add(item);
+        Log.i("测试", "测试6");
         Toast.makeText(cordova.getActivity(), "PrinterName: "+deviceInfo.getDeviceName(), Toast.LENGTH_SHORT).show();
         Toast.makeText(cordova.getActivity(), "Target: "+deviceInfo.getTarget(), Toast.LENGTH_SHORT).show();
         //          mPrinterListAdapter.notifyDataSetChanged();
         //  return item;
+        Log.i("测试", "测试7");
         callbackContext.success("PrinterName: "+deviceInfo.getDeviceName()+"; "+"Target: "+deviceInfo.getTarget());
+        Log.i("测试", "测试8");
     }
   };
   
