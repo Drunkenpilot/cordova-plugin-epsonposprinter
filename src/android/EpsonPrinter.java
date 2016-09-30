@@ -52,10 +52,10 @@ public class EpsonPrinter extends CordovaPlugin{
           // currentPluginInstance.search(currentCallbackContext);
         } catch(Exception e){
         	 Log.i("测试", "测试4");
-        	 Log.i("测试", "e:"+e.getMessage());
-      	  callbackContext.error(e.getMessage());
+        	 Log.i("测试", "e:"+e.getErrorStatus());
+      	  callbackContext.error(e.getErrorStatus());
         }
-        
+
       return true;
     }
     return false;
@@ -82,7 +82,7 @@ public class EpsonPrinter extends CordovaPlugin{
         item.put("PrinterName", deviceInfo.getDeviceName());
         item.put("Target", deviceInfo.getTarget());
         Log.i("测试", "PrinterName: "+deviceInfo.getDeviceName()+"; "+"Target: "+deviceInfo.getTarget());
-        
+
         mPrinterList.add(item);
         Log.i("测试", "测试6");
         Toast.makeText(cordova.getActivity(), "PrinterName: "+deviceInfo.getDeviceName(), Toast.LENGTH_SHORT).show();
@@ -94,7 +94,7 @@ public class EpsonPrinter extends CordovaPlugin{
         Log.i("测试", "测试8");
     }
   };
-  
-  
+
+
 
 }
