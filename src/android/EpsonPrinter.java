@@ -40,7 +40,7 @@ public class EpsonPrinter extends CordovaPlugin {
 			mFilterOption = new FilterOption();
 			mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
 			mFilterOption.setEpsonFilter(Discovery.FILTER_NONE);
-			mFilterOption.setPortType(Discovery.PORTTYPE_USB);
+			mFilterOption.setPortType(Discovery.PORTTYPE_ALL);
 			try {
 				Log.i("测试", "测试2");
 				Discovery.start(cordova.getActivity(), mFilterOption, mDiscoveryListener);
@@ -68,18 +68,6 @@ public class EpsonPrinter extends CordovaPlugin {
 		return false;
 	}
 
-	// private void search(CallbackContext callbackContext){
-	// Context context = this.cordova.getActivity().getApplicationContext();
-	// mFilterOption = new FilterOption();
-	// // mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
-	// // mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
-	// try{
-	// Discovery.start(context, mFilterOption, mDiscoveryListener);
-	// }catch(Exception e){
-	// callbackContext.error(e.getMessage());
-	// }
-	//
-	// }
 
 	private DiscoveryListener mDiscoveryListener = new DiscoveryListener() {
 		@Override
