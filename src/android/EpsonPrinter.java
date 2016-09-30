@@ -40,6 +40,7 @@ public class EpsonPrinter extends CordovaPlugin {
 			mFilterOption = new FilterOption();
 			mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
 			mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
+			mFilterOption.setPortType(Discovery.PORTTYPE_USB);
 			try {
 				Log.i("测试", "测试2");
 				Discovery.start(cordova.getActivity(), mFilterOption, mDiscoveryListener);
