@@ -2,7 +2,7 @@ package be.betalife.cordova.plugin.epsonposprinter;
 
 
 import android.content.Context;
-
+import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -83,6 +83,8 @@ public class EpsonPrinter extends CordovaPlugin{
           item.put("PrinterName", deviceInfo.getDeviceName());
           item.put("Target", deviceInfo.getTarget());
           mPrinterList.add(item);
+          Toast.makeText(cordova.getActivity(), "PrinterName: "+deviceInfo.getDeviceName(), Toast.LENGTH_SHORT).show();
+          Toast.makeText(cordova.getActivity(), "Target: "+deviceInfo.getTarget(), Toast.LENGTH_SHORT).show();
           //          mPrinterListAdapter.notifyDataSetChanged();
           //  return item;
         }
