@@ -36,7 +36,6 @@ public class EpsonPrinter extends CordovaPlugin {
 		this.callbackContext = callbackContext;
 		Log.i("测试", "测试1");
 		if (action.equals("search")) {
-			mContext = this;
 			mPrinterList = new ArrayList<HashMap<String, String>>();
 			mFilterOption = new FilterOption();
 			mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
@@ -50,7 +49,7 @@ public class EpsonPrinter extends CordovaPlugin {
 			} catch (Epos2Exception e) {
 				Log.i("测试", "测试4");
 				Log.i("测试", "e:" + e.getErrorStatus());
-				ShowMsg.showException(e, "start", mContext);
+				ShowMsg.showException(e, "start", callbackContext);
 				callbackContext.error("e:" + e.getErrorStatus());
 			}
 
