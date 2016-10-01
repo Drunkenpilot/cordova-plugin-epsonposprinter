@@ -19,6 +19,13 @@ public class ShowMsg extends CordovaPlugin{
     super.initialize(cordova, webView);
     // your init code here
   }
+  public void initException (Exception e, String method, Context context){
+    cordova.getActivity().runOnUiThread(new Runnable() {
+      public void run() {
+        showException(e,method,context);
+      }
+      });
+  }
   public static void showException(Exception e, String method, Context context) {
     String msg = "";
     if (e instanceof Epos2Exception) {
@@ -58,10 +65,7 @@ public class ShowMsg extends CordovaPlugin{
     show(msg, context);
   }
 
-  private  void show(String msg, Context context) {
-
-    cordova.getActivity().runOnUiThread(new Runnable() {
-      public void run() {
+  private static void show(String msg, Context context) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
         alertDialog.setMessage(msg);
         alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -71,8 +75,6 @@ public class ShowMsg extends CordovaPlugin{
         });
         alertDialog.create();
         alertDialog.show();
-      }
-    });
   }
 
   private static String getEposExceptionText(int state) {
