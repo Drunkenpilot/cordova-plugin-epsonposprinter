@@ -30,7 +30,8 @@ import android.app.Activity;
 public class DiscoveryFunc extends CordovaPlugin{
 
   public DiscoveryListener mDiscoveryListener = new DiscoveryListener( ) {
-    mPrinterList = new ArrayList<HashMap<String, String>>();
+    EpsonPrinter epsonPrinter = new EpsonPrinter();
+    mPrinterList = epsonPrinter.mPrinterList;
     @Override
     public void onDiscovery(final DeviceInfo deviceInfo) {
       Log.i("测试", "测试5");
