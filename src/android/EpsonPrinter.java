@@ -44,12 +44,14 @@ public class EpsonPrinter extends CordovaPlugin {
 			mFilterOption.setPortType(Discovery.PORTTYPE_ALL);
 			try {
 				Log.i("测试", "测试2");
-				Discovery.start(cordova.getActivity(), mFilterOption, mDiscoveryListener);
+				Discovery.start(cordova.getActivity().getApplicationContext(), mFilterOption, mDiscoveryListener);
+
+				JSONArray mPrinterListJson = new JSONArray(mPrinterList);
 				Log.i("测试", "测试3");
 			} catch (Epos2Exception e) {
 				Log.i("测试", "测试4");
 				Log.i("测试", "e:" + e.getErrorStatus());
-				ShowMsg.showException(e, "start", callbackContext);
+				ShowMsg.showException(e, "start", cordova.getActivity().getApplicationContext());
 				callbackContext.error("e:" + e.getErrorStatus());
 
 			}
