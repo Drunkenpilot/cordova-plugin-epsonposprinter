@@ -380,7 +380,7 @@ public class EpsonPrinter extends CordovaPlugin {
 		String msg = "";
  		Resources res = cordova.getActivity().getResources();
 		if (status.getOnline() == Printer.FALSE) {
-				msg += res.getString(R.string.handlingmsg_err_offline);
+				msg += res.getString(2);
 		}
 		if (status.getConnection() == Printer.FALSE) {
 				msg += getResources().getString(R.string.handlingmsg_err_no_response);
