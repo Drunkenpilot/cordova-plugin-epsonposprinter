@@ -29,6 +29,7 @@ import android.util.Log;
 import android.widget.Toast;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Context;
 import android.R;
 import android.R.string;
 import android.R.drawable;
