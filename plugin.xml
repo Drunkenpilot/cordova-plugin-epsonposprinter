@@ -34,6 +34,9 @@
     <source-file src="src/android/ShowMsg.java" target-dir="src/be/betalife/cordova/plugin/epsonposprinter" />
     <source-file src="libs/ePOS2.jar" target-dir="libs" />
     <source-file src="libs/armeabi/libepos2.so" target-dir="libs/armeabi" />
+
+    <resource-file src="src/android/res/drawable-nodpi/store.png" target="res/drawable-nodpi/store.png" />
+
   </platform>
 
 </plugin>

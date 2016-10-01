@@ -71,25 +71,275 @@ public class EpsonPrinter extends CordovaPlugin {
 				}
 			});
 			return true;
-		} else if (action.equals("stopSearch")) {
-			try {
-				Log.i("停止测试", "停止测试2");
-				Discovery.stop();
-				Log.i("停止测试", "停止测试3");
-			} catch (Epos2Exception e) {
-				Log.i("停止测试", "停止测试4");
-				Log.i("停止测试", "e:" + e.getErrorStatus());
-				ShowMsg.showException(e, "stop", cordova.getActivity());
-				// callbackContext.error("e:" + e.getErrorStatus());
-			}
+		}else if (action.equals("print")) {
+			runPrintCouponSequence();
 			return true;
-		} else if (action.equals("print")) {
-
 		}
 		return false;
 
 	}
 
+	private boolean runPrintReceiptSequence() {
+		if (!initializeObject()) {
+			return false;
+		}
+
+		if (!createReceiptData()) {
+			finalizeObject();
+			return false;
+		}
+
+		if (!printData()) {
+			finalizeObject();
+			return false;
+		}
+
+		return true;
+	}
+
+	private boolean printData() {
+		if (mPrinter == null) {
+			return false;
+		}
+
+		if (!connectPrinter()) {
+			return false;
+		}
+
+		PrinterStatusInfo status = mPrinter.getStatus();
+
+		dispPrinterWarnings(status);
+
+		if (!isPrintable(status)) {
+			ShowMsg.showMsg(makeErrorMessage(status), cordova.getActivity());
+			try {
+				mPrinter.disconnect();
+			}
+			catch (Exception ex) {
+				// Do nothing
+			}
+			return false;
+		}
+
+		try {
+			mPrinter.sendData(Printer.PARAM_DEFAULT);
+		}
+		catch (Exception e) {
+			ShowMsg.showException(e, "sendData", cordova.getActivity());
+			try {
+				mPrinter.disconnect();
+			}
+			catch (Exception ex) {
+				// Do nothing
+			}
+			return false;
+		}
+
+		return true;
+	}
+
+
+
+	private boolean initializeObject() {
+		try {
+			mPrinter = new Printer(6,0,cordova.getActivity());
+		}
+		catch (Exception e) {
+			ShowMsg.showException(e, "Printer", cordova.getActivity());
+			return false;
+		}
+
+		mPrinter.setReceiveEventListener(this);
+
+		return true;
+	}
+
+	private boolean createReceiptData() {
+		String method = "";
+		Bitmap logoData = BitmapFactory.decodeResource(getResources(), R.drawable.store);
+		StringBuilder textData = new StringBuilder();
+		final int barcodeWidth = 2;
+		final int barcodeHeight = 100;
+
+		if (mPrinter == null) {
+			return false;
+		}
+
+		try {
+			method = "addTextAlign";
+			mPrinter.addTextAlign(Printer.ALIGN_CENTER);
+
+			method = "addImage";
+			mPrinter.addImage(logoData, 0, 0,
+			logoData.getWidth(),
+			logoData.getHeight(),
+			Printer.COLOR_1,
+			Printer.MODE_MONO,
+			Printer.HALFTONE_DITHER,
+			Printer.PARAM_DEFAULT,
+			Printer.COMPRESS_AUTO);
+
+			method = "addFeedLine";
+			mPrinter.addFeedLine(1);
+			textData.append("THE STORE 123 (555) 555 – 5555\n");
+			textData.append("STORE DIRECTOR – John Smith\n");
+			textData.append("\n");
+			textData.append("7/01/07 16:58 6153 05 0191 134\n");
+			textData.append("ST# 21 OP# 001 TE# 01 TR# 747\n");
+			textData.append("------------------------------\n");
+			method = "addText";
+			mPrinter.addText(textData.toString());
+			textData.delete(0, textData.length());
+
+			textData.append("400 OHEIDA 3PK SPRINGF  9.99 R\n");
+			textData.append("410 3 CUP BLK TEAPOT    9.99 R\n");
+			textData.append("445 EMERIL GRIDDLE/PAN 17.99 R\n");
+			textData.append("438 CANDYMAKER ASSORT   4.99 R\n");
+			textData.append("474 TRIPOD              8.99 R\n");
+			textData.append("433 BLK LOGO PRNTED ZO  7.99 R\n");
+			textData.append("458 AQUA MICROTERRY SC  6.99 R\n");
+			textData.append("493 30L BLK FF DRESS   16.99 R\n");
+			textData.append("407 LEVITATING DESKTOP  7.99 R\n");
+			textData.append("441 **Blue Overprint P  2.99 R\n");
+			textData.append("476 REPOSE 4PCPM CHOC   5.49 R\n");
+			textData.append("461 WESTGATE BLACK 25  59.99 R\n");
+			textData.append("------------------------------\n");
+			method = "addText";
+			mPrinter.addText(textData.toString());
+			textData.delete(0, textData.length());
+
+			textData.append("SUBTOTAL                160.38\n");
+			textData.append("TAX                      14.43\n");
+			method = "addText";
+			mPrinter.addText(textData.toString());
+			textData.delete(0, textData.length());
+
+			method = "addTextSize";
+			mPrinter.addTextSize(2, 2);
+			method = "addText";
+			mPrinter.addText("TOTAL    174.81\n");
+			method = "addTextSize";
+			mPrinter.addTextSize(1, 1);
+			method = "addFeedLine";
+			mPrinter.addFeedLine(1);
+
+			textData.append("CASH                    200.00\n");
+			textData.append("CHANGE                   25.19\n");
+			textData.append("------------------------------\n");
+			method = "addText";
+			mPrinter.addText(textData.toString());
+			textData.delete(0, textData.length());
+
+			textData.append("Purchased item total number\n");
+			textData.append("Sign Up and Save !\n");
+			textData.append("With Preferred Saving Card\n");
+			method = "addText";
+			mPrinter.addText(textData.toString());
+			textData.delete(0, textData.length());
+			method = "addFeedLine";
+			mPrinter.addFeedLine(2);
+
+			method = "addBarcode";
+			mPrinter.addBarcode("01209457",
+			Printer.BARCODE_CODE39,
+			Printer.HRI_BELOW,
+			Printer.FONT_A,
+			barcodeWidth,
+			barcodeHeight);
+
+			method = "addCut";
+			mPrinter.addCut(Printer.CUT_FEED);
+		}
+		catch (Exception e) {
+			ShowMsg.showException(e, method, cordova.getActivity());
+			return false;
+		}
+
+		textData = null;
+
+		return true;
+	}
+
+
+	private void finalizeObject() {
+		if (mPrinter == null) {
+			return;
+		}
+
+		mPrinter.clearCommandBuffer();
+
+		mPrinter.setReceiveEventListener(null);
+
+		mPrinter = null;
+	}
+
+	private boolean connectPrinter() {
+		boolean isBeginTransaction = false;
+
+		if (mPrinter == null) {
+				return false;
+		}
+
+		try {
+				mPrinter.connect("USB:/dev/bus/usb/002/006", Printer.PARAM_DEFAULT);
+		}
+		catch (Exception e) {
+				ShowMsg.showException(e, "connect", cordova.getActivity());
+				return false;
+		}
+
+		try {
+				mPrinter.beginTransaction();
+				isBeginTransaction = true;
+		}
+		catch (Exception e) {
+				ShowMsg.showException(e, "beginTransaction", cordova.getActivity());
+		}
+
+		if (isBeginTransaction == false) {
+				try {
+						mPrinter.disconnect();
+				}
+				catch (Epos2Exception e) {
+						// Do nothing
+						return false;
+				}
+		}
+
+		return true;
+}
+
+private void disconnectPrinter() {
+		if (mPrinter == null) {
+				return;
+		}
+
+		try {
+				mPrinter.endTransaction();
+		}
+		catch (final Exception e) {
+				runOnUiThread(new Runnable() {
+						@Override
+						public synchronized void run() {
+								ShowMsg.showException(e, "endTransaction", cordova.getActivity());
+						}
+				});
+		}
+
+		try {
+				mPrinter.disconnect();
+		}
+		catch (final Exception e) {
+				runOnUiThread(new Runnable() {
+						@Override
+						public synchronized void run() {
+								ShowMsg.showException(e, "disconnect", cordova.getActivity());
+						}
+				});
+		}
+
+		finalizeObject();
+}
 
 
 	@Override
