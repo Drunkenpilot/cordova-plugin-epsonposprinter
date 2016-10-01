@@ -152,7 +152,7 @@ public class EpsonPrinter extends CordovaPlugin {
 						stopDiscovery();
 						dialog.dismiss();
 					}
-				};
+				});
 
 				progressDialog.show();
 			}
