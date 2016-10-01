@@ -97,7 +97,6 @@ public class EpsonPrinter extends CordovaPlugin {
 		super.onDestroy();
 
 		stopDiscovery();
-		dismissLoadingBar();
 		mFilterOption = null;
 	}
 
@@ -128,6 +127,7 @@ public class EpsonPrinter extends CordovaPlugin {
 			jsonArray.put(jsonObject);
 
 		}
+			dismissLoadingBar();
 		callbackContext.success(jsonArray);
 	}
 
