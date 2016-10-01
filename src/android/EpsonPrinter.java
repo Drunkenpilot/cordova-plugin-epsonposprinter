@@ -129,7 +129,7 @@ public class EpsonPrinter extends CordovaPlugin {
 
 		}
 		callbackContext.success(jsonArray);
-		mDiscoveryListener.dismissLoadingBar();
+		ProgressDialog dialog = ProgressDialog.dismiss();
 	}
 
 	private DiscoveryListener mDiscoveryListener = new DiscoveryListener() {
