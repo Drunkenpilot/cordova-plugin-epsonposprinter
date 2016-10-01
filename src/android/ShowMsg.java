@@ -74,10 +74,10 @@ public class ShowMsg extends CordovaPlugin{
   private static void show(final String msg, final Context context) {
 
 Log.i("错误","错误4");
-        Looper.prepare();
-
-        Handler mHandler = new Handler() {
-            public void handleMessage(Message message) {
+        // Looper.prepare();
+        //
+        // Handler mHandler = new Handler() {
+            // public void handleMessage(Message message) {
             	AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
                 alertDialog.setMessage(msg);
                 alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -87,10 +87,10 @@ Log.i("错误","错误4");
                 });
                 alertDialog.create();
                 alertDialog.show();
-            }
-        };
+            // }
+        // };
 
-        Looper.loop();
+        // Looper.loop();
         Log.i("错误","错误5");
   }
 
