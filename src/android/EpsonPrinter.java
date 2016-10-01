@@ -385,7 +385,7 @@ public class EpsonPrinter extends CordovaPlugin {
 				msg += getResources().getString(R.string.handlingmsg_err_no_response);
 		}
 		if (status.getCoverOpen() == Printer.TRUE) {
-				msg += cordova.getActivity().getResources().getString(R.string.handlingmsg_err_cover_open);
+				msg += cordova.getResources().getString(R.string.handlingmsg_err_cover_open);
 		}
 		if (status.getPaper() == Printer.PAPER_EMPTY) {
 				msg += this.getString(R.string.handlingmsg_err_receipt_end);
