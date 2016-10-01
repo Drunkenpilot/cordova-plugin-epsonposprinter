@@ -151,7 +151,7 @@ public class EpsonPrinter extends CordovaPlugin {
 			});
 		}
 
-	}
+	};
 
 	private DiscoveryListener mDiscoveryListener = new DiscoveryListener() {
 		@Override
