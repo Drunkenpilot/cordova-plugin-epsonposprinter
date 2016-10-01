@@ -39,26 +39,28 @@ public class EpsonPrinter extends CordovaPlugin {
 		this.callbackContext = callbackContext;
 		Log.i("测试", "测试1");
 		if (action.equals("search")) {
+			cordova.getThreadPool().execute(new Runnable() {
+				mPrinterList = new ArrayList<HashMap<String, String>>();
+				mFilterOption = new FilterOption();
+				mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
+				mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
+				mFilterOption.setPortType(Discovery.PORTTYPE_ALL);
+				public void run() {
+					try {
+						Log.i("测试", "测试2");
+						Discovery.start(cordova.getActivity().getApplicationContext(), mFilterOption, mDiscoveryListener);
 
-			mPrinterList = new ArrayList<HashMap<String, String>>();
-			mFilterOption = new FilterOption();
-			mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
-			mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
-			mFilterOption.setPortType(Discovery.PORTTYPE_ALL);
-			try {
-				Log.i("测试", "测试2");
-				Discovery.start(cordova.getActivity().getApplicationContext(), mFilterOption, mDiscoveryListener);
+						//callbackContext.success(mPrinterListJson);
+						Log.i("测试", "测试3");
+					} catch (Epos2Exception e) {
+						Log.i("测试", "测试4");
+						Log.i("测试", "e:" + e.getErrorStatus());
+						ShowMsg.showException(e, "start", cordova.getActivity().getApplicationContext());
+						//callbackContext.error("e:" + e.getErrorStatus());
 
-				//callbackContext.success(mPrinterListJson);
-				Log.i("测试", "测试3");
-			} catch (Epos2Exception e) {
-				Log.i("测试", "测试4");
-				Log.i("测试", "e:" + e.getErrorStatus());
-				ShowMsg.showException(e, "start", cordova.getActivity().getApplicationContext());
-				//callbackContext.error("e:" + e.getErrorStatus());
-
-			}
-
+					}
+				}
+			});
 			return true;
 		}else if(action.equals("stopSearch")){
 			try{
