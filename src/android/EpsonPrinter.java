@@ -88,20 +88,20 @@ public class EpsonPrinter extends CordovaPlugin {
 		return false;
 	}
 
-	private void stopDiscovery() {
-		Log.i("停止搜索", "停止2");
-		while (true) {
-			try {
-				Discovery.stop();
-				break;
-			} catch (Epos2Exception e) {
-				if (e.getErrorStatus() != Epos2Exception.ERR_PROCESSING) {
-					break;
-				}
-			}
-		}
+	// private void stopDiscovery() {
+	// 	Log.i("停止搜索", "停止2");
+	// 	while (true) {
+	// 		try {
+	// 			Discovery.stop();
+	// 			break;
+	// 		} catch (Epos2Exception e) {
+	// 			if (e.getErrorStatus() != Epos2Exception.ERR_PROCESSING) {
+	// 				break;
+	// 			}
+	// 		}
+	// 	}
 
-		private void showLoadingBar (){
+		public void showLoadingBar (){
 			cordova.getActivity().runOnUiThread(new Runnable() {
 				public void run() {
 					ProgressDialog dialog = ProgressDialog.show(cordova.getActivity(),"","Searching",true);
