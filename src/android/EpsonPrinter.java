@@ -61,8 +61,9 @@ public class EpsonPrinter extends CordovaPlugin {
 						// ShowMsg.showException(e, "start",
 						// cordova.getActivity());
 						EpsonPrinter.this.callbackContext.error("e:" + e.getErrorStatus());
-						stopDiscovery();
 					} catch (InterruptedException e) {
+						Log.i("测试", "InterruptedException: "+e.getMessage());
+					} finally {
 						stopDiscovery();
 					}
 				}
