@@ -30,6 +30,7 @@ public class EpsonPrinter extends CordovaPlugin {
 	private ArrayList<HashMap<String, String>> mPrinterList = null;
 	private FilterOption mFilterOption = null;
 	private CallbackContext callbackContext = null;
+	private Printer  mPrinter = null;
 
 	@Override
 	public void initialize(CordovaInterface cordova, CordovaWebView webView) {
