@@ -152,7 +152,6 @@ public class EpsonPrinter extends CordovaPlugin {
 	private DiscoveryListener mDiscoveryListener = new DiscoveryListener() {
 		@Override
 		public void onDiscovery(final DeviceInfo deviceInfo) {
-			this.showLoadingBar();
 			Log.i("测试", "测试5");
 			HashMap<String, String> item = new HashMap<String, String>();
 			item.put("PrinterName", deviceInfo.getDeviceName());
