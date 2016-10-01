@@ -29,6 +29,7 @@ import android.util.Log;
 import android.widget.Toast;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.R;
 
 public class EpsonPrinter extends CordovaPlugin {
 
