@@ -2,6 +2,7 @@ package be.betalife.cordova.plugin.epsonposprinter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
