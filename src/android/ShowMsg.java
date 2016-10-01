@@ -13,7 +13,12 @@ import org.apache.cordova.CordovaWebView;
 import com.epson.epos2.Epos2Exception;
 import com.epson.epos2.Epos2CallbackCode;
 
-public class ShowMsg {
+public class ShowMsg extends CordovaPlugin{
+  @Override
+  public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+    super.initialize(cordova, webView);
+    // your init code here
+  }
     public static void showException(Exception e, String method, Context context) {
         String msg = "";
         if (e instanceof Epos2Exception) {
