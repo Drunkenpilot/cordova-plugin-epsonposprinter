@@ -3,6 +3,7 @@ package be.betalife.cordova.plugin.epsonposprinter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.lang.System;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
@@ -55,7 +56,7 @@ public class EpsonPrinter extends CordovaPlugin {
 					JSONObject innerObj = mPrinterListJson.getJSONObject(i);
 					for(Iterator it = innerObj.keys(); it.hasNext(); ) {
 						String key = (String)it.next();
-						Log.i(key + ":" + innerObj.get(key));
+						 System.out.println(key + ":" + innerObj.get(key));
 					}
 				}
 				callbackContext.success(mPrinterListJson);
