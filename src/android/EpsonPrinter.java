@@ -58,8 +58,7 @@ public class EpsonPrinter extends CordovaPlugin {
 					} catch (Epos2Exception e) {
 						Log.i("测试", "测试4");
 						Log.i("测试", "e:" + e.getErrorStatus());
-						// ShowMsg.showException(e, "start",
-						// cordova.getActivity());
+						 ShowMsg.showException(e, "start", cordova.getActivity());
 						EpsonPrinter.this.callbackContext.error("e:" + e.getErrorStatus());
 					} catch (InterruptedException e) {
 						Log.i("测试", "InterruptedException: "+e.getMessage());
@@ -108,7 +107,7 @@ public class EpsonPrinter extends CordovaPlugin {
 				}
 			}
 		}
-		
+
 		JSONArray jsonArray = new JSONArray();
 		for (HashMap<String, String> one : mPrinterList) {
 			JSONObject jsonObject = new JSONObject();
@@ -119,9 +118,9 @@ public class EpsonPrinter extends CordovaPlugin {
 			} catch (JSONException e) {
 				Log.i("测试", "JSONException: " + e.getMessage());
 			}
-			
+
 			jsonArray.put(jsonObject);
-			
+
 		}
 		callbackContext.success(jsonArray);
 	}
