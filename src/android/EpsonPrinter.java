@@ -23,6 +23,7 @@ import com.epson.epos2.discovery.FilterOption;
 import android.util.Log;
 import android.widget.Toast;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 
 public class EpsonPrinter extends CordovaPlugin {
 
