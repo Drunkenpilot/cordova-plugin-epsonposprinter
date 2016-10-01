@@ -29,12 +29,16 @@ public class ShowMsg extends CordovaPlugin{
   public static void showException(Exception e, String method, Context context) {
     String msg = "";
     if (e instanceof Epos2Exception) {
+      // msg = String.format(
+      // "%s\n\t%s\n%s\n\t%s",
+      // // context.getString(R.string.title_err_code),
+      // getEposExceptionText(((Epos2Exception) e).getErrorStatus()),
+      // // context.getString(R.string.title_err_method),
+      // method);
       msg = String.format(
-      "%s\n\t%s\n%s\n\t%s",
-      // context.getString(R.string.title_err_code),
-      getEposExceptionText(((Epos2Exception) e).getErrorStatus()),
-      // context.getString(R.string.title_err_method),
-      method);
+     "\t%s\n\t%s\n",
+     getCodeText(code),
+     errMsg);
     }
     else {
       msg = e.toString();
