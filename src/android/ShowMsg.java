@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
@@ -15,6 +16,7 @@ import org.apache.cordova.CordovaWebView;
 
 import com.epson.epos2.Epos2Exception;
 import com.epson.epos2.Epos2CallbackCode;
+
 
 public class ShowMsg extends CordovaPlugin{
   @Override
@@ -25,11 +27,13 @@ public class ShowMsg extends CordovaPlugin{
   public void initException (final Exception e, final String method, final Context context){
     cordova.getActivity().runOnUiThread(new Runnable() {
       public  final void run() {
+        Log.i("错误","错误1")
         showException(e,method,context);
       }
       });
   }
   public static void showException(Exception e, String method, Context context) {
+    Log.i("错误","错误2")
     String msg = "";
     if (e instanceof Epos2Exception) {
       msg = String.format(
@@ -63,16 +67,17 @@ public class ShowMsg extends CordovaPlugin{
   }
 
   public static void showMsg(String msg, Context context) {
+    Log.i("错误","错误3")
     show(msg, context);
   }
 
   private static void show(final String msg, final Context context) {
-        
-        
-        Looper.prepare();   
-        
-        Handler mHandler = new Handler() {   
-            public void handleMessage(Message message) {   
+
+Log.i("错误","错误4")
+        Looper.prepare();
+
+        Handler mHandler = new Handler() {
+            public void handleMessage(Message message) {
             	AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
                 alertDialog.setMessage(msg);
                 alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -82,10 +87,11 @@ public class ShowMsg extends CordovaPlugin{
                 });
                 alertDialog.create();
                 alertDialog.show();
-            }   
-        };   
-           
-        Looper.loop();   
+            }
+        };
+
+        Looper.loop();
+        Log.i("错误","错误5")
   }
 
   private static String getEposExceptionText(int state) {
