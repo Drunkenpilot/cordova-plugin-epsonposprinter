@@ -24,11 +24,13 @@ import android.util.Log;
 import android.widget.Toast;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.app.Activity;
 
 
 public class DiscoveryFunc extends CordovaPlugin{
 
-  public DiscoveryListener mDiscoveryListener = new DiscoveryListener() {
+  public DiscoveryListener mDiscoveryListener = new DiscoveryListener(PrinterList ) {
+    mPrinterList = PrinterList;
     @Override
     public void onDiscovery(final DeviceInfo deviceInfo) {
       Log.i("测试", "测试5");
