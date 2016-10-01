@@ -30,6 +30,8 @@ import android.widget.Toast;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.R;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 public class EpsonPrinter extends CordovaPlugin {
 
