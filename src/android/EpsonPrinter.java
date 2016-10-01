@@ -29,7 +29,8 @@ import android.util.Log;
 import android.widget.Toast;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.R;
+import android.R.string;
+import android.R.drawable;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.content.res.Resources;
@@ -378,92 +379,92 @@ public class EpsonPrinter extends CordovaPlugin {
 
 	private String makeErrorMessage(PrinterStatusInfo status) {
 		String msg = "";
- 		Resources res = cordova.getActivity().getResources();
+		Resources res = cordova.getActivity().getResources();
 		if (status.getOnline() == Printer.FALSE) {
-				msg += res.getString(2);
+			msg += res.getString(R.string.handlingmsg_err_offline);
 		}
 		if (status.getConnection() == Printer.FALSE) {
-				msg += getResources().getString(R.string.handlingmsg_err_no_response);
+			msg += getResources().getString(R.string.handlingmsg_err_no_response);
 		}
 		if (status.getCoverOpen() == Printer.TRUE) {
-				msg += cordova.getResources().getString(R.string.handlingmsg_err_cover_open);
+			msg += cordova.getResources().getString(R.string.handlingmsg_err_cover_open);
 		}
 		if (status.getPaper() == Printer.PAPER_EMPTY) {
-				msg += this.getString(R.string.handlingmsg_err_receipt_end);
+			msg += this.getString(R.string.handlingmsg_err_receipt_end);
 		}
 		if (status.getPaperFeed() == Printer.TRUE || status.getPanelSwitch() == Printer.SWITCH_ON) {
-				msg += this.getString(R.string.handlingmsg_err_paper_feed);
+			msg += this.getString(R.string.handlingmsg_err_paper_feed);
 		}
 		if (status.getErrorStatus() == Printer.MECHANICAL_ERR || status.getErrorStatus() == Printer.AUTOCUTTER_ERR) {
-				msg += this.getString(R.string.handlingmsg_err_autocutter);
-				msg += this.getString(R.string.handlingmsg_err_need_recover);
+			msg += this.getString(R.string.handlingmsg_err_autocutter);
+			msg += this.getString(R.string.handlingmsg_err_need_recover);
 		}
 		if (status.getErrorStatus() == Printer.UNRECOVER_ERR) {
-				msg += this.getString(R.string.handlingmsg_err_unrecover);
+			msg += this.getString(R.string.handlingmsg_err_unrecover);
 		}
 		if (status.getErrorStatus() == Printer.AUTORECOVER_ERR) {
-				if (status.getAutoRecoverError() == Printer.HEAD_OVERHEAT) {
-						msg += this.getString(R.string.handlingmsg_err_overheat);
-						msg += this.getString(R.string.handlingmsg_err_head);
-				}
-				if (status.getAutoRecoverError() == Printer.MOTOR_OVERHEAT) {
-						msg += this.getString(R.string.handlingmsg_err_overheat);
-						msg += this.getString(R.string.handlingmsg_err_motor);
-				}
-				if (status.getAutoRecoverError() == Printer.BATTERY_OVERHEAT) {
-						msg += this.getString(R.string.handlingmsg_err_overheat);
-						msg += this.getString(R.string.handlingmsg_err_battery);
-				}
-				if (status.getAutoRecoverError() == Printer.WRONG_PAPER) {
-						msg += this.getString(R.string.handlingmsg_err_wrong_paper);
-				}
+			if (status.getAutoRecoverError() == Printer.HEAD_OVERHEAT) {
+				msg += this.getString(R.string.handlingmsg_err_overheat);
+				msg += this.getString(R.string.handlingmsg_err_head);
+			}
+			if (status.getAutoRecoverError() == Printer.MOTOR_OVERHEAT) {
+				msg += this.getString(R.string.handlingmsg_err_overheat);
+				msg += this.getString(R.string.handlingmsg_err_motor);
+			}
+			if (status.getAutoRecoverError() == Printer.BATTERY_OVERHEAT) {
+				msg += this.getString(R.string.handlingmsg_err_overheat);
+				msg += this.getString(R.string.handlingmsg_err_battery);
+			}
+			if (status.getAutoRecoverError() == Printer.WRONG_PAPER) {
+				msg += this.getString(R.string.handlingmsg_err_wrong_paper);
+			}
 		}
 		if (status.getBatteryLevel() == Printer.BATTERY_LEVEL_0) {
-				msg += this.getString(R.string.handlingmsg_err_battery_real_end);
+			msg += this.getString(R.string.handlingmsg_err_battery_real_end);
 		}
 
 		return msg;
-}
+	}
 
-// private void dispPrinterWarnings(PrinterStatusInfo status) {
-// 		 EditText edtWarnings = (EditText)findViewById(R.id.edtWarnings);
-// 		 String warningsMsg = "";
-//
-// 		 if (status == null) {
-// 				 return;
-// 		 }
-//
-// 		 if (status.getPaper() == Printer.PAPER_NEAR_END) {
-// 				 warningsMsg += getString(R.string.handlingmsg_warn_receipt_near_end);
-// 		 }
-//
-// 		 if (status.getBatteryLevel() == Printer.BATTERY_LEVEL_1) {
-// 				 warningsMsg += getString(R.string.handlingmsg_warn_battery_near_end);
-// 		 }
-//
-// 		 edtWarnings.setText(warningsMsg);
-//  }
+	// private void dispPrinterWarnings(PrinterStatusInfo status) {
+	// 		 EditText edtWarnings = (EditText)findViewById(R.id.edtWarnings);
+	// 		 String warningsMsg = "";
+	//
+	// 		 if (status == null) {
+	// 				 return;
+	// 		 }
+	//
+	// 		 if (status.getPaper() == Printer.PAPER_NEAR_END) {
+	// 				 warningsMsg += getString(R.string.handlingmsg_warn_receipt_near_end);
+	// 		 }
+	//
+	// 		 if (status.getBatteryLevel() == Printer.BATTERY_LEVEL_1) {
+	// 				 warningsMsg += getString(R.string.handlingmsg_warn_battery_near_end);
+	// 		 }
+	//
+	// 		 edtWarnings.setText(warningsMsg);
+	//  }
 
 	@Override
-public void onPtrReceive(final Printer printerObj, final int code, final PrinterStatusInfo status, final String printJobId) {
+	public void onPtrReceive(final Printer printerObj, final int code, final PrinterStatusInfo status, final String printJobId) {
 		cordova.getActivity().runOnUiThread(new Runnable() {
-				@Override
-				public synchronized void run() {
-						ShowMsg.showResult(code, makeErrorMessage(status), cordova.getActivity());
+			@Override
+			public synchronized void run() {
+				ShowMsg.showResult(code, makeErrorMessage(status), cordova.getActivity());
 
-						// dispPrinterWarnings(status);
+				// dispPrinterWarnings(status);
 
-						// updateButtonState(true);
+				// updateButtonState(true);
 
-						new Thread(new Runnable() {
-								@Override
-								public void run() {
-										disconnectPrinter();
-								}
-						}).start();
-				}
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						disconnectPrinter();
+					}
+				}).start();
+			}
 		});
-}
+	}
 
 	@Override
 	public void onDestroy() {
