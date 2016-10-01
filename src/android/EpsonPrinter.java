@@ -52,7 +52,7 @@ public class EpsonPrinter extends CordovaPlugin {
 					mFilterOption.setPortType(Discovery.PORTTYPE_ALL);
 					try {
 						Log.i("测试", "测试2");
-						mDialog.onStart();
+						onPreExecute();
 						Discovery.start(cordova.getActivity(), mFilterOption, mDiscoveryListener);
 
 						Thread.sleep(millSeconds);
@@ -127,7 +127,7 @@ public class EpsonPrinter extends CordovaPlugin {
 			jsonArray.put(jsonObject);
 
 		}
-		mDialog.onStop();
+		onPostExecute();
 		callbackContext.success(jsonArray);
 	}
 
@@ -135,23 +135,33 @@ public class EpsonPrinter extends CordovaPlugin {
 
 
 
-	private ProgressDialog mDialog = new ProgressDialog(cordova.getActivity()) {
-		public void onStart (){
-			cordova.getActivity().runOnUiThread(new Runnable() {
-				public void run() {
-					mDialog.show(cordova.getActivity(),"","Searching",true);
-				}
-			});
-		}
-		public void onStop (){
-			cordova.getActivity().runOnUiThread(new Runnable() {
-				public void run() {
-					mDialog.dismiss();
-				}
-			});
-		}
+	private ProgressDialog progressDialog;   // class variable
 
-	};
+	private void showProgressDialog(String title, String message)
+	{
+		progressDialog = new ProgressDialog(cordova.getActivity());
+
+		progressDialog.setTitle(title); //title
+
+		progressDialog.setMessage(message); // message
+
+		progressDialog.setCancelable(false);
+
+		progressDialog.show();
+	}
+
+	protected void onPreExecute()
+	{
+		showProgressDialog("Please wait...", "Your message");
+	}
+
+	protected void onPostExecute()
+	{
+		if(progressDialog != null && progressDialog.isShowing())
+		{
+			progressDialog.dismiss();
+		}
+	}
 
 	private DiscoveryListener mDiscoveryListener = new DiscoveryListener() {
 		@Override
