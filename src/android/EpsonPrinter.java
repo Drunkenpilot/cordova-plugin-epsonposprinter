@@ -143,7 +143,7 @@ public class EpsonPrinter extends CordovaPlugin {
 				}
 			});
 		}
-		protected void onStop (){
+		public void onStop (){
 			cordova.getActivity().runOnUiThread(new Runnable() {
 				public void run() {
 					mDialog.dismiss();
