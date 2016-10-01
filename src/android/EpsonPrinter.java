@@ -20,6 +20,11 @@ import com.epson.epos2.discovery.Discovery;
 import com.epson.epos2.discovery.DiscoveryListener;
 import com.epson.epos2.discovery.FilterOption;
 
+import com.epson.epos2.printer.Printer;
+import com.epson.epos2.printer.PrinterStatusInfo;
+import com.epson.epos2.printer.ReceiveListener;
+import com.epson.epos2.Epos2CallbackCode;
+
 import android.util.Log;
 import android.widget.Toast;
 import android.app.ProgressDialog;
