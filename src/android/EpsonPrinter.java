@@ -156,7 +156,7 @@ public class EpsonPrinter extends CordovaPlugin {
 
 	protected void onPreExecute()
 	{
-		showProgressDialog("Please wait...", "Your message");
+		showProgressDialog("Please wait...", "Searching Printers");
 	}
 
 	protected void onPostExecute()
