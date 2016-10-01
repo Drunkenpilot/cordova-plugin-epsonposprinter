@@ -1,5 +1,5 @@
 
-  public DiscoveryListener mDiscoveryListener = new DiscoveryListener( ) {
+  private DiscoveryListener mDiscoveryListener = new DiscoveryListener( ) {
     @Override
     public void onDiscovery(final DeviceInfo deviceInfo) {
       Log.i("测试", "测试5");
