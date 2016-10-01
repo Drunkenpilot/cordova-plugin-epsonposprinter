@@ -40,12 +40,12 @@ public class EpsonPrinter extends CordovaPlugin {
 		Log.i("测试", "测试1");
 		if (action.equals("search")) {
 			cordova.getThreadPool().execute(new Runnable() {
-				mPrinterList = new ArrayList<HashMap<String, String>>();
-				mFilterOption = new FilterOption();
-				mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
-				mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
-				mFilterOption.setPortType(Discovery.PORTTYPE_ALL);
 				public void run() {
+					mPrinterList = new ArrayList<HashMap<String, String>>();
+					mFilterOption = new FilterOption();
+					mFilterOption.setDeviceType(Discovery.TYPE_PRINTER);
+					mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
+					mFilterOption.setPortType(Discovery.PORTTYPE_ALL);
 					try {
 						Log.i("测试", "测试2");
 						Discovery.start(cordova.getActivity().getApplicationContext(), mFilterOption, mDiscoveryListener);
