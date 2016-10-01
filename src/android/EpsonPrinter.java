@@ -51,11 +51,9 @@ public class EpsonPrinter extends CordovaPlugin {
 					mFilterOption.setPortType(Discovery.PORTTYPE_ALL);
 					try {
 						Log.i("测试", "测试2");
-						this.showLoadingBar();
 						Discovery.start(cordova.getActivity(), mFilterOption, mDiscoveryListener);
 
 						Thread.sleep(millSeconds);
-
 						Log.i("测试", "测试3");
 					} catch (Epos2Exception e) {
 						Log.i("测试", "测试4");
@@ -88,25 +86,35 @@ public class EpsonPrinter extends CordovaPlugin {
 		return false;
 	}
 
-	// private void stopDiscovery() {
-	// 	Log.i("停止搜索", "停止2");
-	// 	while (true) {
-	// 		try {
-	// 			Discovery.stop();
-	// 			break;
-	// 		} catch (Epos2Exception e) {
-	// 			if (e.getErrorStatus() != Epos2Exception.ERR_PROCESSING) {
-	// 				break;
-	// 			}
-	// 		}
-	// 	}
+	private void showLoadingBar (){
+		cordova.getActivity().runOnUiThread(new Runnable() {
+			public void run() {
+				ProgressDialog dialog = ProgressDialog.show(cordova.getActivity(),"","Searching",true);
+			}
+		});
+	}
 
-		public void showLoadingBar (){
-			cordova.getActivity().runOnUiThread(new Runnable() {
-				public void run() {
-					ProgressDialog dialog = ProgressDialog.show(cordova.getActivity(),"","Searching",true);
+	@Override
+	public void onDestroy() {
+		Log.i("停止搜索", "停止1");
+		super.onDestroy();
+
+		stopDiscovery();
+
+		mFilterOption = null;
+	}
+
+	private void stopDiscovery() {
+		Log.i("停止搜索", "停止2");
+		while (true) {
+			try {
+				Discovery.stop();
+				break;
+			} catch (Epos2Exception e) {
+				if (e.getErrorStatus() != Epos2Exception.ERR_PROCESSING) {
+					break;
 				}
-			});
+			}
 		}
 
 		JSONArray jsonArray = new JSONArray();
