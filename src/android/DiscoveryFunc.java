@@ -1,37 +1,5 @@
-package be.betalife.cordova.plugin.epsonposprinter;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-// import java.util.Iterator;
-// import java.lang.System;
-
-import org.apache.cordova.CallbackContext;
-import org.apache.cordova.CordovaInterface;
-import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CordovaWebView;
-import org.json.JSONArray;
-import org.json.JSONException;
-// import org.json.JSONObject;
-import org.json.JSONObject;
-
-import com.epson.epos2.Epos2Exception;
-import com.epson.epos2.discovery.DeviceInfo;
-import com.epson.epos2.discovery.Discovery;
-import com.epson.epos2.discovery.DiscoveryListener;
-import com.epson.epos2.discovery.FilterOption;
-
-import android.util.Log;
-import android.widget.Toast;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
-import android.app.Activity;
-
-
-public class DiscoveryFunc extends CordovaPlugin{
 
   public DiscoveryListener mDiscoveryListener = new DiscoveryListener( ) {
-    EpsonPrinter epsonPrinter = new EpsonPrinter();
-    mPrinterList = epsonPrinter.mPrinterList;
     @Override
     public void onDiscovery(final DeviceInfo deviceInfo) {
       Log.i("测试", "测试5");
@@ -64,4 +32,3 @@ public class DiscoveryFunc extends CordovaPlugin{
     }
 
   };
-}
