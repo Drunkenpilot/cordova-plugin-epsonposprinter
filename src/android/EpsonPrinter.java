@@ -123,7 +123,7 @@ public class EpsonPrinter extends CordovaPlugin {
 			return false;
 		}
 
-		mPrinter.setReceiveEventListener(cordova.getActivity());
+		mPrinter.setReceiveEventListener(mPrinter);
 
 		return true;
 	}
