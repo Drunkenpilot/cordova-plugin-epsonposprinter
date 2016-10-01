@@ -146,6 +146,14 @@ public class EpsonPrinter extends CordovaPlugin {
 
 				progressDialog.setCancelable(false);
 
+				progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						stopDiscovery();
+						dialog.dismiss();
+					}
+				};
+
 				progressDialog.show();
 			}
 		});
