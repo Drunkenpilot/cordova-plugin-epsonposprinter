@@ -37,7 +37,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.content.res.Resources;
 
-public class EpsonPrinter extends CordovaPlugin {
+public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 	private ArrayList<HashMap<String, String>> mPrinterList = null;
 	private FilterOption mFilterOption = null;
