@@ -72,7 +72,7 @@ public class EpsonPrinter extends CordovaPlugin {
 			});
 			return true;
 		}else if (action.equals("print")) {
-			runPrintCouponSequence();
+			runPrintReceiptSequence();
 			return true;
 		}
 		return false;
