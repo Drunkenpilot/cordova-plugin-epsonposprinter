@@ -39,7 +39,7 @@ public class EpsonPrinter extends CordovaPlugin {
 		this.callbackContext = callbackContext;
 		Log.i("测试", "测试1");
 		if (action.equals("search")) {
-			cordova.getActivity().runOnUiThread(new Runnable() {
+			cordova.getThreadPool().execute(new Runnable() {
 				public void run() {
 					mPrinterList = new ArrayList<HashMap<String, String>>();
 					mFilterOption = new FilterOption();
@@ -48,14 +48,14 @@ public class EpsonPrinter extends CordovaPlugin {
 					mFilterOption.setPortType(Discovery.PORTTYPE_ALL);
 					try {
 						Log.i("测试", "测试2");
-						Discovery.start(cordova.getActivity().getApplicationContext(), mFilterOption, mDiscoveryListener);
+						Discovery.start(cordova.getActivity(), mFilterOption, mDiscoveryListener);
 
 						//callbackContext.success(mPrinterListJson);
 						Log.i("测试", "测试3");
 					} catch (Epos2Exception e) {
 						Log.i("测试", "测试4");
 						Log.i("测试", "e:" + e.getErrorStatus());
-						ShowMsg.showException(e, "start", cordova.getActivity().getApplicationContext());
+						ShowMsg.showException(e, "start", cordova.getActivity());
 						//callbackContext.error("e:" + e.getErrorStatus());
 
 					}
@@ -114,15 +114,23 @@ public class EpsonPrinter extends CordovaPlugin {
 				Log.i("测试", "mPrinterList: " + one.get("PrinterName") + " ~ " +  one.get("Target"));
 			}
 			Log.i("测试", "测试6");
-			Toast.makeText(cordova.getActivity(), "PrinterName: " + deviceInfo.getDeviceName(), Toast.LENGTH_SHORT)
-					.show();
-			Toast.makeText(cordova.getActivity(), "Target: " + deviceInfo.getTarget(), Toast.LENGTH_SHORT).show();
+			this.showToast(deviceInfo);
 			// mPrinterListAdapter.notifyDataSetChanged();
 			// return item;
 			Log.i("测试", "测试7");
 			callbackContext
 			.success("PrinterName: " + deviceInfo.getDeviceName() + "; " + "Target: " + deviceInfo.getTarget());
 			Log.i("测试", "测试8");
+		}
+
+		public void showToast(final DeviceInfo deviceInfo){
+			cordova.getActivity().runOnUiThread(new Runnable() {
+				public void run() {
+					Toast.makeText(cordova.getActivity(), "PrinterName: " + deviceInfo.getDeviceName(), Toast.LENGTH_SHORT)
+					.show();
+					Toast.makeText(cordova.getActivity(), "Target: " + deviceInfo.getTarget(), Toast.LENGTH_SHORT).show();
+				}
+			});
 		}
 
 	};
