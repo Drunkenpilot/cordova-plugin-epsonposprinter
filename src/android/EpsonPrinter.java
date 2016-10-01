@@ -453,13 +453,14 @@ public class EpsonPrinter extends CordovaPlugin {
 				ShowMsg.showResult(code, makeErrorMessage(status), cordova.getActivity());
 
 				// dispPrinterWarnings(status);
-
-				// updateButtonState(true);
+				Log.i("打印","打印1");
 
 				new Thread(new Runnable() {
 					@Override
 					public void run() {
+										Log.i("打印","打印2");
 						disconnectPrinter();
+										Log.i("打印","打印3");
 					}
 				}).start();
 			}
