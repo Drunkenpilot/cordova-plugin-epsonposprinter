@@ -379,46 +379,46 @@ public class EpsonPrinter extends CordovaPlugin {
 		String msg = "";
 
 		if (status.getOnline() == Printer.FALSE) {
-				msg += getString(R.string.handlingmsg_err_offline);
+				msg += this.getString(R.string.handlingmsg_err_offline);
 		}
 		if (status.getConnection() == Printer.FALSE) {
-				msg += getString(R.string.handlingmsg_err_no_response);
+				msg += this.getString(R.string.handlingmsg_err_no_response);
 		}
 		if (status.getCoverOpen() == Printer.TRUE) {
-				msg += getString(R.string.handlingmsg_err_cover_open);
+				msg += this.getString(R.string.handlingmsg_err_cover_open);
 		}
 		if (status.getPaper() == Printer.PAPER_EMPTY) {
-				msg += getString(R.string.handlingmsg_err_receipt_end);
+				msg += this.getString(R.string.handlingmsg_err_receipt_end);
 		}
 		if (status.getPaperFeed() == Printer.TRUE || status.getPanelSwitch() == Printer.SWITCH_ON) {
-				msg += getString(R.string.handlingmsg_err_paper_feed);
+				msg += this.getString(R.string.handlingmsg_err_paper_feed);
 		}
 		if (status.getErrorStatus() == Printer.MECHANICAL_ERR || status.getErrorStatus() == Printer.AUTOCUTTER_ERR) {
-				msg += getString(R.string.handlingmsg_err_autocutter);
-				msg += getString(R.string.handlingmsg_err_need_recover);
+				msg += this.getString(R.string.handlingmsg_err_autocutter);
+				msg += this.getString(R.string.handlingmsg_err_need_recover);
 		}
 		if (status.getErrorStatus() == Printer.UNRECOVER_ERR) {
-				msg += getString(R.string.handlingmsg_err_unrecover);
+				msg += this.getString(R.string.handlingmsg_err_unrecover);
 		}
 		if (status.getErrorStatus() == Printer.AUTORECOVER_ERR) {
 				if (status.getAutoRecoverError() == Printer.HEAD_OVERHEAT) {
-						msg += getString(R.string.handlingmsg_err_overheat);
-						msg += getString(R.string.handlingmsg_err_head);
+						msg += this.getString(R.string.handlingmsg_err_overheat);
+						msg += this.getString(R.string.handlingmsg_err_head);
 				}
 				if (status.getAutoRecoverError() == Printer.MOTOR_OVERHEAT) {
-						msg += getString(R.string.handlingmsg_err_overheat);
-						msg += getString(R.string.handlingmsg_err_motor);
+						msg += this.getString(R.string.handlingmsg_err_overheat);
+						msg += this.getString(R.string.handlingmsg_err_motor);
 				}
 				if (status.getAutoRecoverError() == Printer.BATTERY_OVERHEAT) {
-						msg += getString(R.string.handlingmsg_err_overheat);
-						msg += getString(R.string.handlingmsg_err_battery);
+						msg += this.getString(R.string.handlingmsg_err_overheat);
+						msg += this.getString(R.string.handlingmsg_err_battery);
 				}
 				if (status.getAutoRecoverError() == Printer.WRONG_PAPER) {
-						msg += getString(R.string.handlingmsg_err_wrong_paper);
+						msg += this.getString(R.string.handlingmsg_err_wrong_paper);
 				}
 		}
 		if (status.getBatteryLevel() == Printer.BATTERY_LEVEL_0) {
-				msg += getString(R.string.handlingmsg_err_battery_real_end);
+				msg += this.getString(R.string.handlingmsg_err_battery_real_end);
 		}
 
 		return msg;
