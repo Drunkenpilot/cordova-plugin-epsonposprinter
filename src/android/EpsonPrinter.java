@@ -52,7 +52,7 @@ public class EpsonPrinter extends CordovaPlugin {
 					mFilterOption.setPortType(Discovery.PORTTYPE_ALL);
 					try {
 						Log.i("测试", "测试2");
-						this.showLoadingBar();
+
 						Discovery.start(cordova.getActivity(), mFilterOption, mDiscoveryListener);
 
 						Thread.sleep(millSeconds);
@@ -87,13 +87,6 @@ public class EpsonPrinter extends CordovaPlugin {
 		}
 		return false;
 
-		private void showLoadingBar (){
-			cordova.getActivity().runOnUiThread(new Runnable() {
-				public void run() {
-					ProgressDialog dialog = ProgressDialog.show(cordova.getActivity(),"","Searching",true);
-				}
-			});
-		}
 	}
 
 
@@ -141,6 +134,7 @@ public class EpsonPrinter extends CordovaPlugin {
 	private DiscoveryListener mDiscoveryListener = new DiscoveryListener() {
 		@Override
 		public void onDiscovery(final DeviceInfo deviceInfo) {
+			this.showLoadingBar();
 			Log.i("测试", "测试5");
 			HashMap<String, String> item = new HashMap<String, String>();
 			item.put("PrinterName", deviceInfo.getDeviceName());
@@ -163,9 +157,18 @@ public class EpsonPrinter extends CordovaPlugin {
 			cordova.getActivity().runOnUiThread(new Runnable() {
 				public void run() {
 					Toast.makeText(cordova.getActivity(), "PrinterName: " + deviceInfo.getDeviceName(),
-							Toast.LENGTH_SHORT).show();
+					Toast.LENGTH_SHORT).show();
 					Toast.makeText(cordova.getActivity(), "Target: " + deviceInfo.getTarget(), Toast.LENGTH_SHORT)
-							.show();
+					.show();
+				}
+			});
+		}
+
+
+		public void showLoadingBar (){
+			cordova.getActivity().runOnUiThread(new Runnable() {
+				public void run() {
+					ProgressDialog dialog = ProgressDialog.show(cordova.getActivity(),"","Searching",true);
 				}
 			});
 		}
