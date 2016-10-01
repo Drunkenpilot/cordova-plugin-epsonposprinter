@@ -300,7 +300,7 @@ public class EpsonPrinter extends CordovaPlugin {
 		}
 
 		try {
-			mPrinter.connect("USB:/dev/bus/usb/002/007", Printer.PARAM_DEFAULT);
+			mPrinter.connect("USB:/dev/bus/usb/002/008", Printer.PARAM_DEFAULT);
 		}
 		catch (Exception e) {
 			ShowMsg.showException(e, "connect", cordova.getActivity());
