@@ -47,6 +47,7 @@ public class EpsonPrinter extends CordovaPlugin {
 				Discovery.start(cordova.getActivity().getApplicationContext(), mFilterOption, mDiscoveryListener);
 
 				JSONArray mPrinterListJson = new JSONArray(mPrinterList);
+				callbackContext.success(mPrinterListJson);
 				Log.i("测试", "测试3");
 			} catch (Epos2Exception e) {
 				Log.i("测试", "测试4");
@@ -115,8 +116,8 @@ public class EpsonPrinter extends CordovaPlugin {
 				// mPrinterListAdapter.notifyDataSetChanged();
 				// return item;
 				Log.i("测试", "测试7");
-				callbackContext
-				.success("PrinterName: " + deviceInfo.getDeviceName() + "; " + "Target: " + deviceInfo.getTarget());
+				// callbackContext
+				// .success("PrinterName: " + deviceInfo.getDeviceName() + "; " + "Target: " + deviceInfo.getTarget());
 				Log.i("测试", "测试8");
 			}
 
