@@ -123,7 +123,7 @@ public class EpsonPrinter extends CordovaPlugin {
 			return false;
 		}
 
-		// mPrinter.setReceiveEventListener(cordova.getActivity());
+		 mPrinter.setReceiveEventListener(onPtrReceive());
 
 		return true;
 	}
@@ -346,7 +346,9 @@ public class EpsonPrinter extends CordovaPlugin {
 		}
 
 		try {
+			Log.i("停止打印","停止打印1");
 			mPrinter.disconnect();
+			Log.i("停止打印","停止打印2");
 		}
 		catch (final Exception e) {
 			cordova.getActivity().runOnUiThread(new Runnable() {
