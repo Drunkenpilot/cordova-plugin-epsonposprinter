@@ -137,7 +137,7 @@ public class EpsonPrinter extends CordovaPlugin {
 
 	private ProgressDialog progressDialog;   // class variable
 
-	private void showProgressDialog(String title, String message)
+	private void showProgressDialog(final String title, final String message)
 	{
 		cordova.getActivity().runOnUiThread(new Runnable() {
 			public void run() {
