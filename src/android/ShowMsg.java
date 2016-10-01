@@ -3,17 +3,18 @@ package be.betalife.cordova.plugin.epsonposprinter;
 import com.epson.epos2.Epos2CallbackCode;
 import com.epson.epos2.Epos2Exception;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
 public class ShowMsg {
 
-	public void initException(final Exception e, final String method, final Context context) {
+	public void initException(final Exception e, final String method, final Activity context) {
 		showException(e, method, context);
 	}
 
-	public static void showException(Exception e, String method, Context context) {
+	public static void showException(Exception e, String method, Activity context) {
 		String msg = "";
 		if (e instanceof Epos2Exception) {
 			msg = String.format("%s\n\t%s",
@@ -27,7 +28,7 @@ public class ShowMsg {
 		show(msg, context);
 	}
 
-	public static void showResult(int code, String errMsg, Context context) {
+	public static void showResult(int code, String errMsg, Activity context) {
 		String msg = "";
 		if (errMsg.isEmpty()) {
 			msg = String.format("\t%s\n\t%s\n",
@@ -39,20 +40,26 @@ public class ShowMsg {
 		show(msg, context);
 	}
 
-	public static void showMsg(String msg, Context context) {
+	public static void showMsg(String msg, Activity context) {
 		show(msg, context);
 	}
 
-	private static void show(final String msg, final Context context) {
-		AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
-		alertDialog.setMessage(msg);
-		alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int whichButton) {
-				return;
+	private static void show(final String msg, final Activity context) {
+		 Looper.prepare();
+		context.runOnUiThread(new Runnable() {
+			public void run() {
+				AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+				alertDialog.setMessage(msg);
+				alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						return;
+					}
+				});
+				alertDialog.create();
+				alertDialog.show();
 			}
 		});
-		alertDialog.create();
-		alertDialog.show();
+
 
 	}
 
