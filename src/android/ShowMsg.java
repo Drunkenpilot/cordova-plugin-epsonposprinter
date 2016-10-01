@@ -19,9 +19,9 @@ public class ShowMsg extends CordovaPlugin{
     super.initialize(cordova, webView);
     // your init code here
   }
-  public final void initException (Exception e, String method, Context context){
+  public void initException (Exception e, String method, Context context){
     cordova.getActivity().runOnUiThread(new Runnable() {
-      public void run() {
+      public  final void run() {
         showException(e,method,context);
       }
       });
