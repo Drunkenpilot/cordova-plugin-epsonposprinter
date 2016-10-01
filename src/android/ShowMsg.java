@@ -3,7 +3,6 @@ package be.betalife.cordova.plugin.epsonposprinter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-
 import com.epson.epos2.Epos2Exception;
 import com.epson.epos2.Epos2CallbackCode;
 

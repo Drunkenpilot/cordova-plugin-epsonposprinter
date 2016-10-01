@@ -49,7 +49,7 @@ public class EpsonPrinter extends CordovaPlugin {
 			} catch (Epos2Exception e) {
 				Log.i("测试", "测试4");
 				Log.i("测试", "e:" + e.getErrorStatus());
-				ShowMsg.showException(e, "start", cordova.getActivity());
+			//	ShowMsg.showException(e, "start", cordova.getActivity());
 				callbackContext.error("e:" + e.getErrorStatus());
 
 			}
@@ -74,6 +74,7 @@ public class EpsonPrinter extends CordovaPlugin {
 
 	@Override
 	public void onDestroy() {
+			Log.i("停止搜索", "停止1");
 		super.onDestroy();
 
 		while (true) {
@@ -93,28 +94,31 @@ public class EpsonPrinter extends CordovaPlugin {
 
 
 	private DiscoveryListener mDiscoveryListener = new DiscoveryListener() {
-		@Override
-		public void onDiscovery(final DeviceInfo deviceInfo) {
-			Log.i("测试", "测试5");
-			HashMap<String, String> item = new HashMap<String, String>();
-			item.put("PrinterName", deviceInfo.getDeviceName());
-			item.put("Target", deviceInfo.getTarget());
-			Log.i("测试", "PrinterName: " + deviceInfo.getDeviceName() + "; " + "Target: " + deviceInfo.getTarget());
+			@Override
+			public void onDiscovery(final DeviceInfo deviceInfo) {
+				Log.i("测试", "测试5");
+				HashMap<String, String> item = new HashMap<String, String>();
+				item.put("PrinterName", deviceInfo.getDeviceName());
+				item.put("Target", deviceInfo.getTarget());
+				Log.i("测试", "PrinterName: " + deviceInfo.getDeviceName() + "; " + "Target: " + deviceInfo.getTarget());
 
-			mPrinterList.add(item);
-			Log.i("测试", "测试6");
-			// Toast.makeText(cordova.getActivity(), "PrinterName: " + deviceInfo.getDeviceName(), Toast.LENGTH_SHORT)
-			// 		.show();
-			// Toast.makeText(cordova.getActivity(), "Target: " + deviceInfo.getTarget(), Toast.LENGTH_SHORT).show();
-			// mPrinterListAdapter.notifyDataSetChanged();
-			// return item;
-			Log.i("测试", "测试7");
-			callbackContext
-			.success("PrinterName: " + deviceInfo.getDeviceName() + "; " + "Target: " + deviceInfo.getTarget());
-			Log.i("测试", "测试8");
-		}
+				mPrinterList.add(item);
+				for (HashMap<String, String> one : mPrinterList) {
+					Log.i("测试", "mPrinterList: " + one.get("PrinterName") + " ~ " +  one.get("Target"));
+				}
+				Log.i("测试", "测试6");
+				// Toast.makeText(cordova.getActivity(), "PrinterName: " + deviceInfo.getDeviceName(), Toast.LENGTH_SHORT)
+				// 		.show();
+				// Toast.makeText(cordova.getActivity(), "Target: " + deviceInfo.getTarget(), Toast.LENGTH_SHORT).show();
+				// mPrinterListAdapter.notifyDataSetChanged();
+				// return item;
+				Log.i("测试", "测试7");
+				callbackContext
+				.success("PrinterName: " + deviceInfo.getDeviceName() + "; " + "Target: " + deviceInfo.getTarget());
+				Log.i("测试", "测试8");
+			}
 
-	};
+		};
 
 
 }
