@@ -114,9 +114,9 @@ public class EpsonPrinter extends CordovaPlugin {
 				Log.i("测试", "mPrinterList: " + one.get("PrinterName") + " ~ " +  one.get("Target"));
 			}
 			Log.i("测试", "测试6");
-			// Toast.makeText(cordova.getActivity(), "PrinterName: " + deviceInfo.getDeviceName(), Toast.LENGTH_SHORT)
-			// 		.show();
-			// Toast.makeText(cordova.getActivity(), "Target: " + deviceInfo.getTarget(), Toast.LENGTH_SHORT).show();
+			Toast.makeText(cordova.getActivity(), "PrinterName: " + deviceInfo.getDeviceName(), Toast.LENGTH_SHORT)
+					.show();
+			Toast.makeText(cordova.getActivity(), "Target: " + deviceInfo.getTarget(), Toast.LENGTH_SHORT).show();
 			// mPrinterListAdapter.notifyDataSetChanged();
 			// return item;
 			Log.i("测试", "测试7");
