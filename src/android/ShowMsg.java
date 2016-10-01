@@ -45,7 +45,6 @@ public class ShowMsg {
 	}
 
 	private static void show(final String msg, final Activity context) {
-		 Looper.prepare();
 		context.runOnUiThread(new Runnable() {
 			public void run() {
 				AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
