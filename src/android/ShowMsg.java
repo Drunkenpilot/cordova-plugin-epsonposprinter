@@ -4,6 +4,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.R;
 import android.content.DialogInterface;
+
+import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaInterface;
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaWebView;
+
 import com.epson.epos2.Epos2Exception;
 import com.epson.epos2.Epos2CallbackCode;
 
@@ -48,6 +54,8 @@ public class ShowMsg {
     }
 
     private static void show(String msg, Context context) {
+       cordova.getActivity().runOnUiThread(new Runnable() {
+         public void run() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
         alertDialog.setMessage(msg);
         alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -57,6 +65,8 @@ public class ShowMsg {
         });
         alertDialog.create();
         alertDialog.show();
+      }
+      });
     }
 
     private static String getEposExceptionText(int state) {
