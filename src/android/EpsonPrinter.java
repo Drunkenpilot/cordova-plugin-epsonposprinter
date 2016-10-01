@@ -63,7 +63,7 @@ public class EpsonPrinter extends CordovaPlugin {
 			}catch(Epos2Exception e){
 				Log.i("停止测试", "停止测试4");
 				Log.i("停止测试", "e:" + e.getErrorStatus());
-				callbackContext.error("e:" + e.getErrorStatus());
+				// callbackContext.error("e:" + e.getErrorStatus());
 			}
 			return true;
 		}else if(action.equals("print")){
