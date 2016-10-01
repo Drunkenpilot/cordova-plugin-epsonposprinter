@@ -22,6 +22,7 @@ import com.epson.epos2.discovery.FilterOption;
 
 import android.util.Log;
 import android.widget.Toast;
+import android.app.AlertDialog;
 
 public class EpsonPrinter extends CordovaPlugin {
 
@@ -50,10 +51,11 @@ public class EpsonPrinter extends CordovaPlugin {
 					mFilterOption.setPortType(Discovery.PORTTYPE_ALL);
 					try {
 						Log.i("测试", "测试2");
+						this.showLoadingBar();
 						Discovery.start(cordova.getActivity(), mFilterOption, mDiscoveryListener);
 
 						Thread.sleep(millSeconds);
-						// callbackContext.success(mPrinterListJson);
+
 						Log.i("测试", "测试3");
 					} catch (Epos2Exception e) {
 						Log.i("测试", "测试4");
@@ -86,16 +88,6 @@ public class EpsonPrinter extends CordovaPlugin {
 		return false;
 	}
 
-	@Override
-	public void onDestroy() {
-		Log.i("停止搜索", "停止1");
-		super.onDestroy();
-
-		stopDiscovery();
-
-		mFilterOption = null;
-	}
-
 	private void stopDiscovery() {
 		Log.i("停止搜索", "停止2");
 		while (true) {
@@ -107,6 +99,14 @@ public class EpsonPrinter extends CordovaPlugin {
 					break;
 				}
 			}
+		}
+
+		private void showLoadingBar (){
+			cordova.getActivity().runOnUiThread(new Runnable() {
+				public void run() {
+					ProgressDialog dialog = ProgressDialog.show(cordova.getActivity(),"","Searching",true);
+				}
+			});
 		}
 
 		JSONArray jsonArray = new JSONArray();
