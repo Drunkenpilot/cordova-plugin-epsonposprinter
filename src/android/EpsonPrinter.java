@@ -53,7 +53,7 @@ public class EpsonPrinter extends CordovaPlugin {
 					try {
 						Log.i("测试", "测试2");
 						onPreExecute();
-						Discovery.start(cordova.getActivity(), mFilterOption, DiscoveryFunc.mDiscoveryListener(mPrinterList));
+						Discovery.start(cordova.getActivity(), mFilterOption, DiscoveryFunc.mDiscoveryListener);
 
 						Thread.sleep(millSeconds);
 						Log.i("测试", "测试3");

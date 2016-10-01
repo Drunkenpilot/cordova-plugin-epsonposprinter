@@ -29,8 +29,8 @@ import android.app.Activity;
 
 public class DiscoveryFunc extends CordovaPlugin{
 
-  public DiscoveryListener mDiscoveryListener = new DiscoveryListener(PrinterList ) {
-    mPrinterList = PrinterList;
+  public DiscoveryListener mDiscoveryListener = new DiscoveryListener( ) {
+    mPrinterList = new ArrayList<HashMap<String, String>>();
     @Override
     public void onDiscovery(final DeviceInfo deviceInfo) {
       Log.i("测试", "测试5");
