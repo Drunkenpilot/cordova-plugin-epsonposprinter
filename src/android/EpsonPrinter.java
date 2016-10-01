@@ -175,7 +175,7 @@ public class EpsonPrinter extends CordovaPlugin {
 
 	private boolean createReceiptData() {
 		String method = "";
-		// Bitmap logoData = BitmapFactory.decodeResource(getResources(), R.drawable.store);
+		Bitmap logoData = BitmapFactory.decodeResource(getResources(), R.drawable.store);
 		StringBuilder textData = new StringBuilder();
 		final int barcodeWidth = 2;
 		final int barcodeHeight = 100;
@@ -188,15 +188,15 @@ public class EpsonPrinter extends CordovaPlugin {
 			method = "addTextAlign";
 			mPrinter.addTextAlign(Printer.ALIGN_CENTER);
 
-			// method = "addImage";
-			// mPrinter.addImage(logoData, 0, 0,
-			// logoData.getWidth(),
-			// logoData.getHeight(),
-			// Printer.COLOR_1,
-			// Printer.MODE_MONO,
-			// Printer.HALFTONE_DITHER,
-			// Printer.PARAM_DEFAULT,
-			// Printer.COMPRESS_AUTO);
+			method = "addImage";
+			mPrinter.addImage(logoData, 0, 0,
+			logoData.getWidth(),
+			logoData.getHeight(),
+			Printer.COLOR_1,
+			Printer.MODE_MONO,
+			Printer.HALFTONE_DITHER,
+			Printer.PARAM_DEFAULT,
+			Printer.COMPRESS_AUTO);
 
 			method = "addFeedLine";
 			mPrinter.addFeedLine(1);
