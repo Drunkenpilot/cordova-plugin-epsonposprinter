@@ -117,7 +117,7 @@ public class EpsonPrinter extends CordovaPlugin {
 			return false;
 		}
 
-		mPrinter.setReceiveEventListener(this);
+		mPrinter.setReceiveEventListener(cordova.getActivity());
 
 		return true;
 	}
@@ -354,6 +354,23 @@ public class EpsonPrinter extends CordovaPlugin {
 		finalizeObject();
 	}
 
+	private boolean isPrintable(PrinterStatusInfo status) {
+		if (status == null) {
+			return false;
+		}
+
+		if (status.getConnection() == Printer.FALSE) {
+			return false;
+		}
+		else if (status.getOnline() == Printer.FALSE) {
+			return false;
+		}
+		else {
+			;//print available
+		}
+
+		return true;
+	}
 
 	@Override
 	public void onDestroy() {
