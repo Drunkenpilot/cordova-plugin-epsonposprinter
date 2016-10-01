@@ -143,6 +143,7 @@ public class EpsonPrinter extends CordovaPlugin {
 	private void dismissLoadingBar (){
 		cordova.getActivity().runOnUiThread(new Runnable() {
 			public void run() {
+				ProgressDialog mDialog = new ProgressDialog(cordova.getActivity());
 				 mDialog.dismiss();
 			}
 		});
