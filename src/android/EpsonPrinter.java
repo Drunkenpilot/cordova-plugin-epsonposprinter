@@ -59,7 +59,7 @@ public class EpsonPrinter extends CordovaPlugin {
 						Log.i("测试", "测试4");
 						Log.i("测试", "e:" + e.getErrorStatus());
 						ShowMsg.showException(e, "start", cordova.getActivity());
-						EpsonPrinter.this.callbackContext.error("e:" + e.getErrorStatus());
+						//EpsonPrinter.this.callbackContext.error("e:" + e.getErrorStatus());
 					} catch (InterruptedException e) {
 						Log.i("测试", "InterruptedException: " + e.getMessage());
 					} finally {
@@ -76,6 +76,7 @@ public class EpsonPrinter extends CordovaPlugin {
 			} catch (Epos2Exception e) {
 				Log.i("停止测试", "停止测试4");
 				Log.i("停止测试", "e:" + e.getErrorStatus());
+				ShowMsg.showException(e, "stop", cordova.getActivity());
 				// callbackContext.error("e:" + e.getErrorStatus());
 			}
 			return true;

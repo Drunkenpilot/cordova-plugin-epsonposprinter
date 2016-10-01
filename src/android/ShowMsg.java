@@ -10,10 +10,6 @@ import android.content.DialogInterface;
 
 public class ShowMsg {
 
-	public void initException(final Exception e, final String method, final Activity context) {
-		showException(e, method, context);
-	}
-
 	public static void showException(Exception e, String method, Activity context) {
 		String msg = "";
 		if (e instanceof Epos2Exception) {
