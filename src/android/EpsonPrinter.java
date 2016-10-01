@@ -22,7 +22,6 @@ import com.epson.epos2.discovery.FilterOption;
 
 import android.util.Log;
 import android.widget.Toast;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 
 public class EpsonPrinter extends CordovaPlugin {
@@ -60,6 +59,7 @@ public class EpsonPrinter extends CordovaPlugin {
 					} catch (Epos2Exception e) {
 						Log.i("测试", "测试4");
 						Log.i("测试", "e:" + e.getErrorStatus());
+						onPostExecute();
 						ShowMsg.showException(e, "start", cordova.getActivity());
 						//EpsonPrinter.this.callbackContext.error("e:" + e.getErrorStatus());
 					} catch (InterruptedException e) {
@@ -122,18 +122,15 @@ public class EpsonPrinter extends CordovaPlugin {
 				jsonObject.put("Target", one.get("Target"));
 			} catch (JSONException e) {
 				Log.i("测试", "JSONException: " + e.getMessage());
+				onPostExecute();
 			}
 
 			jsonArray.put(jsonObject);
 
 		}
-		onPostExecute();
 		callbackContext.success(jsonArray);
+		onPostExecute();
 	}
-
-
-
-
 
 	private ProgressDialog progressDialog;   // class variable
 
@@ -156,7 +153,7 @@ public class EpsonPrinter extends CordovaPlugin {
 
 	protected void onPreExecute()
 	{
-		showProgressDialog("Please wait...", "Searching Printers");
+		showProgressDialog("Searching Printers","Please wait...");
 	}
 
 	protected void onPostExecute()
@@ -198,7 +195,6 @@ public class EpsonPrinter extends CordovaPlugin {
 				}
 			});
 		}
-
 
 	};
 
