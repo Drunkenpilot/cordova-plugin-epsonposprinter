@@ -29,6 +29,7 @@
     </config-file>
 
     <source-file src="src/android/res/xml/device_filter.xml" target-dir="res/xml/" />
+    <source-file src="src/android/res/values/strings.xml" target-dir="res/values/" />
     <source-file src="src/android/EpsonPrinter.java" target-dir="src/be/betalife/cordova/plugin/epsonposprinter" />
     <!-- <source-file src="src/android/DiscoveryFunc.java" target-dir="src/be/betalife/cordova/plugin/epsonposprinter" /> -->
     <source-file src="src/android/ShowMsg.java" target-dir="src/be/betalife/cordova/plugin/epsonposprinter" />
