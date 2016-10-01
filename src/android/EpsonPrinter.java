@@ -72,7 +72,11 @@ public class EpsonPrinter extends CordovaPlugin {
 			});
 			return true;
 		}else if (action.equals("print")) {
-			runPrintReceiptSequence();
+			cordova.getThreadPool().execute(new Runnable() {
+				public void run() {
+					runPrintReceiptSequence();
+				}
+			});
 			return true;
 		}
 		return false;
@@ -96,6 +100,22 @@ public class EpsonPrinter extends CordovaPlugin {
 
 		return true;
 	}
+
+
+	private boolean initializeObject() {
+		try {
+			mPrinter = new Printer(6,0,cordova.getActivity());
+		}
+		catch (Exception e) {
+			ShowMsg.showException(e, "Printer", cordova.getActivity());
+			return false;
+		}
+
+		mPrinter.setReceiveEventListener(this);
+
+		return true;
+	}
+
 
 	private boolean printData() {
 		if (mPrinter == null) {
@@ -140,19 +160,6 @@ public class EpsonPrinter extends CordovaPlugin {
 
 
 
-	private boolean initializeObject() {
-		try {
-			mPrinter = new Printer(6,0,cordova.getActivity());
-		}
-		catch (Exception e) {
-			ShowMsg.showException(e, "Printer", cordova.getActivity());
-			return false;
-		}
-
-		mPrinter.setReceiveEventListener(this);
-
-		return true;
-	}
 
 	private boolean createReceiptData() {
 		String method = "";
@@ -277,69 +284,69 @@ public class EpsonPrinter extends CordovaPlugin {
 		boolean isBeginTransaction = false;
 
 		if (mPrinter == null) {
-				return false;
+			return false;
 		}
 
 		try {
-				mPrinter.connect("USB:/dev/bus/usb/002/006", Printer.PARAM_DEFAULT);
+			mPrinter.connect("USB:/dev/bus/usb/002/006", Printer.PARAM_DEFAULT);
 		}
 		catch (Exception e) {
-				ShowMsg.showException(e, "connect", cordova.getActivity());
-				return false;
+			ShowMsg.showException(e, "connect", cordova.getActivity());
+			return false;
 		}
 
 		try {
-				mPrinter.beginTransaction();
-				isBeginTransaction = true;
+			mPrinter.beginTransaction();
+			isBeginTransaction = true;
 		}
 		catch (Exception e) {
-				ShowMsg.showException(e, "beginTransaction", cordova.getActivity());
+			ShowMsg.showException(e, "beginTransaction", cordova.getActivity());
 		}
 
 		if (isBeginTransaction == false) {
-				try {
-						mPrinter.disconnect();
-				}
-				catch (Epos2Exception e) {
-						// Do nothing
-						return false;
-				}
+			try {
+				mPrinter.disconnect();
+			}
+			catch (Epos2Exception e) {
+				// Do nothing
+				return false;
+			}
 		}
 
 		return true;
-}
+	}
 
-private void disconnectPrinter() {
+	private void disconnectPrinter() {
 		if (mPrinter == null) {
-				return;
+			return;
 		}
 
 		try {
-				mPrinter.endTransaction();
+			mPrinter.endTransaction();
 		}
 		catch (final Exception e) {
-				runOnUiThread(new Runnable() {
-						@Override
-						public synchronized void run() {
-								ShowMsg.showException(e, "endTransaction", cordova.getActivity());
-						}
-				});
+			cordova.getActivity().runOnUiThread(new Runnable() {
+				@Override
+				public synchronized void run() {
+					ShowMsg.showException(e, "endTransaction", cordova.getActivity());
+				}
+			});
 		}
 
 		try {
-				mPrinter.disconnect();
+			mPrinter.disconnect();
 		}
 		catch (final Exception e) {
-				runOnUiThread(new Runnable() {
-						@Override
-						public synchronized void run() {
-								ShowMsg.showException(e, "disconnect", cordova.getActivity());
-						}
-				});
+			cordova.getActivity().runOnUiThread(new Runnable() {
+				@Override
+				public synchronized void run() {
+					ShowMsg.showException(e, "disconnect", cordova.getActivity());
+				}
+			});
 		}
 
 		finalizeObject();
-}
+	}
 
 
 	@Override
