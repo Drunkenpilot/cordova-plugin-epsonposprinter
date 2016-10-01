@@ -4,6 +4,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.R;
 import android.content.DialogInterface;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
@@ -63,16 +66,26 @@ public class ShowMsg extends CordovaPlugin{
     show(msg, context);
   }
 
-  private static void show(String msg, Context context) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
-        alertDialog.setMessage(msg);
-        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-          public void onClick(DialogInterface dialog, int whichButton) {
-            return ;
-          }
-        });
-        alertDialog.create();
-        alertDialog.show();
+  private static void show(final String msg, final Context context) {
+        
+        
+        Looper.prepare();   
+        
+        Handler mHandler = new Handler() {   
+            public void handleMessage(Message message) {   
+            	AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+                alertDialog.setMessage(msg);
+                alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                  public void onClick(DialogInterface dialog, int whichButton) {
+                    return ;
+                  }
+                });
+                alertDialog.create();
+                alertDialog.show();
+            }   
+        };   
+           
+        Looper.loop();   
   }
 
   private static String getEposExceptionText(int state) {
