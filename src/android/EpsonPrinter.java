@@ -39,7 +39,7 @@ public class EpsonPrinter extends CordovaPlugin {
 		this.callbackContext = callbackContext;
 		Log.i("测试", "测试1");
 		if (action.equals("search")) {
-			cordova.getThreadPool().execute(new Runnable() {
+			cordova.getActivity().runOnUiThread(new Runnable() {
 				public void run() {
 					mPrinterList = new ArrayList<HashMap<String, String>>();
 					mFilterOption = new FilterOption();
