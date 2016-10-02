@@ -7,16 +7,17 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import com.ionicframework.posprintertest664842.R;
 
 public class ShowMsg {
 
 	public static void showException(Exception e, String method, Activity context) {
 		String msg = "";
 		if (e instanceof Epos2Exception) {
-			msg = String.format("%s\n\t%s",
-					// context.getString(R.string.title_err_code),
+			msg = String.format( "%s\n\t%s\n%s\n\t%s",
+					 context.getString(R.string.title_err_code),
 					getEposExceptionText(((Epos2Exception) e).getErrorStatus()),
-					// context.getString(R.string.title_err_method),
+					 context.getString(R.string.title_err_method),
 					method);
 		} else {
 			msg = e.toString();
@@ -27,11 +28,16 @@ public class ShowMsg {
 	public static void showResult(int code, String errMsg, Activity context) {
 		String msg = "";
 		if (errMsg.isEmpty()) {
-			msg = String.format("\t%s\n",
-					// context.getString(R.string.title_msg_result),
+			msg = String.format("\t%s\n\t%s\n",
+					 context.getString(R.string.title_msg_result),
 					getCodeText(code));
 		} else {
-			msg = String.format("\t%s\n", getCodeText(code), errMsg);
+			msg = String.format(
+					"\t%s\n\t%s\n\n\t%s\n\t%s\n",
+					context.getString(R.string.title_msg_result),
+					getCodeText(code),
+					context.getString(R.string.title_msg_description),
+					errMsg);
 		}
 		show(msg, context);
 	}
