@@ -50,10 +50,11 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		this.callbackContext = callbackContext;
-		
+
 		Log.i("测试", "测试1");
 		if (action.equals("search")) {
 			final int millSeconds = args.optInt(0, 10 * 1000);
+			Log.d(args.optInt(0),"time = "+millSeconds);
 			cordova.getThreadPool().execute(new Runnable() {
 				public void run() {
 					mPrinterList = new ArrayList<HashMap<String, String>>();
