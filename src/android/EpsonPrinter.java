@@ -216,6 +216,8 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			method = "addText";
 			mPrinter.addText(textData.toString());
 			textData.delete(0, textData.length());
+
+			method = "addTextAlign";
 			mPrinter.addTextAlign(Printer.ALIGN_RIGHT);
 			textData.append("9.99 €\n");
 			textData.append("410 3 CUP BLK TEAPOT    9.99 R\n");
