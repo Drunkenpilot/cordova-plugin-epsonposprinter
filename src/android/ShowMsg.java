@@ -27,7 +27,7 @@ public class ShowMsg {
 	public static void showResult(int code, String errMsg, Activity context) {
 		String msg = "";
 		if (errMsg.isEmpty()) {
-			msg = String.format("\t%s\n\t%s\n",
+			msg = String.format("\t%s\n",
 					// context.getString(R.string.title_msg_result),
 					getCodeText(code));
 		} else {
