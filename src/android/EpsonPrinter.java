@@ -427,7 +427,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 	}
 
 	private void dispPrinterWarnings(PrinterStatusInfo status) {
-		EditText edtWarnings = (EditText)findViewById(R.id.edtWarnings);
+		// EditText edtWarnings = (EditText)findViewById(R.id.edtWarnings);
 		String warningsMsg = "";
 
 		if (status == null) {
