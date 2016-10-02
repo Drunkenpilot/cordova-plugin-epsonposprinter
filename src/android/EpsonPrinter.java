@@ -313,7 +313,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		}
 
 		try {
-			mPrinter.connect("USB:/dev/bus/usb/002/013", Printer.PARAM_DEFAULT);
+			mPrinter.connect("USB:/dev/bus/usb/002/002", Printer.PARAM_DEFAULT);
 		}
 		catch (Exception e) {
 			ShowMsg.showException(e, "connect", cordova.getActivity());
