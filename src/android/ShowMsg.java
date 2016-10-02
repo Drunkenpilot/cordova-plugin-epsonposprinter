@@ -31,7 +31,7 @@ public class ShowMsg {
 					// context.getString(R.string.title_msg_result),
 					getCodeText(code));
 		} else {
-			msg = String.format("\t%s\n\t%s\n", getCodeText(code), errMsg);
+			msg = String.format("\t%s\n", getCodeText(code), errMsg);
 		}
 		show(msg, context);
 	}
