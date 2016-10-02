@@ -26,7 +26,14 @@
         <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
       </intent-filter>
       <meta-data android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" android:resource="@xml/device_filter" />
+      <intent-filter>
+              <action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" />
+          </intent-filter>
+
+          <meta-data android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"
+              android:resource="@xml/accessory_filter" />
     </config-file>
+
     <config-file target="res/values/strings.xml" parent="/*">
       <string name="handlingmsg_warn_receipt_near_end">Roll paper is nearly end.\n</string>
       <string name="handlingmsg_warn_battery_near_end">Battery level of printer is low.\n</string>
