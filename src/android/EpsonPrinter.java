@@ -223,18 +223,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			method = "addTextAlign";
 			mPrinter.addTextAlign(Printer.ALIGN_RIGHT);
 			textData.append("9.99 €\n");
-			textData.append("410 3 CUP BLK TEAPOT    9.99 R\n");
-			textData.append("445 EMERIL GRIDDLE/PAN 17.99 R\n");
-			textData.append("438 CANDYMAKER ASSORT   4.99 R\n");
-			textData.append("474 TRIPOD              8.99 R\n");
-			textData.append("433 BLK LOGO PRNTED ZO  7.99 R\n");
-			textData.append("458 AQUA MICROTERRY SC  6.99 R\n");
-			textData.append("493 30L BLK FF DRESS   16.99 R\n");
-			textData.append("407 LEVITATING DESKTOP  7.99 R\n");
-			textData.append("441 **Blue Overprint P  2.99 R\n");
-			textData.append("476 REPOSE 4PCPM CHOC   5.49 R\n");
-			textData.append("461 WESTGATE BLACK 25  59.99 R\n");
-			textData.append("------------------------------\n");
+
 			method = "addText";
 			mPrinter.addText(textData.toString());
 			textData.delete(0, textData.length());
@@ -283,10 +272,8 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 			method = "addPulse";
 			mPrinter.addPulse(Printer.DRAWER_2PIN,Printer.PULSE_500);
-			// String str = "1b 70 01 70 70";
-			// byte[] array = str.getBytes();
-			// method = "addCommand";
-			// mPrinter.addCommand(array);
+			method = "addPulse";
+			mPrinter.addPulse(Printer.DRAWER_2PIN,Printer.PULSE_500);
 		}
 		catch (Exception e) {
 			ShowMsg.showException(e, method, cordova.getActivity());
