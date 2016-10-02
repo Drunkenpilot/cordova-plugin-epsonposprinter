@@ -138,7 +138,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 		PrinterStatusInfo status = mPrinter.getStatus();
 
-		dispPrinterWarnings(status);
+		// dispPrinterWarnings(status);
 
 		if (!isPrintable(status)) {
 			ShowMsg.showMsg(makeErrorMessage(status), cordova.getActivity());
@@ -426,24 +426,24 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		return msg;
 	}
 
-	private void dispPrinterWarnings(PrinterStatusInfo status) {
-		// EditText edtWarnings = (EditText)findViewById(R.id.edtWarnings);
-		String warningsMsg = "";
-
-		if (status == null) {
-			return;
-		}
-
-		if (status.getPaper() == Printer.PAPER_NEAR_END) {
-			warningsMsg += cordova.getActivity().getString(R.string.handlingmsg_warn_receipt_near_end);
-		}
-
-		if (status.getBatteryLevel() == Printer.BATTERY_LEVEL_1) {
-			warningsMsg += cordova.getActivity().getString(R.string.handlingmsg_warn_battery_near_end);
-		}
-
-		edtWarnings.setText(warningsMsg);
-	}
+	// private void dispPrinterWarnings(PrinterStatusInfo status) {
+	// 	EditText edtWarnings = (EditText)findViewById(R.id.edtWarnings);
+	// 	String warningsMsg = "";
+	//
+	// 	if (status == null) {
+	// 		return;
+	// 	}
+	//
+	// 	if (status.getPaper() == Printer.PAPER_NEAR_END) {
+	// 		warningsMsg += cordova.getActivity().getString(R.string.handlingmsg_warn_receipt_near_end);
+	// 	}
+	//
+	// 	if (status.getBatteryLevel() == Printer.BATTERY_LEVEL_1) {
+	// 		warningsMsg += cordova.getActivity().getString(R.string.handlingmsg_warn_battery_near_end);
+	// 	}
+	//
+	// 	edtWarnings.setText(warningsMsg);
+	// }
 
 	// @Override
 	public void onPtrReceive(final Printer printerObj, final int code, final PrinterStatusInfo status, final String printJobId) {
@@ -452,7 +452,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			public synchronized void run() {
 				ShowMsg.showResult(code, makeErrorMessage(status), cordova.getActivity());
 
-				dispPrinterWarnings(status);
+				// dispPrinterWarnings(status);
 				Log.i("打印","打印1");
 
 				new Thread(new Runnable() {
