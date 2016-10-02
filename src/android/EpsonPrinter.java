@@ -173,7 +173,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 	private boolean createReceiptData() {
 		String method = "";
-		Bitmap logoData = BitmapFactory.decodeResource(getResources(), R.drawable.store);
+		Bitmap logoData = BitmapFactory.decodeResource(cordova.getActivity().getResources(), R.drawable.store);
 		StringBuilder textData = new StringBuilder();
 		final int barcodeWidth = 2;
 		final int barcodeHeight = 100;
