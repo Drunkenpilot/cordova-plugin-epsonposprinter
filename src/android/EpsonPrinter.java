@@ -280,7 +280,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			mPrinter.addCut(Printer.CUT_FEED);
 
 			method = "addSound";
-			mPrinter.addSound(Printer.PATTERN_A,Printer.PARAM_DEFAULT);
+			mPrinter.addSound(Printer.PATTERN_A,Printer.PARAM_DEFAULT,Printer.PARAM_DEFAULT);
 		}
 		catch (Exception e) {
 			ShowMsg.showException(e, method, cordova.getActivity());
