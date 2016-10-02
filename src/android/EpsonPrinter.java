@@ -195,6 +195,8 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			Printer.HALFTONE_DITHER,
 			Printer.PARAM_DEFAULT,
 			Printer.COMPRESS_AUTO);
+			Log.i("imgWidth",logoData.getWidth());
+			Log.i("imgHeight",logoData.getHeight());
 
 			method = "addFeedLine";
 			mPrinter.addFeedLine(1);
@@ -208,7 +210,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			mPrinter.addText(textData.toString());
 			textData.delete(0, textData.length());
 
-			textData.append("400 OHEIDA 3PK SPRINGF  9.99 R\n");
+			textData.append("400 OHEIDA 3PK SPRINGF          9.99 R\n");
 			textData.append("410 3 CUP BLK TEAPOT    9.99 R\n");
 			textData.append("445 EMERIL GRIDDLE/PAN 17.99 R\n");
 			textData.append("438 CANDYMAKER ASSORT   4.99 R\n");
@@ -298,7 +300,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		}
 
 		try {
-			mPrinter.connect("USB:/dev/bus/usb/002/010", Printer.PARAM_DEFAULT);
+			mPrinter.connect("USB:/dev/bus/usb/002/013", Printer.PARAM_DEFAULT);
 		}
 		catch (Exception e) {
 			ShowMsg.showException(e, "connect", cordova.getActivity());
