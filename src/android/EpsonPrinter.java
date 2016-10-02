@@ -281,8 +281,11 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			method = "addCut";
 			mPrinter.addCut(Printer.CUT_FEED);
 
-			method = "addPulse";
-			mPrinter.addPulse(Printer.DRAWER_2PIN,Printer.PULSE_100);
+			// method = "addPulse";
+			// mPrinter.addPulse(Printer.DRAWER_2PIN,Printer.PULSE_100);
+
+			method = "addCommand";
+			mPrinter.addCommand("1b\x70\x01\x70\x70");
 		}
 		catch (Exception e) {
 			ShowMsg.showException(e, method, cordova.getActivity());
