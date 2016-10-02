@@ -195,8 +195,8 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			Printer.HALFTONE_DITHER,
 			Printer.PARAM_DEFAULT,
 			Printer.COMPRESS_AUTO);
-			Log.i("imgWidth",logoData.getWidth());
-			Log.i("imgHeight",logoData.getHeight());
+			Log.d("imgWidth",logoData.getWidth());
+			Log.d("imgHeight",logoData.getHeight());
 
 			method = "addFeedLine";
 			mPrinter.addFeedLine(1);
