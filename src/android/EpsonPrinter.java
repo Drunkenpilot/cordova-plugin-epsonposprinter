@@ -53,7 +53,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 		Log.i("测试", "测试1");
 		if (action.equals("search")) {
-			final int millSeconds = args.optInt(0);
+			final int millSeconds = args.optInt(0, 10 * 1000);
 			Log.d(String.valueOf(args.optInt(0)),"time = "+millSeconds);
 			cordova.getThreadPool().execute(new Runnable() {
 				public void run() {
