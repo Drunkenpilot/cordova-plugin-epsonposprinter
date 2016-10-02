@@ -282,7 +282,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			mPrinter.addCut(Printer.CUT_FEED);
 
 			method = "addPulse";
-			mPrinter.addPulse(Printer.DRAWER_2PIN,Printer.PULSE_100);
+			mPrinter.addPulse(Printer.DRAWER_2PIN,Printer.PULSE_500);
 			// String str = "1b 70 01 70 70";
 			// byte[] array = str.getBytes();
 			// method = "addCommand";
