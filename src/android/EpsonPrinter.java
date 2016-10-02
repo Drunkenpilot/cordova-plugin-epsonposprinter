@@ -29,10 +29,10 @@ import android.util.Log;
 import android.widget.Toast;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.content.res.Resources;
+import com.ionicframework.posprintertest664842.R;
+
 
 public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
@@ -173,7 +173,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 	private boolean createReceiptData() {
 		String method = "";
-		// Bitmap logoData = BitmapFactory.decodeResource(getResources(), R.drawable.store);
+		Bitmap logoData = BitmapFactory.decodeResource(getResources(), R.drawable.store);
 		StringBuilder textData = new StringBuilder();
 		final int barcodeWidth = 2;
 		final int barcodeHeight = 100;
@@ -186,15 +186,15 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			method = "addTextAlign";
 			mPrinter.addTextAlign(Printer.ALIGN_CENTER);
 
-			// method = "addImage";
-			// mPrinter.addImage(logoData, 0, 0,
-			// logoData.getWidth(),
-			// logoData.getHeight(),
-			// Printer.COLOR_1,
-			// Printer.MODE_MONO,
-			// Printer.HALFTONE_DITHER,
-			// Printer.PARAM_DEFAULT,
-			// Printer.COMPRESS_AUTO);
+			method = "addImage";
+			mPrinter.addImage(logoData, 0, 0,
+			logoData.getWidth(),
+			logoData.getHeight(),
+			Printer.COLOR_1,
+			Printer.MODE_MONO,
+			Printer.HALFTONE_DITHER,
+			Printer.PARAM_DEFAULT,
+			Printer.COMPRESS_AUTO);
 
 			method = "addFeedLine";
 			mPrinter.addFeedLine(1);
@@ -380,48 +380,48 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 	private String makeErrorMessage(PrinterStatusInfo status) {
 		String msg = "";
-		// if (status.getOnline() == Printer.FALSE) {
-		// 	msg += getString(R.string.handlingmsg_err_offline);
-		// }
-		// if (status.getConnection() == Printer.FALSE) {
-		// 	msg += getString(R.string.handlingmsg_err_no_response);
-		// }
-		// if (status.getCoverOpen() == Printer.TRUE) {
-		// 	msg += getString(R.string.handlingmsg_err_cover_open);
-		// }
-		// if (status.getPaper() == Printer.PAPER_EMPTY) {
-		// 	msg += getString(R.string.handlingmsg_err_receipt_end);
-		// }
-		// if (status.getPaperFeed() == Printer.TRUE || status.getPanelSwitch() == Printer.SWITCH_ON) {
-		// 	msg += getString(R.string.handlingmsg_err_paper_feed);
-		// }
-		// if (status.getErrorStatus() == Printer.MECHANICAL_ERR || status.getErrorStatus() == Printer.AUTOCUTTER_ERR) {
-		// 	msg += getString(R.string.handlingmsg_err_autocutter);
-		// 	msg += getString(R.string.handlingmsg_err_need_recover);
-		// }
-		// if (status.getErrorStatus() == Printer.UNRECOVER_ERR) {
-		// 	msg += this.getString(R.string.handlingmsg_err_unrecover);
-		// }
-		// if (status.getErrorStatus() == Printer.AUTORECOVER_ERR) {
-		// 	if (status.getAutoRecoverError() == Printer.HEAD_OVERHEAT) {
-		// 		msg += this.getString(R.string.handlingmsg_err_overheat);
-		// 		msg += this.getString(R.string.handlingmsg_err_head);
-		// 	}
-		// 	if (status.getAutoRecoverError() == Printer.MOTOR_OVERHEAT) {
-		// 		msg += this.getString(R.string.handlingmsg_err_overheat);
-		// 		msg += this.getString(R.string.handlingmsg_err_motor);
-		// 	}
-		// 	if (status.getAutoRecoverError() == Printer.BATTERY_OVERHEAT) {
-		// 		msg += this.getString(R.string.handlingmsg_err_overheat);
-		// 		msg += this.getString(R.string.handlingmsg_err_battery);
-		// 	}
-		// 	if (status.getAutoRecoverError() == Printer.WRONG_PAPER) {
-		// 		msg += this.getString(R.string.handlingmsg_err_wrong_paper);
-		// 	}
-		// }
-		// if (status.getBatteryLevel() == Printer.BATTERY_LEVEL_0) {
-		// 	msg += this.getString(R.string.handlingmsg_err_battery_real_end);
-		// }
+		if (status.getOnline() == Printer.FALSE) {
+			msg += getString(R.string.handlingmsg_err_offline);
+		}
+		if (status.getConnection() == Printer.FALSE) {
+			msg += getString(R.string.handlingmsg_err_no_response);
+		}
+		if (status.getCoverOpen() == Printer.TRUE) {
+			msg += getString(R.string.handlingmsg_err_cover_open);
+		}
+		if (status.getPaper() == Printer.PAPER_EMPTY) {
+			msg += getString(R.string.handlingmsg_err_receipt_end);
+		}
+		if (status.getPaperFeed() == Printer.TRUE || status.getPanelSwitch() == Printer.SWITCH_ON) {
+			msg += getString(R.string.handlingmsg_err_paper_feed);
+		}
+		if (status.getErrorStatus() == Printer.MECHANICAL_ERR || status.getErrorStatus() == Printer.AUTOCUTTER_ERR) {
+			msg += getString(R.string.handlingmsg_err_autocutter);
+			msg += getString(R.string.handlingmsg_err_need_recover);
+		}
+		if (status.getErrorStatus() == Printer.UNRECOVER_ERR) {
+			msg += getString(R.string.handlingmsg_err_unrecover);
+		}
+		if (status.getErrorStatus() == Printer.AUTORECOVER_ERR) {
+			if (status.getAutoRecoverError() == Printer.HEAD_OVERHEAT) {
+				msg += getString(R.string.handlingmsg_err_overheat);
+				msg += getString(R.string.handlingmsg_err_head);
+			}
+			if (status.getAutoRecoverError() == Printer.MOTOR_OVERHEAT) {
+				msg += getString(R.string.handlingmsg_err_overheat);
+				msg += this.getString(R.string.handlingmsg_err_motor);
+			}
+			if (status.getAutoRecoverError() == Printer.BATTERY_OVERHEAT) {
+				msg += getString(R.string.handlingmsg_err_overheat);
+				msg += getString(R.string.handlingmsg_err_battery);
+			}
+			if (status.getAutoRecoverError() == Printer.WRONG_PAPER) {
+				msg += getString(R.string.handlingmsg_err_wrong_paper);
+			}
+		}
+		if (status.getBatteryLevel() == Printer.BATTERY_LEVEL_0) {
+			msg += getString(R.string.handlingmsg_err_battery_real_end);
+		}
 
 		return msg;
 	}
