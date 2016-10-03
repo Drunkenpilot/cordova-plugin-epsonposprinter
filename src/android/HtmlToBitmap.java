@@ -12,9 +12,9 @@ import android.webkit.WebView;
 public class HtmlToBitmap implements Runnable{
 	private WebView webView;
 
-	@Override
-	public HtmlToBitmap(Activity activity) {
 
+	public HtmlToBitmap(Activity activity) {
+		@Override;
 		public void run(){
 			webView = new WebView(activity);
 			webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
