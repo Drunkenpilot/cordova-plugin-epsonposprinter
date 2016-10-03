@@ -46,6 +46,7 @@ public class HtmlToBitmap {
 
 
 				WebSettings settings = webView.getSettings();
+				webView.setVisibility(android.view.View.INVISIBLE);
 				settings.setBuiltInZoomControls(true);
 				settings.setUseWideViewPort(false);
 				settings.setJavaScriptEnabled(true);
@@ -57,7 +58,7 @@ public class HtmlToBitmap {
 
 			//	webView.loadData(html, "text/html;charset=utf-8", "UTF8");
 				webView.loadDataWithBaseURL(null,html,"text/html;charset=utf-8", "UTF8",null);
-				webView.setVisibility(android.view.View.INVISIBLE);
+
 				int w = webView.getWidth();
 				int h = webView.getHeight();
 				Log.d(String.valueOf(webView.getWidth()), "Width = " + w);
