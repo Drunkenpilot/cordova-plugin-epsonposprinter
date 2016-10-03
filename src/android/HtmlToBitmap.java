@@ -13,7 +13,7 @@ import android.content.Context;
 
 public class HtmlToBitmap{
 	private WebView webView;
-  private Bitmap bitmap;
+  private Bitmap bitmap = null;
 
 	public Bitmap HtmlToBitmap( final String html, final Activity activity) {
 
@@ -29,7 +29,7 @@ public class HtmlToBitmap{
 
 				webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
 				webView.setLayoutParams(
-				new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+				new ViewGroup.LayoutParams(100, 100));
 				WebSettings settings = webView.getSettings();
 				settings.setBuiltInZoomControls(true);
 				settings.setUseWideViewPort(false);
