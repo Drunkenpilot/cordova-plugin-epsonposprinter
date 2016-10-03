@@ -12,23 +12,27 @@ import android.webkit.WebView;
 public class HtmlToBitmap implements Runnable{
 	private WebView webView;
 
-	public HtmlToBitmap(Activity activity) {
+	@Override;
+	public void run(){
+		public HtmlToBitmap(Activity activity) {
 
-				webView = new WebView(activity);
-				webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
-				webView.setLayoutParams(
-				new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-				WebSettings settings = webView.getSettings();
-				settings.setBuiltInZoomControls(true);
-				settings.setUseWideViewPort(false);
-				settings.setJavaScriptEnabled(false);
-				settings.setSupportMultipleWindows(false);
+					webView = new WebView(activity);
+					webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+					webView.setLayoutParams(
+					new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+					WebSettings settings = webView.getSettings();
+					settings.setBuiltInZoomControls(true);
+					settings.setUseWideViewPort(false);
+					settings.setJavaScriptEnabled(false);
+					settings.setSupportMultipleWindows(false);
 
-				settings.setLoadsImagesAutomatically(true);
-				settings.setDomStorageEnabled(true);
-				settings.setLoadWithOverviewMode(true);
+					settings.setLoadsImagesAutomatically(true);
+					settings.setDomStorageEnabled(true);
+					settings.setLoadWithOverviewMode(true);
 
+		}
 	}
+
 
 	public Bitmap convert(String html) {
 
