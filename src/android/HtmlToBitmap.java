@@ -14,7 +14,7 @@ public class HtmlToBitmap implements Runnable{
 
 
 	public HtmlToBitmap(Activity activity) {
-		runOnUiThread(new Runnable() {
+		activity.runOnUiThread(new Runnable() {
 		public void run(){
 			webView = new WebView(activity);
 			webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
