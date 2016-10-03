@@ -56,8 +56,8 @@ public class HtmlToBitmap {
 				settings.setDomStorageEnabled(true);
 				settings.setLoadWithOverviewMode(true);
 
-			//	webView.loadData(html, "text/html;charset=utf-8", "UTF8");
-				webView.loadDataWithBaseURL(null,html,"text/html;charset=utf-8", "UTF8",null);
+				webView.loadData(html, "text/html;charset=utf-8", "UTF8");
+				//webView.loadDataWithBaseURL(null,html,"text/html;charset=utf-8", "UTF8",null);
 
 				int w = webView.getWidth();
 				int h = webView.getHeight();
