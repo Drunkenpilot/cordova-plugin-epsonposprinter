@@ -31,7 +31,7 @@ public class HtmlToBitmap implements Runnable{
 			settings.setLoadWithOverviewMode(true);
 
 		}
-	})
+	});
 	}
 
 
