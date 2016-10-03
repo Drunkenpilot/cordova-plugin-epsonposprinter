@@ -75,6 +75,7 @@ public class HtmlToBitmap {
 	}
 
 	public Bitmap convert(final WebView webView) {
+		Paint paint = new Paint();
 		paint.setColor(Color.BLACK);
 		paint.setStrokeWidth((float) 5.0);
 		// int w = picture.getWidth();
