@@ -38,12 +38,12 @@ public class HtmlToBitmap{
 
 
 	public Bitmap convert(final String html) {
-		final Bitmap bitmap = null;
+
 		if (html == null || html.equals("")) {
 			return null;
 		}
 		Log.e("info", html);
-		webView.post(new Runnable(){
+		webView.runOnUiThread(new Runnable(){
 			@Override
 			public void run(){
 				webView.loadData(html, "text/html", "UTF8");
