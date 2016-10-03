@@ -8,14 +8,19 @@ import android.util.Log;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import java.io.IOException;
+import android.content.Context;
 
 
 public class HtmlToBitmap{
 	private WebView webView;
+	private Bitmap bitmap = null;
+	public HtmlToBitmap( final String html, final Activity activity) {
+		if (html == null || html.equals("")) {
+			return null;
+		}
 
+		Log.e("info", html);
 
-	public HtmlToBitmap( final Activity activity) {
 		activity.runOnUiThread(new Runnable() {
 			public void run(){
 				webView = new WebView(activity);
@@ -31,31 +36,28 @@ public class HtmlToBitmap{
 				settings.setLoadsImagesAutomatically(true);
 				settings.setDomStorageEnabled(true);
 				settings.setLoadWithOverviewMode(true);
-
+				bitmap = convert(webView);
 			}
 		});
+
+		return bitmap;
 	}
 
 
-	public Bitmap convert(final String html,Context context) {
+	public Bitmap convert(WebView webView) {
 
-		if (html == null || html.equals("")) {
-			return null;
-		}
-		Log.e("info", html);
-		context.runOnUiThread(new Runnable(){
-			@Override
-			public void run(){
-				webView.loadData(html, "text/html", "UTF8");
+		// if (html == null || html.equals("")) {
+		// 	return null;
+		// }
+		// Log.e("info", html);
+
+				// webView.loadData(html, "text/html", "UTF8");
 
 					Bitmap bitmap = Bitmap.createBitmap(webView.getWidth(), webView.getHeight(), Config.RGB_565);
 					Canvas canvas = new Canvas(bitmap);
 					webView.draw(canvas);
 
-			}
-		});
-
-		return bitmap;
+					return bitmap;
 	}
 
 }
