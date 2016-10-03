@@ -12,7 +12,7 @@ import android.webkit.WebView;
 public class HtmlToBitmap implements Runnable{
 	private WebView webView;
 
-	@Override;
+	@Override
 	public void run(){
 		public HtmlToBitmap(Activity activity) {
 
