@@ -77,10 +77,10 @@ public class HtmlToBitmap {
 	public Bitmap convert(final WebView webView) {
 		paint.setColor(Color.BLACK);
 		paint.setStrokeWidth((float) 5.0);
-		int w = picture.getWidth();
-		int h = picture.getHeight();
-		Log.d(String.valueOf(picture.getWidth()), "Width = " + w);
-		Log.d(String.valueOf(picture.getHeight()), "Height = " + h);
+		// int w = picture.getWidth();
+		// int h = picture.getHeight();
+		// Log.d(String.valueOf(picture.getWidth()), "Width = " + w);
+		// Log.d(String.valueOf(picture.getHeight()), "Height = " + h);
 		Bitmap bitmap = Bitmap.createBitmap(100,100, Bitmap.Config.RGB_565);
 		Canvas canvas = new Canvas(bitmap);
 		canvas.drawLines(0,0,99,0, paint);
