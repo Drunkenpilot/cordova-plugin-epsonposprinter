@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-public class HtmlToBitmap implements Runnable{
+public class HtmlToBitmap{
 	private WebView webView;
 
 
