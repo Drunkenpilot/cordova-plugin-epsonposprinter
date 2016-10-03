@@ -49,6 +49,7 @@ public class HtmlToBitmap{
 		});
 
 		return bitmap;
+		bitmap = null;
 	}
 
 
