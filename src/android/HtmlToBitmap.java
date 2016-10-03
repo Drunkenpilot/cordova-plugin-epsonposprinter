@@ -35,8 +35,8 @@ public class HtmlToBitmap{
 	}
 
 
-	public Bitmap convert(String html) {
-		final Bitmap bitmap;
+	public Bitmap convert(final String html) {
+		final Bitmap bitmap = null;
 				if (html == null || html.equals("")) {
 					return null;
 				}
