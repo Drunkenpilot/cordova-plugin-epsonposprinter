@@ -82,9 +82,10 @@ public class HtmlToBitmap {
 		// int h = picture.getHeight();
 		// Log.d(String.valueOf(picture.getWidth()), "Width = " + w);
 		// Log.d(String.valueOf(picture.getHeight()), "Height = " + h);
+		float[] pts={0,10,99,10};
 		Bitmap bitmap = Bitmap.createBitmap(100,100, Bitmap.Config.RGB_565);
 		Canvas canvas = new Canvas(bitmap);
-		canvas.drawLines(0,0,99,0, paint);
+		canvas.drawLines(pts,4,12, paint);
 		return bitmap;
 
 	}
