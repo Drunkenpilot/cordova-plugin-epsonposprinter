@@ -1,6 +1,6 @@
 package be.betalife.cordova.plugin.epsonposprinter;
 
-import com.betalife.printer.R;
+import com.ionicframework.posprintertest664842.R;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -26,12 +26,12 @@ public class HtmlToBitmap {
 
 		activity.runOnUiThread(new Runnable() {
 			public void run() {
+				// activity.setContentView(R.layout.cordova_activity);
+				// webView = new WebView(activity);
 
-				webView = new WebView(activity);
-				activity.setContentView(webView);
 				webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
 				webView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-						ViewGroup.LayoutParams.WRAP_CONTENT));
+				ViewGroup.LayoutParams.WRAP_CONTENT));
 				webView.setWebViewClient(new WebViewClient() {
 
 					@Override
@@ -44,7 +44,6 @@ public class HtmlToBitmap {
 					}
 				});
 
-
 				WebSettings settings = webView.getSettings();
 				settings.setBuiltInZoomControls(true);
 				settings.setUseWideViewPort(false);
@@ -54,8 +53,7 @@ public class HtmlToBitmap {
 				settings.setLoadsImagesAutomatically(true);
 				settings.setDomStorageEnabled(true);
 				settings.setLoadWithOverviewMode(true);
-
-				webView.loadData(html, "text/html", "UTF8");
+				webView.loadData(html, "text/html;charset=utf-8", "UTF8");
 
 				int w = webView.getWidth();
 				int h = webView.getHeight();
