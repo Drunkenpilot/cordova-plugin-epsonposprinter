@@ -24,6 +24,7 @@ public class HtmlToBitmap{
 		activity.runOnUiThread(new Runnable() {
 			public void run(){
 				webView = new WebView(activity);
+				webView.loadData(html, "text/html", "UTF8");
 				webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
 				webView.setLayoutParams(
 				new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
