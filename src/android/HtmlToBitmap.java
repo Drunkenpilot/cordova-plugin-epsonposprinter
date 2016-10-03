@@ -50,7 +50,7 @@ public class HtmlToBitmap{
 						webView.draw(canvas);
 					}
 				});
-
+				Log.e("bitmap", bitmap);
 				return bitmap;
 	}
 
