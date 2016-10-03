@@ -1,6 +1,6 @@
 package be.betalife.cordova.plugin.epsonposprinter;
 
-import com.betalife.printer.R;
+import com.ionicframework.posprintertest664842.R;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
