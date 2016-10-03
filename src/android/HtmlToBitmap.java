@@ -26,8 +26,8 @@ public class HtmlToBitmap {
 
 		activity.runOnUiThread(new Runnable() {
 			public void run() {
-
-				webView = new WebView(activity);
+				WebView webView = (WebView)this.findViewById(R.id.cordova_activity);
+				// webView = new WebView(activity);
 				activity.setContentView(webView);
 				webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
 				webView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -48,15 +48,15 @@ public class HtmlToBitmap {
 				WebSettings settings = webView.getSettings();
 				settings.setBuiltInZoomControls(true);
 				settings.setUseWideViewPort(false);
-				settings.setJavaScriptEnabled(false);
+				settings.setJavaScriptEnabled(true);
 				settings.setSupportMultipleWindows(false);
 
 				settings.setLoadsImagesAutomatically(true);
 				settings.setDomStorageEnabled(true);
 				settings.setLoadWithOverviewMode(true);
 
-				webView.loadData(html, "text/html;charset=utf-8", "UTF8");
-
+			//	webView.loadData(html, "text/html;charset=utf-8", "UTF8");
+				webView.loadDataWithBaseURL(null,"text/html;charset=utf-8", "UTF8",null);
 				int w = webView.getWidth();
 				int h = webView.getHeight();
 				Log.d(String.valueOf(webView.getWidth()), "Width = " + w);
