@@ -13,7 +13,7 @@ import android.content.Context;
 
 public class HtmlToBitmap{
 	private WebView webView;
-  private Bitmap bitmap = null;
+  private Bitmap bitmap;
 
 	public Bitmap HtmlToBitmap( final String html, final Activity activity) {
 
@@ -54,10 +54,10 @@ public class HtmlToBitmap{
 
 
 	public Bitmap convert(WebView webView) {
-		if (bitmap != null) {
-		    bitmap.recycle();
-		    bitmap = null;
-		}
+		// if (bitmap != null) {
+		//     bitmap.recycle();
+		//     bitmap = null;
+		// }
 		int w = webView.getWidth();
 		int h = webView.getHeight();
 		Log.d(String.valueOf(webView.getWidth()),"Width = "+w);
