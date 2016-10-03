@@ -37,7 +37,7 @@ public class HtmlToBitmap{
 
 	public Bitmap convert(String html,final Activity activity) {
 		activity.runOnUiThread(new Runnable() {
-			public  run(){
+			public Bitmap run(){
 				if (html == null || html.equals("")) {
 					return null;
 				}
