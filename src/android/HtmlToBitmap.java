@@ -34,10 +34,10 @@ public class HtmlToBitmap{
 		});
 	}
 
-	@Override
+
 	public Bitmap convert(String html,final Activity activity) {
 		activity.runOnUiThread(new Runnable() {
-			public Bitmap run(){
+
 				if (html == null || html.equals("")) {
 					return null;
 				}
@@ -48,7 +48,7 @@ public class HtmlToBitmap{
 				Canvas canvas = new Canvas(bitmap);
 				webView.draw(canvas);
 				return bitmap;
-			}
+			
 		});
 	}
 
