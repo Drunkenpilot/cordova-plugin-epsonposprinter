@@ -182,7 +182,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		int h = logoData.getHeight();
 
 		HtmlToBitmap convert = new HtmlToBitmap(cordova.getActivity());
-		Bitmap testImg = convert.convert("<html><head></head><body><table><th><td>Num</td><td>Product</td><td>Price</td></th></table></body></html>",cordova.getActivity());
+		Bitmap testImg = convert.convert("<html><head></head><body><table><th><td>Num</td><td>Product</td><td>Price</td></th></table></body></html>");
 
 		if (mPrinter == null) {
 			return false;

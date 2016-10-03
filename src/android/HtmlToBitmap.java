@@ -35,9 +35,7 @@ public class HtmlToBitmap{
 	}
 
 
-	public Bitmap convert(String html,final Activity activity) {
-		activity.runOnUiThread(new Runnable() {
-
+	private Bitmap convert(String html) {
 				if (html == null || html.equals("")) {
 					return null;
 				}
@@ -48,8 +46,6 @@ public class HtmlToBitmap{
 				Canvas canvas = new Canvas(bitmap);
 				webView.draw(canvas);
 				return bitmap;
-			
-		});
 	}
 
 }
