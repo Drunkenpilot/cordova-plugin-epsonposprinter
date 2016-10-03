@@ -170,20 +170,6 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		return true;
 	}
 
-	private void errorSound(){
-		Srting method = "";
-		try{
-			method = "addPulse";
-			mPrinter.addPulse(Printer.DRAWER_2PIN,Printer.PULSE_500);
-			method = "addPulse";
-			mPrinter.addPulse(Printer.DRAWER_2PIN,Printer.PULSE_500);
-		}catch (Exception e) {
-			ShowMsg.showException(e, method, cordova.getActivity());
-		}
-
-	}
-
-
 
 
 	private boolean createReceiptData() {
