@@ -14,7 +14,9 @@ import android.content.Context;
 public class HtmlToBitmap{
 	private WebView webView;
 	private Bitmap bitmap = null;
+
 	public Bitmap HtmlToBitmap( final String html, final Activity activity) {
+
 		if (html == null || html.equals("")) {
 			return null;
 		}
@@ -56,7 +58,7 @@ public class HtmlToBitmap{
 		int h = webView.getHeight();
 		Log.d(String.valueOf(webView.getWidth()),"Width = "+w);
 		Log.d(String.valueOf(webView.getHeight()),"Height = "+h);
-		Bitmap bitmap = Bitmap.createBitmap(webView.getWidth(), webView.getHeight(), Config.RGB_565);
+		Bitmap bitmap = Bitmap.createBitmap(100, 100, Config.RGB_565);
 		Canvas canvas = new Canvas(bitmap);
 		webView.draw(canvas);
 
