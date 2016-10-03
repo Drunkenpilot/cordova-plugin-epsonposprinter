@@ -34,7 +34,7 @@ public class HtmlToBitmap{
 		});
 	}
 
-
+	@Override
 	public Bitmap convert(String html,final Activity activity) {
 		activity.runOnUiThread(new Runnable() {
 			public Bitmap run(){
