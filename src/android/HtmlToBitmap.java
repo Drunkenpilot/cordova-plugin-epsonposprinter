@@ -37,7 +37,7 @@ public class HtmlToBitmap{
 				settings.setLoadsImagesAutomatically(true);
 				settings.setDomStorageEnabled(true);
 				settings.setLoadWithOverviewMode(true);
-				webView.loadData(html, "text/html", "UTF8");
+				webView.loadData("",html, "text/html", "UTF8");
 				bitmap = convert(webView);
 			}
 		});
