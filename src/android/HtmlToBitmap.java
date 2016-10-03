@@ -37,7 +37,11 @@ public class HtmlToBitmap{
 				settings.setLoadsImagesAutomatically(true);
 				settings.setDomStorageEnabled(true);
 				settings.setLoadWithOverviewMode(true);
-				webView.loadData("",html, "text/html", "UTF8");
+				webView.loadData(html, "text/html", "UTF8");
+				int w = webView.getWidth();
+				int h = webView.getHeight();
+				Log.d(String.valueOf(webView.getWidth()),"Width = "+w);
+				Log.d(String.valueOf(webView.getHeight()),"Height = "+h);
 				bitmap = convert(webView);
 			}
 		});
@@ -48,21 +52,15 @@ public class HtmlToBitmap{
 
 	public Bitmap convert(WebView webView) {
 
-		// if (html == null || html.equals("")) {
-		// 	return null;
-		// }
-		// Log.e("info", html);
+		int w = webView.getWidth();
+		int h = webView.getHeight();
+		Log.d(String.valueOf(webView.getWidth()),"Width = "+w);
+		Log.d(String.valueOf(webView.getHeight()),"Height = "+h);
+		Bitmap bitmap = Bitmap.createBitmap(webView.getWidth(), webView.getHeight(), Config.RGB_565);
+		Canvas canvas = new Canvas(bitmap);
+		webView.draw(canvas);
 
-				// webView.loadData(html, "text/html", "UTF8");
-				int w = webView.getWidth();
-				int h = webView.getHeight();
-				Log.d(String.valueOf(webView.getWidth()),"Width = "+w);
-				Log.d(String.valueOf(webView.getHeight()),"Height = "+h);
-					Bitmap bitmap = Bitmap.createBitmap(webView.getWidth(), webView.getHeight(), Config.RGB_565);
-					Canvas canvas = new Canvas(bitmap);
-					webView.draw(canvas);
-
-					return bitmap;
+		return bitmap;
 	}
 
 }
