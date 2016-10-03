@@ -12,6 +12,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.graphics.Picture;
+import android.graphics.Paint;
 
 
 public class HtmlToBitmap {
@@ -32,7 +33,7 @@ public class HtmlToBitmap {
 				// webView = this.findViewById(R.id.cordova_activity);
 				activity.setContentView(webView);
 				webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
-				webView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+				webView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
 				ViewGroup.LayoutParams.WRAP_CONTENT));
 				webView.setWebViewClient(new WebViewClient() {
 
@@ -73,14 +74,15 @@ public class HtmlToBitmap {
 	}
 
 	public Bitmap convert(final WebView webView) {
-		Picture picture = new Picture();
+		paint.setColor(Color.BLACK);
+		paint.setStrokeWidth((float) 5.0);
 		int w = picture.getWidth();
 		int h = picture.getHeight();
 		Log.d(String.valueOf(picture.getWidth()), "Width = " + w);
 		Log.d(String.valueOf(picture.getHeight()), "Height = " + h);
-		Bitmap bitmap = Bitmap.createBitmap(picture.getWidth(),picture.getHeight(), Bitmap.Config.RGB_565);
+		Bitmap bitmap = Bitmap.createBitmap(100,100, Bitmap.Config.RGB_565);
 		Canvas canvas = new Canvas(bitmap);
-		picture.draw(canvas);
+		canvas.drawLines(0,0,99,0, paint);
 		return bitmap;
 
 	}
