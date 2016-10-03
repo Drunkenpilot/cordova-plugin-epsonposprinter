@@ -13,7 +13,7 @@ public class HtmlToBitmap{
 	private WebView webView;
 
 
-	public HtmlToBitmap(Activity final activity) {
+	public HtmlToBitmap( final Activity activity) {
 		activity.runOnUiThread(new Runnable() {
 		public void run(){
 			webView = new WebView(activity);
