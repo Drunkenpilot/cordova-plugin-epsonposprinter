@@ -13,7 +13,7 @@ import android.content.Context;
 
 public class HtmlToBitmap{
 	private WebView webView;
-	private Bitmap bitmap = null;
+	//private Bitmap bitmap = null;
 
 	public Bitmap HtmlToBitmap( final String html, final Activity activity) {
 
