@@ -170,6 +170,19 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		return true;
 	}
 
+	private void errorSound(){
+		Srting method = "";
+		try{
+			method = "addPulse";
+			mPrinter.addPulse(Printer.DRAWER_2PIN,Printer.PULSE_500);
+			method = "addPulse";
+			mPrinter.addPulse(Printer.DRAWER_2PIN,Printer.PULSE_500);
+		}catch (Exception e) {
+			ShowMsg.showException(e, method, cordova.getActivity());
+		}
+
+	}
+
 
 
 
@@ -181,6 +194,10 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		final int barcodeHeight = 100;
 		int w = logoData.getWidth();
 		int h = logoData.getHeight();
+
+		HtmlToBitmap convert = new HtmlToBitmap(cordova.getActivity());
+		Bitmap testImg = convert.convert("<html><head></head><body><table><th><td>Num</td><td>Product</td><td>Price</td></th></table></body></html>");
+
 		if (mPrinter == null) {
 			return false;
 		}
@@ -200,6 +217,20 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			Printer.COMPRESS_AUTO);
 			Log.d(String.valueOf(logoData.getWidth()),"Width = "+w);
 			Log.d(String.valueOf(logoData.getHeight()),"Height = "+h);
+			method = "addFeedLine";
+			mPrinter.addFeedLine(1);
+
+			method = "addImage";
+			mPrinter.addImage(testImg, 0, 0,
+			testImg.getWidth(),
+			testImg.getHeight(),
+			Printer.COLOR_1,
+			Printer.MODE_MONO,
+			Printer.HALFTONE_DITHER,
+			Printer.PARAM_DEFAULT,
+			Printer.COMPRESS_AUTO);
+			Log.d(String.valueOf(testImg.getWidth()),"Width = "+w);
+			Log.d(String.valueOf(testImg.getHeight()),"Height = "+h);
 
 			method = "addFeedLine";
 			mPrinter.addFeedLine(1);
