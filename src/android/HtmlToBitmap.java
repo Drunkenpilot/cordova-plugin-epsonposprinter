@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.graphics.Picture;
+
 
 public class HtmlToBitmap {
 	private WebView webView;
