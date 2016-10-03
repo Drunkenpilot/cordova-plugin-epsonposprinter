@@ -52,7 +52,7 @@ public class HtmlToBitmap{
 					Canvas canvas = new Canvas(bitmap);
 					webView.draw(canvas);
 				}catch(IOException e){
-					Log.i("error",e);
+					Log.i("error",e.message());
 				}finally{
 					bitmap.recycle();
 				}
