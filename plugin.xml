@@ -97,6 +97,12 @@
     <source-file src="src/android/ShowMsg.java" target-dir="src/be/betalife/cordova/plugin/epsonposprinter" />
     <source-file src="libs/ePOS2.jar" target-dir="libs" />
     <source-file src="libs/armeabi/libepos2.so" target-dir="libs/armeabi" />
+    <source-file src="src/android/drawreceiptlib/DrawBlankSpace.java" target-dir="src/android/drawreceiptlib"/>
+    <source-file src="src/android/drawreceiptlib/DrawImage.java" target-dir="src/android/drawreceiptlib"/>
+    <source-file src="src/android/drawreceiptlib/DrawLine.java" target-dir="src/android/drawreceiptlib"/>
+    <source-file src="src/android/drawreceiptlib/DrawText.java" target-dir="src/android/drawreceiptlib"/>
+    <source-file src="src/android/drawreceiptlib/IDrawItem.java" target-dir="src/android/drawreceiptlib"/>
+    <source-file src="src/android/drawreceiptlib/ReceiptBuilder.java" target-dir="src/android/drawreceiptlib"/>
     <resource-file src="src/android/res/drawable/store.png" target="res/drawable/store.png" />
 
   </platform>
