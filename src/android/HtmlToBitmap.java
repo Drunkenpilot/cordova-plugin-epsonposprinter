@@ -49,7 +49,7 @@ public class HtmlToBitmap{
 						Canvas canvas = new Canvas(bitmap);
 						webView.draw(canvas);
 					}
-				})
+				});
 
 				return bitmap;
 	}
