@@ -178,8 +178,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		StringBuilder textData = new StringBuilder();
 		final int barcodeWidth = 2;
 		final int barcodeHeight = 100;
-		int w = logoData.getWidth();
-		int h = logoData.getHeight();
+
 
 		HtmlToBitmap convert = new HtmlToBitmap();
 		Bitmap testImg = convert.HtmlToBitmap("<html><head></head><body><table><th><td>Num</td><td>Product</td><td>Price</td></th></table></body></html>",cordova.getActivity());
@@ -205,7 +204,8 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			// Log.d(String.valueOf(logoData.getHeight()),"Height = "+h);
 			// method = "addFeedLine";
 			// mPrinter.addFeedLine(1);
-
+			int w = testImg.getWidth();
+			int h = testImg.getHeight();
 			method = "addImage";
 			mPrinter.addImage(testImg, 0, 0,
 			testImg.getWidth(),
