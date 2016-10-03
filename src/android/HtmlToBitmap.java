@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class HtmlToBitmap {
 	private WebView webView;
@@ -42,7 +43,7 @@ public class HtmlToBitmap {
 
 					}
 				});
-				
+
 				WebSettings settings = webView.getSettings();
 				settings.setBuiltInZoomControls(true);
 				settings.setUseWideViewPort(false);
