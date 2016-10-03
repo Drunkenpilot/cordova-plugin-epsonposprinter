@@ -45,7 +45,7 @@ public class HtmlToBitmap {
 				});
 
 
-				WebSettings settings = webview.getSettings();
+				WebSettings settings = webView.getSettings();
 				settings.setBuiltInZoomControls(true);
 				settings.setUseWideViewPort(false);
 				settings.setJavaScriptEnabled(true);
@@ -78,7 +78,6 @@ public class HtmlToBitmap {
 		Log.d(String.valueOf(picture.getHeight()), "Height = " + h);
 		Bitmap bitmap = Bitmap.createBitmap(picture.getWidth(),picture.getHeight(), Bitmap.Config.RGB_565);
 		Canvas canvas = new Canvas(bitmap);
-		canvas.drawColor(Color.WHITE);
 		picture.draw(canvas);
 		return bitmap;
 
