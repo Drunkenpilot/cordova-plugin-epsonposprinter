@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="277a0423-7376-4ef7-85bc-e82bd71746b8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/android/HtmlToBitmap.java" afterPath="$PROJECT_DIR$/src/android/HtmlToBitmap.java" />
-    </list>
+    <list default="true" id="277a0423-7376-4ef7-85bc-e82bd71746b8" name="Default" comment="" />
     <ignored path="cordova-plugin-epsonposprinter.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.gradle/" />

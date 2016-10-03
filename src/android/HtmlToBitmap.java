@@ -31,7 +31,7 @@ public class HtmlToBitmap {
 				activity.setContentView(webView);
 				webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
 				webView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-						ViewGroup.LayoutParams.WRAP_CONTENT));
+				ViewGroup.LayoutParams.WRAP_CONTENT));
 				webView.setWebViewClient(new WebViewClient() {
 
 					@Override
@@ -45,14 +45,14 @@ public class HtmlToBitmap {
 				});
 
 
-				WebSettings settings = webView.getSettings();
-				webView.setVisibility(android.view.View.INVISIBLE);
+				WebSettings settings = webview.getSettings();
 				settings.setBuiltInZoomControls(true);
 				settings.setUseWideViewPort(false);
 				settings.setJavaScriptEnabled(true);
 				settings.setSupportMultipleWindows(false);
 
 				settings.setLoadsImagesAutomatically(true);
+				settings.setLightTouchEnabled(true);
 				settings.setDomStorageEnabled(true);
 				settings.setLoadWithOverviewMode(true);
 
@@ -71,16 +71,17 @@ public class HtmlToBitmap {
 	}
 
 	public Bitmap convert(WebView webView) {
-
-		int w = webView.getWidth();
-		int h = webView.getHeight();
-		Log.d(String.valueOf(webView.getWidth()), "Width = " + w);
-		Log.d(String.valueOf(webView.getHeight()), "Height = " + h);
-		Bitmap bitmap = Bitmap.createBitmap(webView.getWidth(), webView.getHeight(), Config.RGB_565);
+		Picture picture = webView.capturePicture();
+		int w = picture.getWidth();
+		int h = picture.getHeight();
+		Log.d(String.valueOf(picture.getWidth()), "Width = " + w);
+		Log.d(String.valueOf(picture.getHeight()), "Height = " + h);
+		Bitmap bitmap = Bitmap.createBitmap(picture.getWidth(),picture.getHeight(), Bitmap.Config.RGB_565);
 		Canvas canvas = new Canvas(bitmap);
-		webView.draw(canvas);
-
+		canvas.drawColor(Color.WHITE);
+		picture.draw(canvas);
 		return bitmap;
+
 	}
 
 }
