@@ -9,12 +9,11 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-public class HtmlToBitmap {
+public class HtmlToBitmap implements Runnable{
 	private WebView webView;
 
 	public HtmlToBitmap(Activity activity) {
-		runOnUiThread(new Runnable() {
-			public void run() {
+
 				webView = new WebView(activity);
 				webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
 				webView.setLayoutParams(
@@ -28,8 +27,7 @@ public class HtmlToBitmap {
 				settings.setLoadsImagesAutomatically(true);
 				settings.setDomStorageEnabled(true);
 				settings.setLoadWithOverviewMode(true);
-			}
-		});
+
 	}
 
 	public Bitmap convert(String html) {
