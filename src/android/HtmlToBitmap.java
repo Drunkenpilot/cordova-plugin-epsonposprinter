@@ -13,6 +13,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.graphics.Picture;
 import android.graphics.Paint;
+import android.graphics.Color;
 
 
 public class HtmlToBitmap {
