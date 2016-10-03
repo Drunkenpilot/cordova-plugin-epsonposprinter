@@ -36,15 +36,21 @@ public class HtmlToBitmap{
 
 
 	public Bitmap convert(String html) {
+		final Bitmap bitmap;
 				if (html == null || html.equals("")) {
 					return null;
 				}
 				Log.e("info", html);
-				webView.loadData(html, "text/html", "UTF8");
+				webView.post(new Runnable(){
+					@Override
+					public void run(){
+						webView.loadData(html, "text/html", "UTF8");
+						Bitmap bitmap = Bitmap.createBitmap(webView.getWidth(), webView.getHeight(), Config.RGB_565);
+						Canvas canvas = new Canvas(bitmap);
+						webView.draw(canvas);
+					}
+				})
 
-				Bitmap bitmap = Bitmap.createBitmap(webView.getWidth(), webView.getHeight(), Config.RGB_565);
-				Canvas canvas = new Canvas(bitmap);
-				webView.draw(canvas);
 				return bitmap;
 	}
 
