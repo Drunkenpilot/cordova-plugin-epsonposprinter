@@ -49,12 +49,14 @@ public class HtmlToBitmap{
 		});
 
 		return bitmap;
-		bitmap = null;
 	}
 
 
 	public Bitmap convert(WebView webView) {
-
+		if (bitmap != null) {
+		    bitmap.recycle();
+		    bitmap = null;
+		}
 		int w = webView.getWidth();
 		int h = webView.getHeight();
 		Log.d(String.valueOf(webView.getWidth()),"Width = "+w);
