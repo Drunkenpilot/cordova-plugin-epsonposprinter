@@ -31,6 +31,18 @@ public class HtmlToBitmap {
 				webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
 				webView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
 				ViewGroup.LayoutParams.WRAP_CONTENT));
+				webView.setWebViewClient(new WebViewClient() {
+
+					@Override
+					public void onPageFinished(WebView view, String url) {
+						int w = webView.getWidth();
+						int h = webView.getHeight();
+						Log.d("onPageFinished", "Width = " + w);
+						Log.d("onPageFinished", "Height = " + h);
+
+					}
+				});
+				
 				WebSettings settings = webView.getSettings();
 				settings.setBuiltInZoomControls(true);
 				settings.setUseWideViewPort(false);
