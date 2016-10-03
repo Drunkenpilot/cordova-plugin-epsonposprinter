@@ -78,7 +78,7 @@ public class HtmlToBitmap {
 		Paint paint = new Paint();
 		paint.setColor(Color.BLACK);
 		paint.setStrokeWidth((float) 5.0);
-		canvas.drawColor(Color.BLACK);
+
 		// int w = picture.getWidth();
 		// int h = picture.getHeight();
 		// Log.d(String.valueOf(picture.getWidth()), "Width = " + w);
@@ -86,6 +86,7 @@ public class HtmlToBitmap {
 		float[] pts={0,10,99,10};
 		Bitmap bitmap = Bitmap.createBitmap(100,100, Bitmap.Config.RGB_565);
 		Canvas canvas = new Canvas(bitmap);
+		canvas.drawColor(Color.BLACK);
 	//	canvas.drawLines(pts,4,12, paint);
 		return bitmap;
 
