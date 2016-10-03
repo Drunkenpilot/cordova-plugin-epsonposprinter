@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import java.io.IOException;
+
 
 public class HtmlToBitmap{
 	private WebView webView;
@@ -37,27 +39,27 @@ public class HtmlToBitmap{
 
 	public Bitmap convert(final String html) {
 		final Bitmap bitmap = null;
-				if (html == null || html.equals("")) {
-					return null;
+		if (html == null || html.equals("")) {
+			return null;
+		}
+		Log.e("info", html);
+		webView.post(new Runnable(){
+			@Override
+			public void run(){
+				webView.loadData(html, "text/html", "UTF8");
+				try {
+					Bitmap bitmap = Bitmap.createBitmap(webView.getWidth(), webView.getHeight(), Config.RGB_565);
+					Canvas canvas = new Canvas(bitmap);
+					webView.draw(canvas);
+				}catch(IOException e){
+					Log.i("error",e);
+				}finally{
+					bitmap.recycle();
 				}
-				Log.e("info", html);
-				webView.post(new Runnable(){
-					@Override
-					public void run(){
-						webView.loadData(html, "text/html", "UTF8");
-						try {
-						Bitmap bitmap = Bitmap.createBitmap(webView.getWidth(), webView.getHeight(), Config.RGB_565);
-						Canvas canvas = new Canvas(bitmap);
-						webView.draw(canvas);
-					}catch(IOException e){
-						Log.i("error",e);
-					}finally{
-						bitmap.recycle();
-					}
-					}
-				});
+			}
+		});
 
-				return bitmap;
+		return bitmap;
 	}
 
 }
