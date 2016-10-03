@@ -29,7 +29,7 @@ public class HtmlToBitmap{
 
 				webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
 				webView.setLayoutParams(
-				new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_PARENT, ViewGroup.LayoutParams.WRAP_PARENT));
+				new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 				WebSettings settings = webView.getSettings();
 				settings.setBuiltInZoomControls(true);
 				settings.setUseWideViewPort(false);
