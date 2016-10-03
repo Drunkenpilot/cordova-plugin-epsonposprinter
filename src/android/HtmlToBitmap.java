@@ -73,7 +73,7 @@ public class HtmlToBitmap {
 	}
 
 	public Bitmap convert(final WebView webView) {
-		Picture picture = new Picture(webView);
+		Picture picture = new Picture();
 		int w = picture.getWidth();
 		int h = picture.getHeight();
 		Log.d(String.valueOf(picture.getWidth()), "Width = " + w);
