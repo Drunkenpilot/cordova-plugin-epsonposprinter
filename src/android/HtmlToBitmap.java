@@ -37,13 +37,13 @@ public class HtmlToBitmap{
 	}
 
 
-	public Bitmap convert(final String html) {
+	public Bitmap convert(final String html,Context context) {
 
 		if (html == null || html.equals("")) {
 			return null;
 		}
 		Log.e("info", html);
-		webView.runOnUiThread(new Runnable(){
+		context.runOnUiThread(new Runnable(){
 			@Override
 			public void run(){
 				webView.loadData(html, "text/html", "UTF8");
