@@ -245,7 +245,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		                addText("APPROVED").
 		                addParagraph();
 
-										testImg = receipt.build();
+										Bitmap testImg = receipt.build();
 		if (mPrinter == null) {
 			return false;
 		}
