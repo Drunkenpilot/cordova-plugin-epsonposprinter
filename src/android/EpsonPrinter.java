@@ -189,7 +189,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		        receipt.setMargin(30, 20).
 		                setAlign(Paint.Align.CENTER).
 		                setColor(Color.BLACK).
-		                setTextSize(60).
+		                setTextSize(30).
 		                // setTypeface(this, "fonts/RobotoMono-Regular.ttf").
 		                addText("LakeFront Cafe").
 		                addText("1234 Main St.").
