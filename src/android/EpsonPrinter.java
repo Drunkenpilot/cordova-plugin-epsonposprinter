@@ -185,7 +185,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 		// HtmlToBitmap convert = new HtmlToBitmap();
 		// Bitmap testImg = convert.HtmlToBitmap("<html><head></head><body><table><th><td>Num</td><td>Product</td><td>Price</td></th></table></body></html>",cordova.getActivity());
-		ReceiptBuilder receipt = new ReceiptBuilder(800);
+		ReceiptBuilder receipt = new ReceiptBuilder(600);
 		        receipt.setMargin(30, 20).
 		                setAlign(Paint.Align.CENTER).
 		                setColor(Color.BLACK).
