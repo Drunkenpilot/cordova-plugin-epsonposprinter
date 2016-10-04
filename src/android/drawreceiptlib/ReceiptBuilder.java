@@ -14,7 +14,7 @@ import java.util.List;
  * Created by daniel on 12/08/2016.
  */
 public class ReceiptBuilder {
-    List<IDrawItem> listItens = new ArrayList<>();
+    List<? extends IDrawItem> listItens = new ArrayList<>();
     private int backgroundColor = Color.WHITE;
     private float textSize;
     private int color = Color.BLACK;
