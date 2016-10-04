@@ -183,8 +183,6 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		final int barcodeHeight = 100;
 
 
-		// HtmlToBitmap convert = new HtmlToBitmap();
-		// Bitmap testImg = convert.HtmlToBitmap("<html><head></head><body><table><th><td>Num</td><td>Product</td><td>Price</td></th></table></body></html>",cordova.getActivity());
 		ReceiptBuilder receipt = new ReceiptBuilder(500);
 		        receipt.setMargin(0, 0).
 		                setAlign(Paint.Align.CENTER).
@@ -263,12 +261,10 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			// Printer.HALFTONE_DITHER,
 			// Printer.PARAM_DEFAULT,
 			// Printer.COMPRESS_AUTO);
-			// Log.d(String.valueOf(logoData.getWidth()),"Width = "+w);
-			// Log.d(String.valueOf(logoData.getHeight()),"Height = "+h);
+
 			// method = "addFeedLine";
 			// mPrinter.addFeedLine(1);
-			int w = testImg.getWidth();
-			int h = testImg.getHeight();
+
 			method = "addImage";
 			mPrinter.addImage(testImg, 0, 0,
 			testImg.getWidth(),
@@ -278,8 +274,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			Printer.HALFTONE_DITHER,
 			Printer.PARAM_DEFAULT,
 			Printer.COMPRESS_AUTO);
-			Log.d(String.valueOf(testImg.getWidth()),"Width = "+w);
-			Log.d(String.valueOf(testImg.getHeight()),"Height = "+h);
+
 
 			method = "addFeedLine";
 			mPrinter.addFeedLine(1);
