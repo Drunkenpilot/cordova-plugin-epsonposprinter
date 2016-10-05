@@ -85,11 +85,13 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			final JSONArray printContent = args.optJSONArray(0);
 			final int printTemplate = args.optInt(1);
 			final int printMode = args.optInt(2);
+			final int printerSeries = args.optInt(3);
+			final int lang = args.optInt(4);
 			Log.d("printTemplate","printTemplate = "+printTemplate);
 
 			cordova.getThreadPool().execute(new Runnable() {
 				public void run() {
-					runPrintReceiptSequence(printContent,printTemplate,printMode);
+					runPrintReceiptSequence(printContent,printTemplate,printMode,printerSeries,lang);
 				}
 			});
 			return true;
@@ -98,8 +100,8 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 	}
 
-	private boolean runPrintReceiptSequence(final JSONArray printContent, final int printTemplate, final int printMode) {
-		if (!initializeObject()) {
+	private boolean runPrintReceiptSequence(final JSONArray printContent, final int printTemplate, final int printMode, final int printerSeries, final int lang) {
+		if (!initializeObject(printerSeries, lang)) {
 			return false;
 		}
 
@@ -117,9 +119,9 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 	}
 
 
-	private boolean initializeObject() {
+	private boolean initializeObject(final int printerSeries, final int lang) {
 		try {
-			mPrinter = new Printer(6,0,cordova.getActivity());
+			mPrinter = new Printer(printerSeries,lang,cordova.getActivity());
 		}
 		catch (Exception e) {
 			ShowMsg.showException(e, "Printer", cordova.getActivity());
