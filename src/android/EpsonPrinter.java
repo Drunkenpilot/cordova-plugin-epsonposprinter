@@ -246,14 +246,6 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		//
 		// 								Bitmap testImg = receipt.build();
 
-		ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity());
-		try{
-			Bitmap testImg = receiptBuilder.build(html);
-		} catch(JSONException e){
-
-		}
-
-
 		if (mPrinter == null) {
 			return false;
 		}
@@ -262,6 +254,25 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			method = "addTextAlign";
 			mPrinter.addTextAlign(Printer.ALIGN_CENTER);
 
+			ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity());
+			try{
+				Bitmap testImg = receiptBuilder.build(html);
+				method = "addImage";
+				mPrinter.addImage(testImg, 0, 0,
+				testImg.getWidth(),
+				testImg.getHeight(),
+				Printer.COLOR_1,
+				Printer.MODE_MONO,
+				Printer.HALFTONE_DITHER,
+				Printer.PARAM_DEFAULT,
+				Printer.COMPRESS_AUTO);
+
+
+				method = "addFeedLine";
+				mPrinter.addFeedLine(1);
+			} catch(JSONException e){
+
+			}
 			// method = "addImage";
 			// mPrinter.addImage(logoData, 0, 0,
 			// logoData.getWidth(),
@@ -275,19 +286,19 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			// method = "addFeedLine";
 			// mPrinter.addFeedLine(1);
 
-			method = "addImage";
-			mPrinter.addImage(testImg, 0, 0,
-			testImg.getWidth(),
-			testImg.getHeight(),
-			Printer.COLOR_1,
-			Printer.MODE_MONO,
-			Printer.HALFTONE_DITHER,
-			Printer.PARAM_DEFAULT,
-			Printer.COMPRESS_AUTO);
-
-
-			method = "addFeedLine";
-			mPrinter.addFeedLine(1);
+			// method = "addImage";
+			// mPrinter.addImage(testImg, 0, 0,
+			// testImg.getWidth(),
+			// testImg.getHeight(),
+			// Printer.COLOR_1,
+			// Printer.MODE_MONO,
+			// Printer.HALFTONE_DITHER,
+			// Printer.PARAM_DEFAULT,
+			// Printer.COMPRESS_AUTO);
+			//
+			//
+			// method = "addFeedLine";
+			// mPrinter.addFeedLine(1);
 			// textData.append("THE STORE 123 (555) 555 – 5555\n");
 			// textData.append("STORE DIRECTOR – John Smith\n");
 			// textData.append("\n");
