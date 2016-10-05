@@ -176,7 +176,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 
 
-	private boolean createReceiptData(final JsonArray html) {
+	private boolean createReceiptData(final JSONArray html) {
 		String method = "";
 		Bitmap logoData = BitmapFactory.decodeResource(cordova.getActivity().getResources(), R.drawable.store);
 		StringBuilder textData = new StringBuilder();
