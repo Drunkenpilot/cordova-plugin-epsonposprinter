@@ -193,8 +193,8 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			//				printTemplate = 3 Online order
 			if(printTemplate == 1){
 				// Receipt with logo
-				// method = "addTextAlign";
-				// mPrinter.addTextAlign(Printer.ALIGN_CENTER);
+				method = "addTextAlign";
+				mPrinter.addTextAlign(Printer.ALIGN_CENTER);
 
 				Bitmap logoData = BitmapFactory.decodeResource(cordova.getActivity().getResources(), R.drawable.store);
 
@@ -214,6 +214,8 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 			//			Generate main content
 			try{
+				method = "addTextAlign";
+				mPrinter.addTextAlign(Printer.ALIGN_LEFT);
 				ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity());
 				Bitmap testImg = receiptBuilder.build(printContent);
 
