@@ -93,7 +93,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 			cordova.getThreadPool().execute(new Runnable() {
 				public void run() {
-					runPrintReceiptSequence(printContent,printTemplate,printMode,printerSeries,lang);
+					runPrintReceiptSequence(printContent,printTemplate,printMode,printerSeries,lang,printTarget);
 				}
 			});
 			return true;
