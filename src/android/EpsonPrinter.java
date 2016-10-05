@@ -87,6 +87,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			});
 			return true;
 		}else if (action.equals("print")) {
+			JSONArray html = args.optJSONArray(2);
 			cordova.getThreadPool().execute(new Runnable() {
 				public void run() {
 					runPrintReceiptSequence();
@@ -244,7 +245,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		//                 addParagraph();
 		//
 		// 								Bitmap testImg = receipt.build();
-		JSONArray html = args.optJSONArray(2);
+
 		ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity());
 		Bitmap testImg = receiptBuilder.build(html);
 
