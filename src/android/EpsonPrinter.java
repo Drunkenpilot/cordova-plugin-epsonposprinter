@@ -247,7 +247,12 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		// 								Bitmap testImg = receipt.build();
 
 		ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity());
-		Bitmap testImg = receiptBuilder.build(html);
+		try{
+			Bitmap testImg = receiptBuilder.build(html);
+		} catch(JSONException e){
+
+		}
+
 
 		if (mPrinter == null) {
 			return false;
