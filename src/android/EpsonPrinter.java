@@ -90,7 +90,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			JSONArray html = args.optJSONArray(2);
 			cordova.getThreadPool().execute(new Runnable() {
 				public void run() {
-					runPrintReceiptSequence();
+					runPrintReceiptSequence(html);
 				}
 			});
 			return true;
@@ -176,7 +176,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 
 
-	private boolean createReceiptData() {
+	private boolean createReceiptData(final JsonArray html) {
 		String method = "";
 		Bitmap logoData = BitmapFactory.decodeResource(cordova.getActivity().getResources(), R.drawable.store);
 		StringBuilder textData = new StringBuilder();
