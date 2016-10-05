@@ -87,6 +87,8 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			final int printMode = args.optInt(2);
 			final int printerSeries = args.optInt(3);
 			final int lang = args.optInt(4);
+			final String printTarget = args.optInt(5);
+
 			Log.d("printTemplate","printTemplate = "+printTemplate);
 
 			cordova.getThreadPool().execute(new Runnable() {
@@ -100,7 +102,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 	}
 
-	private boolean runPrintReceiptSequence(final JSONArray printContent, final int printTemplate, final int printMode, final int printerSeries, final int lang) {
+	private boolean runPrintReceiptSequence(final JSONArray printContent, final int printTemplate, final int printMode, final int printerSeries, final int lang, final String printTarget) {
 		if (!initializeObject(printerSeries, lang)) {
 			return false;
 		}
@@ -110,7 +112,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			return false;
 		}
 
-		if (!printData()) {
+		if (!printData(printTarget)) {
 			finalizeObject();
 			return false;
 		}
@@ -134,12 +136,12 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 	}
 
 
-	private boolean printData() {
+	private boolean printData(final String printTarget) {
 		if (mPrinter == null) {
 			return false;
 		}
 
-		if (!connectPrinter()) {
+		if (!connectPrinter(printTarget)) {
 			return false;
 		}
 
@@ -285,7 +287,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		mPrinter = null;
 	}
 
-	private boolean connectPrinter() {
+	private boolean connectPrinter(final String printTarget) {
 		boolean isBeginTransaction = false;
 
 		if (mPrinter == null) {
@@ -293,7 +295,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		}
 
 		try {
-			mPrinter.connect("USB:/dev/bus/usb/002/004", Printer.PARAM_DEFAULT);
+			mPrinter.connect(printTarget, Printer.PARAM_DEFAULT);
 		}
 		catch (Exception e) {
 			ShowMsg.showException(e, "connect", cordova.getActivity());

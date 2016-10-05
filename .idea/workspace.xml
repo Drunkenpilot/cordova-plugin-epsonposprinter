@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="277a0423-7376-4ef7-85bc-e82bd71746b8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/android/EpsonPrinter.java" afterPath="$PROJECT_DIR$/src/android/EpsonPrinter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/epson.js" afterPath="$PROJECT_DIR$/www/epson.js" />
     </list>
     <ignored path="cordova-plugin-epsonposprinter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,11 +54,11 @@
       <file leaf-file-name="EpsonPrinter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/android/EpsonPrinter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="258" column="0" selection-start-line="258" selection-start-column="0" selection-end-line="261" selection-end-column="69" />
+            <state relative-caret-position="-45">
+              <caret line="297" column="40" selection-start-line="297" selection-start-column="40" selection-end-line="297" selection-end-column="40" />
               <folding>
-                <element signature="e#3275#3276#0" expanded="true" />
-                <element signature="e#3339#3340#0" expanded="true" />
+                <element signature="e#12627#12628#0" expanded="true" />
+                <element signature="e#12661#12662#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -668,11 +669,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/android/EpsonPrinter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="258" column="0" selection-start-line="258" selection-start-column="0" selection-end-line="261" selection-end-column="69" />
+        <state relative-caret-position="-45">
+          <caret line="297" column="40" selection-start-line="297" selection-start-column="40" selection-end-line="297" selection-end-column="40" />
           <folding>
-            <element signature="e#3275#3276#0" expanded="true" />
-            <element signature="e#3339#3340#0" expanded="true" />
+            <element signature="e#12627#12628#0" expanded="true" />
+            <element signature="e#12661#12662#0" expanded="true" />
           </folding>
         </state>
       </provider>
