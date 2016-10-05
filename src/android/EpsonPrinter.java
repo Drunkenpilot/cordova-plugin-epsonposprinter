@@ -244,7 +244,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		//                 addParagraph();
 		//
 		// 								Bitmap testImg = receipt.build();
-		JSONArray html = [[{"name":"Text","value":"This is a test","newLine":true},{"name":"Line","value":180},{"name":"Align","value":"LEFT"}]];
+		JSONArray html = [{"name":"Text","value":"This is a test","newLine":true},{"name":"Line","value":180},{"name":"Align","value":"LEFT"}];
 		ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity());
 		Bitmap testImg = receiptBuilder.build(html);
 
