@@ -1,5 +1,5 @@
 <resources>
-  <integer name="width">500</integer>
+  <integer name="width">550</integer>
   <integer name="marginTop">0</integer>
   <integer name="marginRight">0</integer>
   <integer name="marginBottom">0</integer>
