@@ -99,12 +99,12 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 	}
 
-	private boolean runPrintReceiptSequence() {
+	private boolean runPrintReceiptSequence(final JSONArray html) {
 		if (!initializeObject()) {
 			return false;
 		}
 
-		if (!createReceiptData()) {
+		if (!createReceiptData(html)) {
 			finalizeObject();
 			return false;
 		}
