@@ -1,7 +1,7 @@
 <resources>
-  <string name="width">500</string>
-  <string name="marginTop">0</string>
-  <string name="marginRight">0</string>
-  <string name="marginBottom">0</string>
-  <string name="marginLeft">0</string>
+  <integer name="width">500</integer>
+  <integer name="marginTop">0</integer>
+  <integer name="marginRight">0</integer>
+  <integer name="marginBottom">0</integer>
+  <integer name="marginLeft">0</integer>
 </resources>
