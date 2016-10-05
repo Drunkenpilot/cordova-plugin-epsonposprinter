@@ -1,7 +1,7 @@
 <resources>
-  <integer name="width">600</integer>
+  <integer name="width">545</integer>
   <integer name="marginTop">0</integer>
-  <integer name="marginRight">0</integer>
+  <integer name="marginRight">10</integer>
   <integer name="marginBottom">0</integer>
-  <integer name="marginLeft">0</integer>
+  <integer name="marginLeft">10</integer>
 </resources>
