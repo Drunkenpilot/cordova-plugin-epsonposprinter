@@ -220,7 +220,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 				Bitmap testImg = receiptBuilder.build(printContent);
 
 				method = "addImage";
-				mPrinter.addImage(testImg, 0, 0,
+				mPrinter.addImage(testImg, 20, 0,
 				testImg.getWidth(),
 				testImg.getHeight(),
 				Printer.COLOR_1,
