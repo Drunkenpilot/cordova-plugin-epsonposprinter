@@ -53,6 +53,7 @@ public class ReceiptBuilderExt {
 
 	public Bitmap build(JSONArray html) throws JSONException {
 		if (html == null || html.length() == 0) {
+			Log.i("html","Html is null");
 			return null;
 		}
 
