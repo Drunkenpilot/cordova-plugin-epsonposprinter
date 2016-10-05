@@ -87,22 +87,13 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			});
 			return true;
 		}else if (action.equals("print")) {
-			final JSONArray html = args.optJSONArray(0);
-			int printMode = args.optInt(1);
+			final JSONArray printContent = args.optJSONArray(0);
+			final int printTemplate = args.optInt(1);
 			Log.d("printMode","printMode = "+printMode);
-			// for(int i= 0; i<html.size();i++){
-			// 	JSONObject
-			// 	object = (JSONObject) html.get(i);
-			// 	String
-			// 	name = object.getString("name");
-			// 	String
-			// 	value = object.getString("value");
-			// 	Log.i("Name:",name);
-			// 	Log.i("Value:",value);
-			// }
+
 			cordova.getThreadPool().execute(new Runnable() {
 				public void run() {
-					runPrintReceiptSequence(html);
+					runPrintReceiptSequence(printContent,printTemplate);
 				}
 			});
 			return true;
@@ -111,12 +102,12 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 	}
 
-	private boolean runPrintReceiptSequence(final JSONArray html) {
+	private boolean runPrintReceiptSequence(final JSONArray printContent, final int printTemplate) {
 		if (!initializeObject()) {
 			return false;
 		}
 
-		if (!createReceiptData(html)) {
+		if (!createReceiptData(printContent,printTemplate)) {
 			finalizeObject();
 			return false;
 		}
@@ -188,87 +179,47 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 
 
-	private boolean createReceiptData(final JSONArray html) {
-		String method = "";
-		Bitmap logoData = BitmapFactory.decodeResource(cordova.getActivity().getResources(), R.drawable.store);
-		StringBuilder textData = new StringBuilder();
-		final int barcodeWidth = 2;
-		final int barcodeHeight = 100;
-
-
-		// ReceiptBuilder receipt = new ReceiptBuilder(500);
-		//         receipt.setMargin(0, 0).
-		//                 setAlign(Paint.Align.CENTER).
-		//                 setColor(Color.BLACK).
-		//                 setTextSize(24).
-		//                 // setTypeface(this, "fonts/RobotoMono-Regular.ttf").
-		//                 addText("LakeFront Cafe").
-		//                 addText("1234 Main St.").
-		//                 addText("Palo Alto, CA 94568").
-		//                 addText("999-999-9999").
-		//                 addBlankSpace(30).
-		//                 setAlign(Paint.Align.LEFT).
-		//                 addText("Terminal ID: 123456", false).
-		//                 setAlign(Paint.Align.RIGHT).
-		//                 addText("1234").
-		//                 setAlign(Paint.Align.LEFT).
-		//                 addLine().
-		//                 addText("08/15/16", false).
-		//                 setAlign(Paint.Align.RIGHT).
-		//                 addText("SERVER #4").
-		//                 setAlign(Paint.Align.LEFT).
-		//                 addParagraph().
-		//                 addText("CHASE VISA - INSERT").
-		//                 addText("AID: A000000000011111").
-		//                 addText("ACCT #: *********1111").
-		//                 addParagraph().
-		//                 // setTypeface(this, "fonts/RobotoMono-Bold.ttf").
-		//                 addText("CREDIT SALE").
-		//                 addText("UID: 12345678", false).
-		//                 setAlign(Paint.Align.RIGHT).
-		//                 addText("REF #: 1234").
-		//                 // setTypeface(this, "fonts/RobotoMono-Regular.ttf").
-		//                 setAlign(Paint.Align.LEFT).
-		//                 addText("BATCH #: 091", false).
-		//                 setAlign(Paint.Align.RIGHT).
-		//                 addText("AUTH #: 0701C").
-		//                 setAlign(Paint.Align.LEFT).
-		//                 addParagraph().
-		//                 // setTypeface(this, "fonts/RobotoMono-Bold.ttf").
-		//                 addText("AMOUNT", false).
-		//                 setAlign(Paint.Align.RIGHT).
-		//                 addText("$ 15.00").
-		//                 setAlign(Paint.Align.LEFT).
-		//                 addParagraph().
-		//                 addText("TIP", false).
-		//                 setAlign(Paint.Align.RIGHT).
-		//                 addText("$        ").
-		//                 addLine(180).
-		//                 setAlign(Paint.Align.LEFT).
-		//                 addParagraph().
-		//                 addText("TOTAL", false).
-		//                 setAlign(Paint.Align.RIGHT).
-		//                 addText("$        ").
-		//                 addLine(180).
-		//                 addParagraph().
-		//                 setAlign(Paint.Align.CENTER).
-		//                 // setTypeface(this, "fonts/RobotoMono-Regular.ttf").
-		//                 addText("APPROVED").
-		//                 addParagraph();
-		//
-		// 								Bitmap testImg = receipt.build();
-
+	private boolean createReceiptData(final JSONArray printContent,final int printTemplate) {
 		if (mPrinter == null) {
 			return false;
 		}
+		String method = "";
+		// Line mode
+		StringBuilder textData = new StringBuilder();
+
+		//		code bar
+		//		final int barcodeWidth = 2;
+		//		final int barcodeHeight = 100;
+
 
 		try {
-			method = "addTextAlign";
-			mPrinter.addTextAlign(Printer.ALIGN_CENTER);
 
-			ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity());
+			if(printTemplate == 1){
+				// Receipt with logo
+				method = "addTextAlign";
+				mPrinter.addTextAlign(Printer.ALIGN_CENTER);
+
+				Bitmap logoData = BitmapFactory.decodeResource(cordova.getActivity().getResources(), R.drawable.store);
+
+				method = "addImage";
+				mPrinter.addImage(logoData, 0, 0,
+				logoData.getWidth(),
+				logoData.getHeight(),
+				Printer.COLOR_1,
+				Printer.MODE_MONO,
+				Printer.HALFTONE_DITHER,
+				Printer.PARAM_DEFAULT,
+				Printer.COMPRESS_AUTO);
+
+				method = "addFeedLine";
+				mPrinter.addFeedLine(1);
+			}
+
+			//			Generate main content
 			try{
-				Bitmap testImg = receiptBuilder.build(html);
+				ReceiptBuilderExt receiptBuilder = new ReceiptBuilderExt(cordova.getActivity());
+				Bitmap testImg = receiptBuilder.build(printContent);
+
 				method = "addImage";
 				mPrinter.addImage(testImg, 0, 0,
 				testImg.getWidth(),
@@ -279,101 +230,21 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 				Printer.PARAM_DEFAULT,
 				Printer.COMPRESS_AUTO);
 
-
 				method = "addFeedLine";
 				mPrinter.addFeedLine(1);
+
 			} catch(JSONException e){
 
 			}
-			// method = "addImage";
-			// mPrinter.addImage(logoData, 0, 0,
-			// logoData.getWidth(),
-			// logoData.getHeight(),
-			// Printer.COLOR_1,
-			// Printer.MODE_MONO,
-			// Printer.HALFTONE_DITHER,
-			// Printer.PARAM_DEFAULT,
-			// Printer.COMPRESS_AUTO);
 
-			// method = "addFeedLine";
-			// mPrinter.addFeedLine(1);
-
-			// method = "addImage";
-			// mPrinter.addImage(testImg, 0, 0,
-			// testImg.getWidth(),
-			// testImg.getHeight(),
-			// Printer.COLOR_1,
-			// Printer.MODE_MONO,
-			// Printer.HALFTONE_DITHER,
-			// Printer.PARAM_DEFAULT,
-			// Printer.COMPRESS_AUTO);
-			//
-			//
-			// method = "addFeedLine";
-			// mPrinter.addFeedLine(1);
-			// textData.append("THE STORE 123 (555) 555 – 5555\n");
-			// textData.append("STORE DIRECTOR – John Smith\n");
-			// textData.append("\n");
-			// textData.append("7/01/07 16:58 6153 05 0191 134\n");
-			// textData.append("ST# 21 OP# 001 TE# 01 TR# 747\n");
-			// textData.append("------------------------------\n");
-			// method = "addText";
-			// mPrinter.addText(textData.toString());
-			// textData.delete(0, textData.length());
-			//
-			// method = "addTextAlign";
-			// mPrinter.addTextAlign(Printer.ALIGN_LEFT);
-			// textData.append("400 OHEIDA 3PK SPRINGF\n");
-			// method = "addText";
-			// mPrinter.addText(textData.toString());
-			// textData.delete(0, textData.length());
-			//
-			// method = "addTextAlign";
-			// mPrinter.addTextAlign(Printer.ALIGN_RIGHT);
-			// textData.append("9.99 €\n");
-			//
-			// method = "addText";
-			// mPrinter.addText(textData.toString());
-			// textData.delete(0, textData.length());
-			//
-			// textData.append("SUBTOTAL                160.38\n");
-			// textData.append("TAX                      14.43\n");
-			// method = "addText";
-			// mPrinter.addText(textData.toString());
-			// textData.delete(0, textData.length());
-			//
-			// method = "addTextSize";
-			// mPrinter.addTextSize(2, 2);
-			// method = "addText";
-			// mPrinter.addText("TOTAL    174.81\n");
-			// method = "addTextSize";
-			// mPrinter.addTextSize(1, 1);
-			// method = "addFeedLine";
-			// mPrinter.addFeedLine(1);
-			//
-			// textData.append("CASH                    200.00\n");
-			// textData.append("CHANGE                   25.19\n");
-			// textData.append("------------------------------\n");
-			// method = "addText";
-			// mPrinter.addText(textData.toString());
-			// textData.delete(0, textData.length());
-			//
-			// textData.append("Purchased item total number\n");
-			// textData.append("Sign Up and Save !\n");
-			// textData.append("With Preferred Saving Card\n");
-			// method = "addText";
-			// mPrinter.addText(textData.toString());
-			// textData.delete(0, textData.length());
-			// method = "addFeedLine";
-			// mPrinter.addFeedLine(2);
-
-			method = "addBarcode";
-			mPrinter.addBarcode("01209457",
-			Printer.BARCODE_CODE39,
-			Printer.HRI_BELOW,
-			Printer.FONT_A,
-			barcodeWidth,
-			barcodeHeight);
+			//			code bar
+			//			method = "addBarcode";
+			//			mPrinter.addBarcode("01209457",
+			//			Printer.BARCODE_CODE39,
+			//			Printer.HRI_BELOW,
+			//			Printer.FONT_A,
+			//			barcodeWidth,
+			//			barcodeHeight);
 
 			method = "addCut";
 			mPrinter.addCut(Printer.CUT_FEED);
