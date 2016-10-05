@@ -140,6 +140,7 @@ public class ReceiptBuilderExt {
 			builder.addText(value);
 		} else {
 			boolean newLine = elem.optBoolean("newLine");
+			Log.i("newLine","newLine = "+newLine);
 			builder.addText(value, newLine);
 		}
 
