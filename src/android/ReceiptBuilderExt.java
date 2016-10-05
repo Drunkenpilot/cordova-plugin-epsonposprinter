@@ -38,11 +38,11 @@ public class ReceiptBuilderExt {
 
 	public ReceiptBuilderExt(Activity activity) {
 		Log.i("打印数据","打印数据1");
-		int width = activity.getResources().getInteger(R.string.width);
-		int marginBottom = activity.getResources().getInteger(R.string.marginBottom);
-		int marginLeft = activity.getResources().getInteger(R.string.marginLeft);
-		int marginRight = activity.getResources().getInteger(R.string.marginRight);
-		int marginTop = activity.getResources().getInteger(R.string.marginTop);
+		int width = activity.getResources().getInteger(R.integer.width);
+		int marginBottom = activity.getResources().getInteger(R.integer.marginBottom);
+		int marginLeft = activity.getResources().getInteger(R.integer.marginLeft);
+		int marginRight = activity.getResources().getInteger(R.integer.marginRight);
+		int marginTop = activity.getResources().getInteger(R.integer.marginTop);
 
 		Log.d("width","Width = " + width);
 		this.activity = activity;

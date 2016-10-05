@@ -88,11 +88,11 @@
       <string name="handlingmsg_err_wrong_paper">Please set correct roll paper.\n</string>
       <string name="handlingmsg_err_battery_real_end">Please connect AC adapter or change the battery.\nBattery of printer is almost empty.\n</string>
       <string name="handlingmsg_err_offline">Printer is offline.\n</string>
-      <string name="width">500</string>
-      <string name="marginTop">0</string>
-      <string name="marginRight">0</string>
-      <string name="marginBottom">0</string>
-      <string name="marginLeft">0</string>
+      <integer name="width">500</integer>
+      <integer name="marginTop">0</integer>
+      <integer name="marginRight">0</integer>
+      <integer name="marginBottom">0</integer>
+      <integer name="marginLeft">0</integer>
     </config-file>
     <!-- <source-file src="src/android/res/values/canvas_config.xml" target-dir="res/values/" /> -->
     <source-file src="src/android/res/xml/device_filter.xml" target-dir="res/xml/" />
