@@ -236,22 +236,22 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			} catch(JSONException e){
 
 			}
+			if(printTemplate == 1) {
+				//			QR code
+				method = "addSymbol";
+				mPrinter.addSymbol("https://www.betalife.be", Printer.SYMBOL_QRCODE_MODEL_2, Printer.LEVEL_L, 3, 3, 3);
 
-//			QR code
-			method = "addSymbol";
-			mPrinter.addSymbol("https://www.betalife.be",Printer.SYMBOL_QRCODE_MODEL_2,Printer.LEVEL_L,3,3,3);
-
-			method = "addFeedLine";
-			mPrinter.addFeedLine(1);
-			//			code bar
-			//			method = "addBarcode";
-			//			mPrinter.addBarcode("01209457",
-			//			Printer.BARCODE_CODE39,
-			//			Printer.HRI_BELOW,
-			//			Printer.FONT_A,
-			//			barcodeWidth,
-			//			barcodeHeight);
-
+				method = "addFeedLine";
+				mPrinter.addFeedLine(1);
+				//			code bar
+				//			method = "addBarcode";
+				//			mPrinter.addBarcode("01209457",
+				//			Printer.BARCODE_CODE39,
+				//			Printer.HRI_BELOW,
+				//			Printer.FONT_A,
+				//			barcodeWidth,
+				//			barcodeHeight);
+			}
 			method = "addCut";
 			mPrinter.addCut(Printer.CUT_FEED);
 
