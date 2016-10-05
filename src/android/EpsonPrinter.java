@@ -243,8 +243,6 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 				method = "addSymbol";
 				mPrinter.addSymbol("https://www.betalife.be", Printer.SYMBOL_QRCODE_MODEL_2, Printer.LEVEL_L, 3, 3, 3);
 
-				method = "addFeedLine";
-				mPrinter.addFeedLine(10);
 				method = "addText";
 				mPrinter.addText("www.sushimoon.be");
 
