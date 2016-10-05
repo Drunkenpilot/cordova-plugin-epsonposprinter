@@ -88,6 +88,8 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			return true;
 		}else if (action.equals("print")) {
 			final JSONArray html = args.optJSONArray(0);
+			int printMode = args.optInt(0);
+			Log.d("printMode","printMode = "+printMode);
 			// for(int i= 0; i<html.size();i++){
 			// 	JSONObject
 			// 	object = (JSONObject) html.get(i);
