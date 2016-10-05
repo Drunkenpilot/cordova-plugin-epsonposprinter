@@ -67,6 +67,7 @@ public class ReceiptBuilderExt {
 	private void line(JSONArray oneLine) throws JSONException {
 		for (int i = 0; i < oneLine.length(); i++) {
 			JSONObject elem = oneLine.getJSONObject(i);
+			Log.i("elem.toString()",elem.toString());
 			String name = elem.getString("name");
 			if (name == null || name.length() == 0) {
 				continue;
