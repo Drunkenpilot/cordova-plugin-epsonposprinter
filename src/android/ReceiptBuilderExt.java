@@ -51,14 +51,14 @@ public class ReceiptBuilderExt {
 		builder.setMarginBottom(marginBottom).setMarginLeft(marginLeft).setMarginRight(marginRight).setMarginTop(marginTop);
 	}
 
-	public Bitmap build(JSONArray html) throws JSONException {
-		if (html == null || html.length() == 0) {
-			Log.i("html","Html is null");
+	public Bitmap build(JSONArray printContent) throws JSONException {
+		if (printContent == null || printContent.length() == 0) {
+			Log.i("printContent","printContent is null");
 			return null;
 		}
 
-		for (int i = 0; i < html.length(); i++) {
-			JSONArray one = html.getJSONArray(i);
+		for (int i = 0; i < printContent.length(); i++) {
+			JSONArray one = printContent.getJSONArray(i);
 			line(one);
 		}
 
