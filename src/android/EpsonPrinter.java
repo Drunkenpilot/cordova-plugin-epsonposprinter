@@ -246,7 +246,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 				method = "addFeedLine";
 				mPrinter.addFeedLine(10);
 				method = "addText";
-				mPrinter = "www.sushimoon.be";
+				mPrinter.addText("www.sushimoon.be");
 
 				method = "addFeedLine";
 				mPrinter.addFeedLine(1);
