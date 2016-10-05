@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 
 public class ReceiptBuilderExt {
 	private ReceiptBuilder builder;
@@ -36,6 +37,7 @@ public class ReceiptBuilderExt {
 	 */
 
 	public ReceiptBuilderExt(Activity activity) {
+		Log.i("打印数据","打印数据1");
 		int width = activity.getInteger(R.string.width);
 		int marginBottom = activity.getInteger(R.string.marginBottom);
 		int marginLeft = activity.getInteger(R.string.marginLeft);
