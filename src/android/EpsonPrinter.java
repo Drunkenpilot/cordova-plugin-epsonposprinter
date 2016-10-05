@@ -54,7 +54,6 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		this.callbackContext = callbackContext;
 
-		Log.i("测试", "测试1");
 		if (action.equals("search")) {
 			final int millSeconds = args.optInt(0, 10 * 1000);
 			Log.d(String.valueOf(args.optInt(0)),"time = "+millSeconds);
@@ -66,14 +65,10 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 					mFilterOption.setEpsonFilter(Discovery.FILTER_NAME);
 					mFilterOption.setPortType(Discovery.PORTTYPE_ALL);
 					try {
-						Log.i("测试", "测试2");
 						onPreExecute();
 						Discovery.start(cordova.getActivity(), mFilterOption, mDiscoveryListener);
-
 						Thread.sleep(millSeconds);
-						Log.i("测试", "测试3");
 					} catch (Epos2Exception e) {
-						Log.i("测试", "测试4");
 						Log.i("测试", "e:" + e.getErrorStatus());
 						onPostExecute();
 						ShowMsg.showException(e, "start", cordova.getActivity());
@@ -89,11 +84,12 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		}else if (action.equals("print")) {
 			final JSONArray printContent = args.optJSONArray(0);
 			final int printTemplate = args.optInt(1);
+			final int printMode = args.optInt(2);
 			Log.d("printTemplate","printTemplate = "+printTemplate);
 
 			cordova.getThreadPool().execute(new Runnable() {
 				public void run() {
-					runPrintReceiptSequence(printContent,printTemplate);
+					runPrintReceiptSequence(printContent,printTemplate,printMode);
 				}
 			});
 			return true;
@@ -102,12 +98,12 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 	}
 
-	private boolean runPrintReceiptSequence(final JSONArray printContent, final int printTemplate) {
+	private boolean runPrintReceiptSequence(final JSONArray printContent, final int printTemplate, final int printMode) {
 		if (!initializeObject()) {
 			return false;
 		}
 
-		if (!createReceiptData(printContent,printTemplate)) {
+		if (!createReceiptData(printContent,printTemplate,printMode)) {
 			finalizeObject();
 			return false;
 		}
@@ -179,21 +175,18 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 
 
-	private boolean createReceiptData(final JSONArray printContent,final int printTemplate) {
+	private boolean createReceiptData(final JSONArray printContent,final int printTemplate, final int printMode) {
 		if (mPrinter == null) {
 			return false;
 		}
 		String method = "";
-		// Line mode
-		StringBuilder textData = new StringBuilder();
-
-		//		code bar
-		//		final int barcodeWidth = 2;
-		//		final int barcodeHeight = 100;
-
+		// 		Line mode
+		//		StringBuilder textData = new StringBuilder();
 
 		try {
-
+			//				printTemplate = 1 Receipt with logo
+			//				printTemplate = 2 Receipt for kitchen
+			//				printTemplate = 3 Online order
 			if(printTemplate == 1){
 				// Receipt with logo
 				method = "addTextAlign";
@@ -244,6 +237,8 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 				method = "addFeedLine";
 				mPrinter.addFeedLine(1);
 				//			code bar
+				//		  final int barcodeWidth = 2;
+				//		  final int barcodeHeight = 100;
 				//			method = "addBarcode";
 				//			mPrinter.addBarcode("01209457",
 				//			Printer.BARCODE_CODE39,
@@ -255,10 +250,15 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 			method = "addCut";
 			mPrinter.addCut(Printer.CUT_FEED);
 
-			method = "addPulse";
-			mPrinter.addPulse(Printer.DRAWER_2PIN,Printer.PULSE_500);
-			method = "addPulse";
-			mPrinter.addPulse(Printer.DRAWER_2PIN,Printer.PULSE_500);
+			// printMode = 1 normal mode;
+			// printMode = 2 silent mode;
+			if(printMode == 1){
+				method = "addPulse";
+				mPrinter.addPulse(Printer.DRAWER_2PIN,Printer.PULSE_500);
+				method = "addPulse";
+				mPrinter.addPulse(Printer.DRAWER_2PIN,Printer.PULSE_500);
+			}
+
 		}
 		catch (Exception e) {
 			ShowMsg.showException(e, method, cordova.getActivity());
@@ -337,9 +337,9 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		}
 
 		try {
-			Log.i("停止打印","停止打印1");
+			// Log.i("停止打印","停止打印1");
 			mPrinter.disconnect();
-			Log.i("停止打印","停止打印2");
+			// Log.i("停止打印","停止打印2");
 		}
 		catch (final Exception e) {
 			cordova.getActivity().runOnUiThread(new Runnable() {
@@ -446,14 +446,11 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 				ShowMsg.showResult(code, makeErrorMessage(status), cordova.getActivity());
 
 				// dispPrinterWarnings(status);
-				Log.i("打印","打印1");
 
 				new Thread(new Runnable() {
 					@Override
 					public void run() {
-						Log.i("打印","打印2");
 						disconnectPrinter();
-						Log.i("打印","打印3");
 					}
 				}).start();
 			}
@@ -470,7 +467,6 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 	}
 
 	private void stopDiscovery() {
-		Log.i("停止搜索", "停止2");
 		while (true) {
 			try {
 				Discovery.stop();
@@ -485,12 +481,11 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		JSONArray jsonArray = new JSONArray();
 		for (HashMap<String, String> one : mPrinterList) {
 			JSONObject jsonObject = new JSONObject();
-			Log.i("测试", "mPrinterList: " + one.get("PrinterName") + " ~ " + one.get("Target"));
+
 			try {
 				jsonObject.put("PrinterName", one.get("PrinterName"));
 				jsonObject.put("Target", one.get("Target"));
 			} catch (JSONException e) {
-				Log.i("测试", "JSONException: " + e.getMessage());
 				onPostExecute();
 			}
 

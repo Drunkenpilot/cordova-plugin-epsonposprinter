@@ -53,8 +53,8 @@
       <file leaf-file-name="EpsonPrinter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/android/EpsonPrinter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="248" column="51" selection-start-line="248" selection-start-column="51" selection-end-line="248" selection-end-column="51" />
+            <state relative-caret-position="392">
+              <caret line="258" column="0" selection-start-line="258" selection-start-column="0" selection-end-line="261" selection-end-column="69" />
               <folding>
                 <element signature="e#3275#3276#0" expanded="true" />
                 <element signature="e#3339#3340#0" expanded="true" />
@@ -668,8 +668,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/android/EpsonPrinter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="248" column="51" selection-start-line="248" selection-start-column="51" selection-end-line="248" selection-end-column="51" />
+        <state relative-caret-position="392">
+          <caret line="258" column="0" selection-start-line="258" selection-start-column="0" selection-end-line="261" selection-end-column="69" />
           <folding>
             <element signature="e#3275#3276#0" expanded="true" />
             <element signature="e#3339#3340#0" expanded="true" />
