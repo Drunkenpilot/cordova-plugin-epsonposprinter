@@ -89,7 +89,7 @@
       <string name="handlingmsg_err_battery_real_end">Please connect AC adapter or change the battery.\nBattery of printer is almost empty.\n</string>
       <string name="handlingmsg_err_offline">Printer is offline.\n</string>
     </config-file>
-    <source-file src="src/android/res/values/canvas_config.xml" target-dir="res/values/">
+    <config-file target="res/values/canvas_config.xml" parent="/*">
     <source-file src="src/android/res/xml/device_filter.xml" target-dir="res/xml/" />
     <source-file src="src/android/res/xml/accessory_filter.xml" target-dir="res/xml/" />
     <source-file src="src/android/EpsonPrinter.java" target-dir="src/be/betalife/cordova/plugin/epsonposprinter" />
