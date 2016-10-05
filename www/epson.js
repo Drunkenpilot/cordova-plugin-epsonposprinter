@@ -5,7 +5,9 @@ module.exports = {
       cordova.exec(success_callback,error_callback,"EpsonPrinter","search",[timeout]);
   },
   print : function(args,success_callback, error_callback ){
-    console.log(angular.fromJson(args));
+    args = angular.fromJson(args);
+    console.log(args);
+    console.log(args.printTemplate);
     // JSONArray explication
     // 1. printContent JSONArray ex: [[{"name":"TextSize","value":"24"},{"name":"Text","value":"This is a test","newLine":true},{"name":"Line","value":180},{"name":"Align","value":"LEFT"}]]
     // 2. printTemplate
