@@ -181,7 +181,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		}
 		String method = "";
 		// 		Line mode
-		//		StringBuilder textData = new StringBuilder();
+		StringBuilder textData = new StringBuilder();
 
 		try {
 			//				printTemplate = 1 Receipt with logo
