@@ -24,18 +24,15 @@
       <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     </config-file>
 
-    <config-file target="AndroidManifest.xml" parent="/manifest/application">
-      <activity
-        android:name="MainActivity"
-        android:label="@string/launcher_name">
-        <intent-filter>
-          <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
-          <action android:name="android.intent.action.MAIN" />
-          <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        <meta-data android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
-          android:resource="@xml/device_filter" />
-        </activity>
+    <config-file target="AndroidManifest.xml" parent="/manifest/application" mode="merge">
+      <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/activity_name" android:launchMode="singleTop" android:name="MainActivity" android:theme="@android:style/Theme.DeviceDefault.NoActionBar" android:windowSoftInputMode="adjustResize">
+          <intent-filter android:label="@string/launcher_name">
+              <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+              <action android:name="android.intent.action.MAIN" />
+              <category android:name="android.intent.category.LAUNCHER" />
+          </intent-filter>
+          <meta-data android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" android:resource="@xml/device_filter" />
+      </activity>
       </config-file>
 
       <config-file target="res/values/strings.xml" parent="/*">
