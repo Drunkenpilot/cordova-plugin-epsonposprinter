@@ -4,7 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.ionicframework.posprintertest664842.R;
+import be.betalife.betarestoapp.R;
 import com.github.danielfelgar.drawreceiptlib.ReceiptBuilder;
 
 import android.app.Activity;

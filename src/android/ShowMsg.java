@@ -7,7 +7,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import com.ionicframework.posprintertest664842.R;
+import be.betalife.betarestoapp.R;
 
 public class ShowMsg {
 

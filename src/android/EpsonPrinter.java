@@ -34,7 +34,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Paint;
-import com.ionicframework.posprintertest664842.R;
+import be.betalife.betarestoapp.R;
 
 
 public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
