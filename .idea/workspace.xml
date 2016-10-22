@@ -52,10 +52,10 @@
         <entry file="file://$PROJECT_DIR$/src/android/EpsonPrinter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-45">
-              <caret line="297" column="40" selection-start-line="297" selection-start-column="40" selection-end-line="297" selection-end-column="40" />
+              <caret line="305" column="40" selection-start-line="305" selection-start-column="40" selection-end-line="305" selection-end-column="40" />
               <folding>
-                <element signature="e#12642#12643#0" expanded="true" />
-                <element signature="e#12676#12677#0" expanded="true" />
+                <element signature="e#12947#12948#0" expanded="true" />
+                <element signature="e#12981#12982#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -667,10 +667,10 @@
     <entry file="file://$PROJECT_DIR$/src/android/EpsonPrinter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-45">
-          <caret line="297" column="40" selection-start-line="297" selection-start-column="40" selection-end-line="297" selection-end-column="40" />
+          <caret line="305" column="40" selection-start-line="305" selection-start-column="40" selection-end-line="305" selection-end-column="40" />
           <folding>
-            <element signature="e#12642#12643#0" expanded="true" />
-            <element signature="e#12676#12677#0" expanded="true" />
+            <element signature="e#12947#12948#0" expanded="true" />
+            <element signature="e#12981#12982#0" expanded="true" />
           </folding>
         </state>
       </provider>
