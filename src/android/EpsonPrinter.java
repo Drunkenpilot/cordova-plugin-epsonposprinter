@@ -151,8 +151,8 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		// dispPrinterWarnings(status);
 
 		if (!isPrintable(status)) {
-			ShowMsg.showMsg(makeErrorMessage(status), cordova.getActivity());
 			EpsonPrinter.this.callbackContext.error("e:" + makeErrorMessage(status));
+			ShowMsg.showMsg(makeErrorMessage(status), cordova.getActivity());
 			try {
 				mPrinter.disconnect();
 			}
@@ -457,8 +457,9 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		cordova.getActivity().runOnUiThread(new Runnable() {
 			@Override
 			public synchronized void run() {
-				ShowMsg.showResult(code, makeErrorMessage(status), cordova.getActivity());
 				EpsonPrinter.this.callbackContext.success();
+				ShowMsg.showResult(code, makeErrorMessage(status), cordova.getActivity());
+
 				// dispPrinterWarnings(status);
 
 				new Thread(new Runnable() {
