@@ -127,7 +127,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		}
 		catch (Exception e) {
 			ShowMsg.showException(e, "Printer", cordova.getActivity());
-			EpsonPrinter.this.callbackContext.error("e:" + e.getErrorStatus());
+			EpsonPrinter.this.callbackContext.error("e:" + e);
 			return false;
 		}
 
@@ -152,7 +152,7 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 
 		if (!isPrintable(status)) {
 			ShowMsg.showMsg(makeErrorMessage(status), cordova.getActivity());
-			EpsonPrinter.this.callbackContext.error("e:" + e.getErrorStatus());
+			EpsonPrinter.this.callbackContext.error("e:" + makeErrorMessage(status));
 			try {
 				mPrinter.disconnect();
 			}
@@ -167,7 +167,6 @@ public class EpsonPrinter extends CordovaPlugin implements ReceiveListener {
 		}
 		catch (Exception e) {
 			ShowMsg.showException(e, "sendData", cordova.getActivity());
-			EpsonPrinter.this.callbackContext.error("e:" + e.getErrorStatus());
 			try {
 				mPrinter.disconnect();
 			}
