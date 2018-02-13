@@ -5,10 +5,15 @@
   <name>EpsonPosPrinter</name>
   <description>Cordova Epson Pos Printer Plugin</description>
   <keywords>cordova,epson,pos printer</keywords>
+    <license>ISC</license>
+    <repo>https://github.com/Drunkenpilot/cordova-plugin-epsonposprinter.git</repo>
+  <engines>
+        <engine name="cordova-android" version=">=6.3.0" />
+  </engines>
 
   <js-module src="www/epson.js" name="EpsonPosPrinter">
-    <clobbers target="cordova.plugins.epsonPosPrinter" />
-    <clobbers target="epsonPosPrinter" />
+    <!-- <clobbers target="cordova.plugins.epsonPosPrinter" /> -->
+    <clobbers target="EpsonPosPrinter" />
   </js-module>
 
   <platform name="android">
