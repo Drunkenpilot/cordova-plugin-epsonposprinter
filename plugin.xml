@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
   xmlns:android="http://schemas.android.com/apk/res/android"
   id="cordova-plugin-epsonposprinter" version="0.0.1">
-  <name>EpsonPosPrinter</name>
+  <name>EpsonPrinter</name>
   <description>Cordova Epson Pos Printer Plugin</description>
   <keywords>cordova,epson,pos printer</keywords>
     <license>ISC</license>
