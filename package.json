@@ -1,0 +1,28 @@
+{
+  "name": "cordova-plugin-epsonposprinter",
+  "version": "0.0.1",
+  "description": "Cordova Epson Pos Printer Plugin",
+  "cordova": {
+    "id": "cordova-plugin-epsonposprinter",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Drunkenpilot/cordova-plugin-epsonposprinter.git"
+  },
+  "keywords": [
+    "cordova",
+    "epson",
+    "pos printer",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Beta Life",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Drunkenpilot/cordova-plugin-epsonposprinter/issues"
+  },
+  "homepage": "https://github.com/Drunkenpilot/cordova-plugin-epsonposprinter#readme"
+}
