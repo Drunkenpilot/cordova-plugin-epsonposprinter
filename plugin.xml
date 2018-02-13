@@ -8,6 +8,7 @@
 
   <js-module src="www/epson.js" name="EpsonPosPrinter">
     <clobbers target="cordova.plugins.epsonPosPrinter" />
+    <clobbers target="epsonPosPrinter" />
   </js-module>
 
   <platform name="android">
