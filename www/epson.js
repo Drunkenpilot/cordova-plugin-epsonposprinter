@@ -1,4 +1,10 @@
 /*global cordova, module*/
+/**
+ * @exports EpsonPrinter
+ */
+/**
+ * @module EpsonPrinter
+ */
 var exec = require('cordova/exec');
 var EpsonPrnter = {
     search: function(timeout, success_callback, error_callback) {
